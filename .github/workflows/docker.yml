@@ -1,0 +1,21 @@
+name: CI / Docker
+
+on:
+  push:
+    branches: [ "**" ]
+    paths-ignore: [ '**.md', '**.svg']
+  pull_request:
+    branches: [ "**" ]
+    paths-ignore: [ '**.md', '**.svg' ]
+  workflow_dispatch:
+
+jobs:
+  build_image:
+    runs-on: ubuntu-latest
+    name: Build Image
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build the Docker Image
+      run: docker build . --file Dockerfile -t react-quiz-app:${{ github.sha }}

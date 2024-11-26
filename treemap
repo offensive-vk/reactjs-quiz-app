@@ -1,0 +1,26 @@
+ReactQuizApp/
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml
+│   │   └── docker.yml
+├── public/
+│   ├── quiz.json
+│   ├── this.json
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── Start.jsx
+│   │   ├── Quiz.jsx
+│   │   └── Result.jsx
+│   ├── context/
+│   │   └── dataContext.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── index.html
+├── license
+├── package.json
+└── vite.config.js
