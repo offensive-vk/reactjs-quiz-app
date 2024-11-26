@@ -14,12 +14,6 @@
     "optimize": "vite optimize -d",
     "lint": "eslint ."
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
