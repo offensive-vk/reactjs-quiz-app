@@ -12,7 +12,7 @@ const Result = () => {
         <div className="row vh-100 align-items-center justify-content-center">
           <div className="col-lg-6">
             <div
-              className={`text-light text-center p-5 rounded ${
+              className={`text-light text-center p-5 rounded border border-white ${
                 marks > (quizs.length * 5 / 2) ? "bg-success" : "bg-danger"
               }`}
             >
