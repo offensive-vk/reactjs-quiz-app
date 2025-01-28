@@ -1,0 +1,58 @@
+name: CI / Label Issues & PRs
+
+on: 
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+    inputs:
+      number:
+        required: true
+        type: number
+        default: "10"
+        description: "PR/Issue Number to Run Workflow on."
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  label:
+    name: Label Issues and Pull Requests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Validate Config Files
+      run: |
+        if [[ ! -f .github/issues.yml || ! -f .github/pr.yml ]]; then
+          echo "Required config files not found! Please ensure .github/issues.yml and .github/pr.yml exist."
+          exit 1
+        fi
+
+    - name: Label Issues
+      if: github.event_name == 'issues'
+      uses: offensive-vk/auto-label@master
+      with:
+        debug: true
+        create-labels: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-config: '.github/issues.yml'
+
+    - name: Label Pull Requests
+      if: github.event_name == 'pull_request'
+      uses: offensive-vk/auto-label@master
+      with:
+        debug: true
+        create-labels: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        pr-config: '.github/pr.yml'
+
+    - name: Debug Event Context
+      run: echo "${{ toJSON(github.event) }}"

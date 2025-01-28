@@ -1,0 +1,25 @@
+hamster:
+  - automated
+  - hamster
+  - hamsters
+  - hamster-bot
+  - Hamster
+
+issue:
+  - issue
+  - issues
+  - bug
+  - bugs
+  - fix
+
+feat:
+  - feature
+  - feat
+  - oi
+  - src
+
+base:
+  - base
+  - root
+  - this
+  - testing

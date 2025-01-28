@@ -1,0 +1,29 @@
+kind/enhancement:
+  - '**/*.jsx'
+  - '**/*.css'
+
+kind/javascript:
+  - '**/*.js' 
+
+kind/ci:
+  - '**/*.yml'
+  - '.github'
+
+kind/html:
+  - '**/*.html'
+  - '**/*.css'
+  
+bot/hamster:
+  - 'automated'
+  - 'hamster'
+
+kind/assets:
+  - 'public/**/*'
+  - '**/assets/**/*'
+
+kind/configuration:
+  - 'Dockerfile'
+  - '.gitignore'
+  - '**/*.yaml'
+  - '**/*.json'
+  - 'treemap'
