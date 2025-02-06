@@ -1,29 +1,44 @@
-kind/enhancement:
-  - '**/*.jsx'
-  - '**/*.css'
-
 kind/javascript:
-  - '**/*.js' 
+  match:
+    - '**/*.jsx' 
+    - '**/*.js' 
+  description: 'Changes Javascript files'
 
 kind/ci:
-  - '**/*.yml'
-  - '.github'
+  match:
+    - '**/*.yml'
+    - '**/*.yaml'
+    - 'Dockerfile'
+  description: 'Changes CI/CD files'
 
 kind/html:
-  - '**/*.html'
-  - '**/*.css'
+  match:
+    - '**/*.html'
+    - '**/*.css'
+  description: 'Changes html or css files'
   
 bot/hamster:
-  - 'automated'
-  - 'hamster'
+  match:
+    - 'automated'
+    - 'hamster'
+  description: 'Thats my hamster'
 
 kind/assets:
-  - 'public/**/*'
-  - '**/assets/**/*'
+  match:
+    - 'public/**/*'
+    - '**/assets/**/*'
+  description: 'Changes Static Assets'
 
 kind/configuration:
-  - 'Dockerfile'
-  - '.gitignore'
-  - '**/*.yaml'
-  - '**/*.json'
-  - 'treemap'
+  match:
+    - 'Dockerfile'
+    - '.gitignore'
+    - '**/*.yaml'
+    - '**/*.json'
+    - 'treemap'
+  description: 'Changes dotfiles'
+
+kind/deno:
+  match:
+    - 'deno.json'
+  description: 'Deno configuration'
