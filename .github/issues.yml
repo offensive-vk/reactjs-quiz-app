@@ -1,25 +1,27 @@
 hamster:
-  - automated
-  - hamster
-  - hamsters
-  - hamster-bot
-  - Hamster
-
-issue:
-  - issue
-  - issues
-  - bug
-  - bugs
-  - fix
+  match:
+    - 'automated'
+    - 'hamster'
+    - 'hamster-bot'
+  description: 'Its my hamster.'
 
 feat:
-  - feature
-  - feat
-  - oi
-  - src
+  match:
+    - 'feature'
+    - 'feat'
+    - 'src'
+  description: 'Feature or enhancement.'
 
-base:
-  - base
-  - root
-  - this
-  - testing
+boss:
+  match:
+    - 'admin'
+    - 'boss'
+  description: 'Its me (boss).'
+
+testing:
+  match:
+    - 'testing'
+    - 'wip'
+    - 'incomplete'
+    - 'local'
+  description: 'Testing for bugs or issues.'

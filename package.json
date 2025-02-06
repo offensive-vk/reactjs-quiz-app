@@ -3,9 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "A Quiz App Developed for Minor Project.",
+  "description": "A Quiz App Developed for Major/Minor Project.",
   "author": {
-    "name": "Mahak & Vedansh of BCA-V Sem (Full Stack)"
+    "name": "Mahak & Vedansh"
   },
   "scripts": {
     "dev": "vite --host --port 17027 --force --clearScreen -d",

@@ -3,15 +3,8 @@ name: CI / Label Issues & PRs
 on: 
   issues:
     types: [opened, edited]
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize]
-  workflow_dispatch:
-    inputs:
-      number:
-        required: true
-        type: number
-        default: "10"
-        description: "PR/Issue Number to Run Workflow on."
 
 permissions:
   pull-requests: write
@@ -24,17 +17,12 @@ jobs:
     permissions:
       contents: read
       issues: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-
-    - name: Validate Config Files
-      run: |
-        if [[ ! -f .github/issues.yml || ! -f .github/pr.yml ]]; then
-          echo "Required config files not found! Please ensure .github/issues.yml and .github/pr.yml exist."
-          exit 1
-        fi
 
     - name: Label Issues
       if: github.event_name == 'issues'
@@ -42,7 +30,7 @@ jobs:
       with:
         debug: true
         create-labels: true
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
         issue-config: '.github/issues.yml'
 
     - name: Label Pull Requests
@@ -51,7 +39,7 @@ jobs:
       with:
         debug: true
         create-labels: true
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
         pr-config: '.github/pr.yml'
 
     - name: Debug Event Context
