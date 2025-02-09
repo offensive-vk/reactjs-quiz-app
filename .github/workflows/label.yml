@@ -14,9 +14,6 @@ jobs:
   label:
     name: Label Issues and Pull Requests
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -30,7 +27,7 @@ jobs:
       with:
         debug: true
         create-labels: true
-        github-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
+        auth-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
         issue-config: '.github/issues.yml'
 
     - name: Label Pull Requests
@@ -39,7 +36,7 @@ jobs:
       with:
         debug: true
         create-labels: true
-        github-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
+        auth-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
         pr-config: '.github/pr.yml'
 
     - name: Debug Event Context

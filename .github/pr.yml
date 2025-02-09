@@ -1,3 +1,8 @@
+kind/docker:
+  match:
+    - 'Dockerfile'
+  description: 'Relating to docker runtime.'
+  
 kind/javascript:
   match:
     - '**/*.jsx' 
