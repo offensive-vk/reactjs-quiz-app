@@ -28,7 +28,7 @@ jobs:
       with:
         debug: true
         create-labels: true
-        auth-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
+        auth-token: ${{ secrets.MY_TOKEN || secrets.GITHUB_TOKEN }}
         issue-config: '.github/issues.yml'
 
     - name: Label Pull Requests
@@ -37,7 +37,7 @@ jobs:
       with:
         debug: true
         create-labels: true
-        auth-token: ${{ secrets.HAMSTER_PAT || env.GH_TOKEN }}
+        auth-token: ${{ secrets.MY_TOKEN || secrets.GITHUB_TOKEN }}
         pr-config: '.github/pr.yml'
 
     - name: Debug Event Context
