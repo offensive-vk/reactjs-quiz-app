@@ -33,7 +33,7 @@ Additionally, the app integrates these technologies:
 - **📚 Context API**: Utilizes React's Context API for seamless state management.
 - **🎨 Styling**: Styled with Bootstrap and custom CSS for a polished look.
 
-## 🔑 Key Dependencies:
+## 🔑 Key Dependencies
 
 - ⚛️ **React**: JavaScript library for building user interfaces.
 - 🏗 **React DOM**: DOM-specific methods for React.
@@ -42,7 +42,7 @@ Additionally, the app integrates these technologies:
 - ⚡ **Vite**: Provides a fast and efficient development environment.
 - 🚀 **pnpm**: The performant Node Package Manager for dependency management.
 
-## 🛠 Development Dependencies:
+## 🛠 Development Dependencies
 
 - 🛡 **ESLint**: For identifying and fixing problems in JavaScript code.
 - 🔌 **@vitejs/plugin-react**: Vite plugin for React support.
@@ -86,6 +86,10 @@ Here are the files critical for the application's functionality:
 - **⚙️ vite.config.js**: Configuration for Vite.
 - **📂 src/context/dataContext.js**: Manages the state and logic for the quiz.
 - **🗂 public/quiz.json**: Contains the quiz questions and answers.
+
+## Custom Questions / Answer
+
+You can also use your own quiz questions and answers. Have a look at the [Schema](./Schema.md).
 
 ## 🧑‍💻 Authors
 

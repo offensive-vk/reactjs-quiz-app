@@ -3,18 +3,14 @@ name: CI
 on:
   push:
     paths-ignore:
-      - "**.md"
       - "**/*.md"
       - "**/*.svg"
-      - "**.svg"
     branches:
       - "master"
   pull_request:
     paths-ignore:
-      - "**.md"
       - "**/*.md"
       - "**/*.svg"
-      - "**.svg"
     branches:
       - "master"
 
@@ -43,7 +39,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install pnpm
-        run: npm i -g pnpm@9.10.0 && pnpm -v
+        run: npm i -g pnpm@10.0.0 && pnpm -v
 
       - name: Install Dependencies
         run: pnpm i
