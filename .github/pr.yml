@@ -19,9 +19,13 @@ kind/ci:
 kind/html:
   match:
     - '**/*.html'
+  description: 'Changes html files'
+
+kind/css:
+  match:
     - '**/*.css'
-  description: 'Changes html or css files'
-  
+  description: 'Changes css files'
+
 bot/hamster:
   match:
     - 'automated'
@@ -36,14 +40,18 @@ kind/assets:
 
 kind/configuration:
   match:
-    - 'Dockerfile'
     - '.gitignore'
-    - '**/*.yaml'
     - '**/*.json'
     - 'treemap'
+    - 'eslint.config.js'
   description: 'Changes dotfiles'
 
 kind/deno:
   match:
     - 'deno.json'
   description: 'Deno configuration'
+
+kind/docs:
+  match:
+    - '*/**.md'
+  description: 'Documentation'

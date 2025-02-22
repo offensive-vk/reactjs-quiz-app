@@ -6,7 +6,7 @@ export const DataProvider = ({ children }) => {
   
   // All Quizs, Current Question, Index of Current Question, Answer, Selected Answer, Total Marks
   const [quizs, setQuizs] = useState([]);
-  const [question, setQuesion] = useState({});
+  const [question, setQuestion] = useState({});
   const [questionIndex, setQuestionIndex] = useState(0);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState("");
@@ -27,7 +27,7 @@ export const DataProvider = ({ children }) => {
   // Set a Single Question
   useEffect(() => {
     if (quizs.length > questionIndex) {
-      setQuesion(quizs[questionIndex]);
+      setQuestion(quizs[questionIndex]);
     }
   }, [quizs, questionIndex]);
 

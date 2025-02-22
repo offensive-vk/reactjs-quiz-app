@@ -18,6 +18,13 @@ boss:
     - 'boss'
   description: 'Its me (boss).'
 
+fragrance:
+  match:
+    - 'her'
+    - 'fragrance'
+    - 'mehak'
+    - 'mahak'
+    
 testing:
   match:
     - 'testing'
