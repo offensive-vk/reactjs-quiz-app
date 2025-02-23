@@ -39,6 +39,3 @@ jobs:
         create-labels: true
         auth-token: ${{ secrets.GITHUB_TOKEN }}
         pr-config: '.github/pr.yml'
-
-    - name: Debug Event Context
-      run: echo "${{ toJSON(github.event) }}"
