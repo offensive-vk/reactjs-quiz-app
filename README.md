@@ -1,4 +1,4 @@
-# 🌟 React JS Quiz App
+# 🌟 React JS Quiz Application
 
 ## 🚀 Overview
 
@@ -93,15 +93,14 @@ You can also use your own quiz questions and answers. Have a look at the [Schema
 
 ## 🧑‍💻 Authors
 
-This project was developed by **Mahak & Vedansh** as part of their BCA-V Semester (Full Stack) *minor project* for Software Project Management. 🌟
+This project was developed by **Mahak & Vedansh** as part of their BCA-V Semester (Full Stack) *major project* for Software Project Management. 🌟
 
 ## 🪪 License
 
 This project is licensed under the MIT License. See the [LICENSE](./license) file for details.
 
-## 🌐 Get in Touch 📬
 
-Feel free to connect if you have any questions or just want to chat about web development.
+---
 
 <p align="center">
   <i>&copy; <a href="https://github.com/offensive-vk/">Vedansh</a> & <a href="https://github.com/Mahak-2701/">Mahak</a> 2024 - Present</i><br>
