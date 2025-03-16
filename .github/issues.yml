@@ -32,3 +32,11 @@ testing:
     - 'incomplete'
     - 'local'
   description: 'Testing for bugs or issues.'
+
+docs:
+  match:
+    - 'docs'
+    - 'readme'
+    - 'schema'
+    - 'documentation'
+  description: 'Documentation or readme stuff.'
