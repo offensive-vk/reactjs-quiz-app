@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "A Quiz App Developed for Major Project.",
+  "description": "Just a Simple Quiz App using React JSX.",
   "author": {
     "name": "Mahak & Vedansh"
   },
