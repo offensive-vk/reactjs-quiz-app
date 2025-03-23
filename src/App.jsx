@@ -2,19 +2,22 @@ import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
 import { DataProvider } from "./context/dataContext";
+import { ErrorBoundary } from 'react-error-boundary';
 
 function App() {
   return (
-    <DataProvider>
-      {/* Welcome Page */}
-      <Start />
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
+      <DataProvider>
+        {/* Welcome Page */}
+        <Start />
 
-      {/* Quiz Page */}
-      <Quiz />
+        {/* Quiz Page */}
+        <Quiz />
 
-      {/* Result Page */}
-      <Result />
-    </DataProvider>
+        {/* Result Page */}
+        <Result />
+      </DataProvider>
+    </ErrorBoundary>
   );
 }
 
