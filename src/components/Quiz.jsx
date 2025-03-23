@@ -1,87 +1,131 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
+import BaseLayout from "./BaseLayout";
 
 const Quiz = () => {
+  const { type } = useParams();
+  const navigate = useNavigate();
   const {
-    showQuiz,
     question,
     quizs,
     checkAnswer,
     correctAnswer,
     selectedAnswer,
     questionIndex,
-    nextQuestion,
-    showTheResult,
+    loadQuestions,
+    showResult,
+    setShowResult,
+    setShowQuiz,
   } = useContext(DataContext);
 
-  return (
-    <section
-      className="text-white"
-      style={{ display: `${showQuiz ? "block" : "none"}` }}
-    >
-      <div className="container">
-        <div className="row vh-100 align-items-center justify-content-center">
-          <div className="col-lg-8">
-            <div
-              className="card p-4"
-              style={{
-                background: "transparent",
-                backdropFilter: "blur(25px)",
-                borderColor: "#646464",
-              }}
-            >
-              <div className="d-flex justify-content-between gap-md-3">
-                <h5 className="mb-2 fs-normal lh-base text-white">
-                  {question?.question}
-                </h5>
-                <h5
-                  style={{
-                    color: "#60d600",
-                    width: "100px",
-                    textAlign: "right",
-                  }}
-                >
-                  {quizs.indexOf(question) + 1} / {quizs?.length}
-                </h5>
-              </div>
-              <div>
-                {question?.options?.map((item, index) => (
-                  <button
-                    key={index}
-                    className={`option w-100 text-start btn py-2 px-3 mt-3 rounded btn-dark ${
-                      correctAnswer === item && "bg-success"
-                    }`}
-                    onClick={(event) => checkAnswer(event, item)}
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
+  const [isLoading, setIsLoading] = useState(true);
 
-              {(questionIndex + 1) !== quizs.length
-                ? (
-                  <button
-                    className="btn py-2 w-100 mt-3 bg-primary text-light fw-bold"
-                    onClick={nextQuestion}
-                    disabled={!selectedAnswer}
-                  >
-                    Next Question
-                  </button>
-                )
-                : (
-                  <button
-                    className="btn py-2 w-100 mt-3 bg-primary text-light fw-bold"
-                    onClick={showTheResult}
-                    disabled={!selectedAnswer}
-                  >
-                    Show Result
-                  </button>
-                )}
+  useEffect(() => {
+    const loadQuiz = async () => {
+      try {
+        await loadQuestions(type);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Failed to load quiz:', error);
+        navigate('/');
+      }
+    };
+    loadQuiz();
+  }, [type]);
+
+  useEffect(() => {
+    if (showResult) {
+      navigate('/result');
+    }
+  }, [showResult, navigate]);
+
+  const handleEndQuiz = () => {
+    if (window.confirm('Are you sure you want to end the quiz? Your progress will be saved.')) {
+      setShowResult(true);
+      setShowQuiz(false);
+      navigate('/result');
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <BaseLayout>
+        <div className="text-white text-center vh-100 d-flex align-items-center justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </BaseLayout>
+    );
+  }
+
+  return (
+    <BaseLayout>
+      <section className="text-white">
+        <div className="container">
+          <div className="row vh-100 align-items-center justify-content-center">
+            <div className="col-lg-8">
+              <div className="question-card p-4">
+                <div className="quiz-header mb-4">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="quiz-info d-flex align-items-center gap-3">
+                      <span className="question-number">Q{questionIndex + 1}</span>
+                      <span className="quiz-type-badge">
+                        {type.charAt(0).toUpperCase() + type.slice(1)} Quiz
+                      </span>
+                    </div>
+                    <button 
+                      onClick={handleEndQuiz}
+                      className="btn-end-quiz"
+                    >
+                      <i className="bi bi-x-circle me-2"></i>
+                      End Quiz
+                    </button>
+                  </div>
+                </div>
+
+                <div className="quiz-progress mb-4">
+                  <div className="d-flex justify-content-start mb-2">
+                    <span className="question-counter fw-medium">Question {questionIndex + 1} of {quizs.length}</span>
+                  </div>
+                  <div className="progress" style={{ height: "6px" }}>
+                    <div
+                      className="progress-bar bg-primary"
+                      style={{ width: `${((questionIndex + 1) / quizs.length) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+
+                <h4 className="mb-4 question-text">{question?.question}</h4>
+                
+                <div className="options-container">
+                  {question?.choices?.map((choice, index) => (
+                    <button
+                      key={index}
+                      onClick={() => checkAnswer(choice, index)}
+                      className={`quiz-option w-100 text-start mb-3 p-3 ${
+                        selectedAnswer === choice 
+                          ? correctAnswer === ""
+                            ? "selected"
+                            : correctAnswer === choice
+                            ? "correct"
+                            : "wrong"
+                          : ""
+                      } ${correctAnswer === choice ? "correct" : ""}`}
+                      disabled={correctAnswer !== ""}
+                    >
+                      <span className="option-index me-3">{String.fromCharCode(65 + index)}.</span>
+                      <span className="option-text">{choice}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </BaseLayout>
   );
 };
 

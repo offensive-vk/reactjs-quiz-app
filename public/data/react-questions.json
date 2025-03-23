@@ -1,0 +1,105 @@
+{
+  "quizTitle": "React Quiz",
+  "questions": [
+    {
+      "question": "What is a React Hook?",
+      "choices": [
+        "External plugin",
+        "Function that lets you use state in functional components",
+        "Class method",
+        "Database connection"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which hook is used for side effects in React?",
+      "choices": [
+        "useState",
+        "useEffect",
+        "useContext",
+        "useReducer"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is JSX?",
+      "choices": [
+        "JavaScript XML",
+        "Java Syntax Extension",
+        "JavaScript Extension",
+        "JSON XML"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "How do you pass data from parent to child component?",
+      "choices": [
+        "State",
+        "Props",
+        "Context",
+        "Refs"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is the virtual DOM?",
+      "choices": [
+        "Actual DOM",
+        "Light copy of the real DOM",
+        "Browser feature",
+        "HTML element"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which method is used to update state in React class components?",
+      "choices": [
+        "this.state()",
+        "this.setState()",
+        "this.updateState()",
+        "this.changeState()"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is the correct way to render a list in React?",
+      "choices": [
+        "Using for loop",
+        "Using while loop",
+        "Using map()",
+        "Using forEach()"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the purpose of keys in React lists?",
+      "choices": [
+        "Styling elements",
+        "Data binding",
+        "Unique identification of elements",
+        "Event handling"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Which lifecycle method is called after a component renders?",
+      "choices": [
+        "componentDidMount",
+        "componentWillMount",
+        "componentDidUpdate",
+        "componentWillUpdate"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is React Context used for?",
+      "choices": [
+        "Local state management",
+        "Global state management",
+        "Event handling",
+        "Form validation"
+      ],
+      "correctAnswer": 1
+    }
+  ]
+} 

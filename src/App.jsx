@@ -1,23 +1,25 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
 import { DataProvider } from "./context/dataContext";
-import { ErrorBoundary } from 'react-error-boundary';
+import BaseLayout from "./components/BaseLayout";
 
 function App() {
   return (
-    <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <DataProvider>
-        {/* Welcome Page */}
-        <Start />
-
-        {/* Quiz Page */}
-        <Quiz />
-
-        {/* Result Page */}
-        <Result />
-      </DataProvider>
-    </ErrorBoundary>
+    <DataProvider>
+      <Router>
+        <BaseLayout>
+          <Routes>
+            <Route path="/" element={<Start />} />
+            <Route path="/quiz/:type" element={<Quiz />} />
+            <Route path="/result" element={<Result />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </BaseLayout>
+      </Router>
+    </DataProvider>
   );
 }
 

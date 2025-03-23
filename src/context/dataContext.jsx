@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 const DataContext = createContext({});
 
@@ -17,12 +17,14 @@ export const DataProvider = ({ children }) => {
   const [showQuiz, setShowQuiz] = useState(false);
   const [showResult, setShowResult] = useState(false);
 
+  const [quizType, setQuizType] = useState('webdev');
+
   // Load JSON Data
-  useEffect(() => {
-    fetch("quiz.json")
-      .then((res) => res.json())
-      .then((data) => setQuizs(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("quiz.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setQuizs(data));
+  // }, []);
 
   // Set a Single Question
   useEffect(() => {
@@ -31,24 +33,74 @@ export const DataProvider = ({ children }) => {
     }
   }, [quizs, questionIndex]);
 
-  // Start Quiz
-  const startQuiz = () => {
+  const loadCustomQuiz = (jsonData) => {
+    // Validate JSON structure here
+    if (isValidQuizFormat(jsonData)) {
+      setQuizs(jsonData.questions);
+      startQuiz();
+    } else {
+      alert('Invalid quiz format. Please check the schema requirements.');
+    }
+  };
+
+  const startQuiz = (type = 'webdev') => {
+    setQuizType(type);
     setShowStart(false);
     setShowQuiz(true);
+    // Load questions based on quiz type
+    loadQuestions(type);
+  };
+
+  const loadQuestions = async (type) => {
+    try {
+      const response = await fetch(`/data/${type}-questions.json`);
+      const data = await response.json();
+      setQuizs(data.questions);
+      setQuestion(data.questions[0]);
+      setShowStart(false);
+      setShowQuiz(true);
+      setShowResult(false);
+    } catch (error) {
+      console.error('Error loading questions:', error);
+    }
+  };
+
+  const resetQuizState = () => {
+    setQuestionIndex(0);
+    setCorrectAnswer("");
+    setSelectedAnswer("");
+    setMarks(0);
+    setShowResult(false);
+  };
+
+  const resetQuiz = () => {
+    setQuizs([]);
+    resetQuizState();
   };
 
   // Check Answer
-  const checkAnswer = (event, selected) => {
-    if (!selectedAnswer) {
-      setCorrectAnswer(question.answer);
-      setSelectedAnswer(selected);
-
-      if (selected === question.answer) {
-        event.target.classList.add("bg-success");
+  const checkAnswer = (choice, index) => {
+    if (correctAnswer === "") { // Only allow selection if no answer is selected yet
+      setSelectedAnswer(choice);
+      if (index === question.correctAnswer) {
         setMarks(marks + 5);
+        setCorrectAnswer(choice);
       } else {
-        event.target.classList.add("bg-danger");
+        setCorrectAnswer(question.choices[question.correctAnswer]);
       }
+      
+      // Move to next question after a delay
+      setTimeout(() => {
+        if (questionIndex === quizs.length - 1) {
+          setShowResult(true);
+          setShowQuiz(false);
+        } else {
+          setQuestionIndex(questionIndex + 1);
+          setQuestion(quizs[questionIndex + 1]);
+          setSelectedAnswer("");
+          setCorrectAnswer("");
+        }
+      }, 1500);
     }
   };
 
@@ -101,6 +153,12 @@ export const DataProvider = ({ children }) => {
         showResult,
         marks,
         startOver,
+        loadCustomQuiz,
+        quizType,
+        loadQuestions,
+        resetQuiz,
+        setShowResult,
+        setShowQuiz,
       }}
     >
       {children}
