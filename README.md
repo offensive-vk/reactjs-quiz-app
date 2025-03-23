@@ -54,7 +54,7 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   $ git clone https://github.com/offensive-vk/ReactQuizApp.git
+   $ git clone https://github.com/offensive-vk/reactjs-quiz-app.git
    ```
 
 2. **Navigate to the project directory**:
@@ -103,7 +103,7 @@ This project is licensed under the MIT License. See the [LICENSE](./license) fil
 ---
 
 <p align="center">
-  <i>&copy; <a href="https://github.com/offensive-vk/">Vedansh</a> & <a href="https://github.com/Mahak-2701/">Mahak</a> 2024 - Present</i><br>
+  <i>&copy; <a href="https://github.com/offensive-vk/">Vedansh</a> & <a href="https://github.com/the-mehak/">Mehak</a> 2024 - Present</i><br>
   <i>Licensed under <a href="https://github.com/offensive-vk/ReactQuizApp/tree/master/LICENSE">MIT</a></i><br>
   <a href="https://github.com/TheHamsterBot"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
   <kbd>Thanks for visiting 😊</kbd>
