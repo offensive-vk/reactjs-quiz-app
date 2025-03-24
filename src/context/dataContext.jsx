@@ -5,7 +5,7 @@ const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
   
   // All Quizs, Current Question, Index of Current Question, Answer, Selected Answer, Total Marks
-  const [quizs, setQuizs] = useState([]);
+  const [quizQuestions, setQuizQuestions] = useState([]);
   const [question, setQuestion] = useState({});
   const [questionIndex, setQuestionIndex] = useState(0);
   const [correctAnswer, setCorrectAnswer] = useState("");
@@ -28,15 +28,32 @@ export const DataProvider = ({ children }) => {
 
   // Set a Single Question
   useEffect(() => {
-    if (quizs.length > questionIndex) {
-      setQuestion(quizs[questionIndex]);
+    if (quizQuestions.length > questionIndex) {
+      setQuestion(quizQuestions[questionIndex]);
     }
-  }, [quizs, questionIndex]);
+  }, [quizQuestions, questionIndex]);
+
+  const isValidQuizFormat = (jsonData) => {
+    // Check if jsonData is an array
+    if (!Array.isArray(jsonData)) {
+      return false;
+    }
+
+    // Check each question object in the array
+    return jsonData.every(question => {
+      return (
+        typeof question.id === 'string' &&
+        typeof question.question === 'string' &&
+        Array.isArray(question.options) &&
+        question.options.every(option => typeof option === 'string') &&
+        typeof question.answer === 'string'
+      );
+    });
+  };
 
   const loadCustomQuiz = (jsonData) => {
-    // Validate JSON structure here
     if (isValidQuizFormat(jsonData)) {
-      setQuizs(jsonData.questions);
+      setQuizQuestions(jsonData);
       startQuiz();
     } else {
       alert('Invalid quiz format. Please check the schema requirements.');
@@ -54,14 +71,18 @@ export const DataProvider = ({ children }) => {
   const loadQuestions = async (type) => {
     try {
       const response = await fetch(`/data/${type}-questions.json`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-      setQuizs(data.questions);
+      setQuizQuestions(data.questions);
       setQuestion(data.questions[0]);
       setShowStart(false);
       setShowQuiz(true);
       setShowResult(false);
     } catch (error) {
       console.error('Error loading questions:', error);
+      alert('Failed to load questions. Please check the console for more details.');
     }
   };
 
@@ -74,7 +95,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const resetQuiz = () => {
-    setQuizs([]);
+    setQuizQuestions([]);
     resetQuizState();
   };
 
@@ -91,12 +112,13 @@ export const DataProvider = ({ children }) => {
       
       // Move to next question after a delay
       setTimeout(() => {
-        if (questionIndex === quizs.length - 1) {
+        if (questionIndex === quizQuestions.length - 1) {
           setShowResult(true);
           setShowQuiz(false);
+          setShowStart(false);
         } else {
           setQuestionIndex(questionIndex + 1);
-          setQuestion(quizs[questionIndex + 1]);
+          setQuestion(quizQuestions[questionIndex + 1]);
           setSelectedAnswer("");
           setCorrectAnswer("");
         }
@@ -104,7 +126,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  // Next Quesion
+  // Next Question
   const nextQuestion = () => {
     setCorrectAnswer("");
     setSelectedAnswer("");
@@ -136,6 +158,16 @@ export const DataProvider = ({ children }) => {
     const rightBtn = document.querySelector("button.bg-success");
     rightBtn?.classList.remove("bg-success");
   };
+
+  function generateId(length = 10) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+  }
+  
   return (
     <DataContext.Provider
       value={{
@@ -143,7 +175,7 @@ export const DataProvider = ({ children }) => {
         showStart,
         showQuiz,
         question,
-        quizs,
+        quizQuestions,
         checkAnswer,
         correctAnswer,
         selectedAnswer,
@@ -159,6 +191,7 @@ export const DataProvider = ({ children }) => {
         resetQuiz,
         setShowResult,
         setShowQuiz,
+        generateId,
       }}
     >
       {children}

@@ -55,6 +55,18 @@ const Start = () => {
     }
   };
 
+  const handleDownloadSchemas = () => {
+    const schemas = ['quiz.json', 'Schema.md'];
+    schemas.forEach(schema => {
+      const a = document.createElement('a');
+      a.href = schema;
+      a.download = schema.split('/').pop();
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  };
+
   return (
     <BaseLayout>
       <section className="text-white text-center quiz-start">
@@ -102,9 +114,12 @@ const Start = () => {
                   onChange={handleFileUpload}
                 />
                 <div className="mt-3">
-                  <a href="/schema.json" download className="text-decoration-none border border-bottom rounded p-2 m-4">
-                    <small>Download Schema Template</small>
-                  </a>
+                  <button
+                    className="btn template border rounded p-2 m-4"
+                    onClick={handleDownloadSchemas}
+                  >
+                    <small>Download Templates</small>
+                  </button>
                 </div>
               </div>
             </div>

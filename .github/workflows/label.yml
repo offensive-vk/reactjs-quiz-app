@@ -24,7 +24,7 @@ jobs:
 
     - name: Label Issues
       if: github.event_name == 'issues'
-      uses: offensive-vk/auto-label@v8
+      uses: offensive-vk/auto-label@master
       with:
         debug: true
         create-labels: true
@@ -33,7 +33,7 @@ jobs:
 
     - name: Label Pull Requests
       if: github.event_name == 'pull_request'
-      uses: offensive-vk/auto-label@v8
+      uses: offensive-vk/auto-label@master
       with:
         debug: true
         create-labels: true

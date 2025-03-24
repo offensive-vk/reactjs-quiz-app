@@ -8,7 +8,7 @@ const Quiz = () => {
   const navigate = useNavigate();
   const {
     question,
-    quizs,
+    quizQuestions,
     checkAnswer,
     correctAnswer,
     selectedAnswer,
@@ -17,6 +17,8 @@ const Quiz = () => {
     showResult,
     setShowResult,
     setShowQuiz,
+    generateId,
+    quizType
   } = useContext(DataContext);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -36,15 +38,21 @@ const Quiz = () => {
 
   useEffect(() => {
     if (showResult) {
-      navigate('/result');
+      const resultId = generateId();
+      const resultPath = `/result/${resultId}`;
+      localStorage.setItem('lastResultPath', resultPath);
+      navigate(resultPath);
     }
   }, [showResult, navigate]);
 
   const handleEndQuiz = () => {
     if (window.confirm('Are you sure you want to end the quiz? Your progress will be saved.')) {
+      const resultId = generateId();
       setShowResult(true);
       setShowQuiz(false);
-      navigate('/result');
+      const resultPath = `/result/${resultId}`;
+      localStorage.setItem('lastResultPath', resultPath);
+      navigate(resultPath);
     }
   };
 
@@ -87,12 +95,12 @@ const Quiz = () => {
 
                 <div className="quiz-progress mb-4">
                   <div className="d-flex justify-content-start mb-2">
-                    <span className="question-counter fw-medium">Question {questionIndex + 1} of {quizs.length}</span>
+                    <span className="question-counter fw-medium">Question {questionIndex + 1} of {quizQuestions.length}</span>
                   </div>
                   <div className="progress" style={{ height: "6px" }}>
                     <div
                       className="progress-bar bg-primary"
-                      style={{ width: `${((questionIndex + 1) / quizs.length) * 100}%` }}
+                      style={{ width: `${((questionIndex + 1) / quizQuestions.length) * 100}%` }}
                     ></div>
                   </div>
                 </div>
