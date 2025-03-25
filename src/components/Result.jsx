@@ -1,38 +1,100 @@
 import React, { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/dataContext";
+import BaseLayout from "./BaseLayout";
+import html2canvas from 'html2canvas';
 
 const Result = () => {
-  const { showResult, quizs, marks, startOver } = useContext(DataContext);
+  const navigate = useNavigate();
+  const { quizType, marks, resetQuiz, generateId } = useContext(DataContext);
+  const { id } = useParams();
+  
+  // Calculate percentage for progress indicator
+  const percentage = (marks / (quizType.length * 5)) * 100;
+  const isPassing = marks > (quizType.length * 5 / 2);
+
+  const handleStartOver = () => {
+    // Assuming the quiz type is stored in the quizType array and is the last string path in the URL
+    const lastQuizType = quizType[0]?.type;
+    navigate(`/quiz/${lastQuizType}`);
+    resetQuiz();
+  };
+
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
+  const handleShareResults = () => {
+    html2canvas(document.body).then((canvas) => {
+      const image = canvas.toDataURL('image/png', 1.0);
+      const link = document.createElement('a');
+      link.href = image;
+      link.download = `quiz-result-${generateId()}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  };
+
   return (
-    <section
-      className="bg-dark text-white"
-      style={{ display: `${showResult ? "block" : "none"}` }}
-    >
-      <div className="container">
-        <div className="row vh-100 align-items-center justify-content-center">
-          <div className="col-lg-6">
-            <div
-              className={`text-light text-center p-5 rounded border border-white ${
-                marks > (quizs.length * 5 / 2) ? "bg-success" : "bg-danger"
-              }`}
-            >
-              <h1 className="mb-2 fw-bold">
-                {marks > (quizs.length * 5 / 2) ? "Awesome!" : "Oops!"}
-              </h1>
-              <h3 className="mb-3 fw-bold">
-                Your score is {marks} out of {quizs.length * 5}
-              </h3>
-              <button
-                onClick={startOver}
-                className="btn py-2 px-4 btn-light fw-bold d-inline"
-              >
-                Start Over
-              </button>
+    <BaseLayout>
+      <section className="text-white">
+        <div className="container">
+          <div className="row vh-100 align-items-center justify-content-center">
+            <div className="col-lg-6">
+              <div className="result-card p-4">
+                <div className="score-circle mb-3">
+                  <div className={`circle-progress ${isPassing ? 'success' : 'danger'}`}>
+                    <h1 className="percentage mb-0">{percentage.toFixed(0)}%</h1>
+                    <p className="score-text">
+                      {marks} / {quizType.length * 5 } points
+                    </p>
+                  </div>
+                </div>
+
+                <div className="result-message mb-4">
+                  {isPassing ? (
+                    <>
+                      <h2 className="fs-3 fw-bold text-success mb-2">Excellent Work! 🎉</h2>
+                      <p className="text-muted fs-6">You've mastered this quiz!</p>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="fs-3 fw-bold text-danger mb-2">Keep Practicing! 💪</h2>
+                      <p className="text-muted fs-6">You're on the right track!</p>
+                    </>
+                  )}
+                </div>
+
+                <div className="result-details mb-4">
+                  <p className="quiz-info">Quiz Type: {quizType[0]?.type}</p>
+                  <p className="quiz-info">Quiz URL: {window.location?.href}</p>
+                </div>
+
+                <button
+                  onClick={handleStartOver}
+                  className="btn btn-primary fw-semibold px-4 py-2 me-2"
+                >
+                  Try Again <i className="bi bi-arrow-repeat ms-2"></i>
+                </button>
+                <button
+                  onClick={handleGoHome}
+                  className="btn btn-secondary fw-semibold px-4 py-2 me-2"
+                >
+                  Go Home <i className="bi bi-house-door ms-2"></i>
+                </button>
+                <button
+                  onClick={handleShareResults}
+                  className="btn btn-info fw-semibold px-4 py-2"
+                >
+                  Share Result <i className="bi bi-share ms-2"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </BaseLayout>
   );
 };
 

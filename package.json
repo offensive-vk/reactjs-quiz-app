@@ -1,28 +1,32 @@
 {
   "name": "react-js-quiz",
   "private": true,
-  "version": "1.0.0",
+  "version": "2025.3.0",
   "type": "module",
   "description": "Just a Simple Quiz App using React JSX.",
   "author": {
     "name": "Mahak & Vedansh"
   },
   "scripts": {
+    "clean": "rm -rf dist",
     "dev": "vite --host --port 17027 --force --clearScreen -d",
     "build": "vite build -d --sourcemap",
     "preview": "vite preview -d",
     "optimize": "vite optimize -d",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "all": "pnpm run preview; pnpm run build; pnpm run optimize"
   },
+  "pnpm.onlyBuiltDependencies": "esbuild",
   "dependencies": {
     "bootstrap": "^5.3.3",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
-    "@types/react": "^18.3.19",
+    "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.23.0",
@@ -30,6 +34,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
-    "vite": "^5.4.14"
+    "html2canvas": "^1.4.1",
+    "react-error-boundary": "^5.0.0",
+    "vite": "^5.4.15"
   }
 }
