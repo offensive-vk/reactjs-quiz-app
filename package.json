@@ -3,7 +3,6 @@
   "private": true,
   "version": "2025.3.0",
   "type": "module",
-  "pnpm.onlyBuiltDependencies": "esbuild",
   "description": "Just a Simple Quiz App using React JSX.",
   "author": {
     "name": "Mahak & Vedansh"
@@ -17,6 +16,7 @@
     "lint": "eslint .",
     "all": "pnpm run preview; pnpm run build; pnpm run optimize"
   },
+  "pnpm.onlyBuiltDependencies": "esbuild",
   "dependencies": {
     "bootstrap": "^5.3.3",
     "react": "^18.3.1",
