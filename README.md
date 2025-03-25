@@ -2,7 +2,7 @@
 
 ## 🚀 Overview
 
-The **React JS Quiz App** is a web application designed to test the knowledge of Full Stack, Frontend, Backend, and Web Developers. Built using **ReactJS** and **Vite**, this application provides a seamless and interactive quiz experience. The app features a **start page**, a **quiz interface**, and a **results page**, all styled with **Bootstrap** for a modern look.
+The **React JS Quiz App** is a web application designed to test the knowledge of Frontend, Backend, and Web Developers. Built using **ReactJS** and **Vite**, this application provides a seamless and interactive quiz experience. The app features a **start page**, a **quiz interface**, and a **results page**, all styled with **Bootstrap** for a modern look.
 
 ## ✨ Features
 
@@ -30,6 +30,7 @@ Additionally, the app integrates these technologies:
 ## 🔑 Dependencies
 
 ### Production Dependencies
+
 - ⚛️ **react**: ^18.2.0 - Core React library
 - 🏗 **react-dom**: ^18.2.0 - React DOM manipulation
 - 🛣 **react-router-dom**: ^6.22.0 - Routing and navigation
@@ -40,6 +41,7 @@ Additionally, the app integrates these technologies:
 - 📊 **react-icons**: ^5.0.1 - Icon components library
 
 ### Development Dependencies
+
 - ⚡ **vite**: ^5.0.12 - Build tool and development server
 - 🔌 **@vitejs/plugin-react**: ^4.2.1 - React plugin for Vite
 - 📘 **@types/react**: ^18.2.43 - TypeScript definitions for React
