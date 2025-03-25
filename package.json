@@ -1,7 +1,7 @@
 {
   "name": "react-js-quiz",
   "private": true,
-  "version": "1.0.0",
+  "version": "2025.3.0",
   "type": "module",
   "pnpm.onlyBuiltDependencies": "esbuild",
   "description": "Just a Simple Quiz App using React JSX.",
