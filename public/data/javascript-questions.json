@@ -14,9 +14,9 @@
     {
       "question": "What is the correct way to declare a variable in modern JavaScript?",
       "choices": [
-        "var x = 5",
-        "let x = 5",
-        "const x = 5",
+        "int x = 5;",
+        "let x = 5;",
+        "const x = 5;",
         "Both b and c"
       ],
       "correctAnswer": 3
@@ -24,8 +24,8 @@
     {
       "question": "Which method is used to add elements to the end of an array?",
       "choices": [
-        "push()",
         "unshift()",
+        "push()",
         "append()",
         "pop()"
       ],
@@ -52,7 +52,7 @@
       "correctAnswer": 1
     },
     {
-      "question": "What is the correct way to write a JavaScript array?",
+      "question": "What is the correct way to define a JavaScript array?",
       "choices": [
         "var colors = (1:'red', 2:'green')",
         "var colors = 'red', 'green'",
@@ -75,9 +75,9 @@
       "question": "How do you declare a JavaScript object?",
       "choices": [
         "var person = Object()",
-        "var person = {}",
-        "var person = []",
-        "var person = ()"
+        "var person = {};",
+        "var person = ['obj']",
+        "const human = (obj)"
       ],
       "correctAnswer": 1
     },

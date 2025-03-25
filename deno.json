@@ -1,6 +1,7 @@
 {
     "nodeModulesDir": "auto",
     "tasks": {
+      "clean": "rm -rf dist",
       "dev": "vite --host --port 17027 --force --clearScreen -d",
       "build": "vite build -d --sourcemap",
       "preview": "vite preview -d",

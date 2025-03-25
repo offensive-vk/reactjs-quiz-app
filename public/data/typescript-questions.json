@@ -26,7 +26,7 @@
       "choices": [
         "A type that can only hold numbers",
         "A type that can hold any value",
-        "A type that can only hold strings",
+        "A type that can only hold vector",
         "A type that can only hold arrays"
       ],
       "correctAnswer": 1
@@ -37,12 +37,12 @@
         "To create new JavaScript objects",
         "To define a contract for object structure",
         "To improve code performance",
-        "To create class instances"
+        "To create complex class instances"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which operator is used for optional properties in TypeScript interfaces?",
+      "question": "Which operator is used for optional properties or parameters?",
       "choices": [
         "?",
         "*",

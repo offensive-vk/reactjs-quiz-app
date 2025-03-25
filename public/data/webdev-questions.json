@@ -77,7 +77,7 @@
         "color",
         "bgcolor",
         "background-color",
-        "background"
+        "linear-gradient"
       ],
       "correctAnswer": 2
     },

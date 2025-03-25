@@ -82,7 +82,7 @@
       "correctAnswer": 2
     },
     {
-      "question": "What is the purpose of __init__ method in Python?",
+      "question": "What is the purpose of '__init__' method in Python?",
       "choices": [
         "To initialize class attributes",
         "To create a new class",
