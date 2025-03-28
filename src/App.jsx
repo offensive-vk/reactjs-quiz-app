@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Start from "./components/Start";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
-import { DataProvider } from "./context/dataContext";
 import BaseLayout from "./components/BaseLayout";
+import { DataProvider } from "./context/dataContext";
 import { ErrorBoundary } from "react-error-boundary";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (

@@ -50,7 +50,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: temp-artifacts-${{ matrix.os }}-v${{ matrix.node }}
+          name: build-${{ matrix.os }}-v${{ matrix.node }}
           path: dist
 
       - name: Upload Successful Summary
