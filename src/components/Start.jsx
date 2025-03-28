@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
+import '../styles/Start.css'
 
 const Start = () => {
   const { startQuiz, showStart, loadCustomQuiz, loadQuestions } = useContext(DataContext);

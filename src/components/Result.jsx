@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import html2canvas from 'html2canvas';
+import '../styles/Result.css'
 
 const Result = () => {
   const navigate = useNavigate();
