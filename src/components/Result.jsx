@@ -49,7 +49,7 @@ const Result = () => {
                   <div className={`circle-progress ${isPassing ? 'success' : 'danger'}`}>
                     <h1 className="percentage mb-0">{percentage.toFixed(0)}%</h1>
                     <p className="score-text">
-                      {marks} / {quizType.length * 5 } points
+                      {marks} / {quizQuestions.length * 5} points
                     </p>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ const Result = () => {
                 </div>
 
                 <div className="result-details mb-4">
-                  <p className="quiz-info">Quiz Type: {quizType[0]?.type}</p>
+                  <p className="quiz-info">Quiz Type: {quizType?.type || quizType}</p>
                   <p className="quiz-info">Quiz URL: {window.location?.href}</p>
                 </div>
 
