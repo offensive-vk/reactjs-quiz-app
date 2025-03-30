@@ -11,6 +11,7 @@ export const DataProvider = ({ children }) => {
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [marks, setMarks] = useState(0);
+  const [skippedQuestions, setSkippedQuestions] = useState(0);
 
   // Display Controlling States
   const [showStart, setShowStart] = useState(true);
@@ -44,7 +45,7 @@ export const DataProvider = ({ children }) => {
 
   const loadQuestions = async (type) => {
     try {
-      const response = await fetch(`/quiz.json`);
+      const response = await fetch(`/data/${type}-questions.json`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -90,6 +91,20 @@ export const DataProvider = ({ children }) => {
 
   // Check Answer
   const checkAnswer = (choice, index) => {
+    if (index === -1) {
+      // Handle skipped question
+      setSkippedQuestions(prev => prev + 1);
+      if (questionIndex === quizQuestions.length - 1) {
+        setShowResult(true);
+        setShowQuiz(false);
+        setShowStart(false);
+      } else {
+        setQuestionIndex(questionIndex + 1);
+        setQuestion(quizQuestions[questionIndex + 1]);
+      }
+      return;
+    }
+
     if (correctAnswer === "") { // Only allow selection if no answer is selected yet
       setSelectedAnswer(choice);
       if (index === question.correctAnswer) {
@@ -113,6 +128,10 @@ export const DataProvider = ({ children }) => {
         }
       }, 1500);
     }
+  };
+
+  const skipQuestion = () => {
+    checkAnswer(null, -1);
   };
 
   // Next Question
@@ -170,10 +189,12 @@ export const DataProvider = ({ children }) => {
         showResult,
         marks,
         quizType,
+        skippedQuestions,
         startQuiz,
         nextQuestion,
         showTheResult,
         checkAnswer,
+        skipQuestion,
         startOver,
         loadCustomQuiz,
         loadQuestions,

@@ -19,7 +19,8 @@ const Quiz = () => {
     setShowResult,
     setShowQuiz,
     generateId,
-    quizType
+    quizType,
+    skipQuestion
   } = useContext(DataContext);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -84,13 +85,22 @@ const Quiz = () => {
                         {type.charAt(0).toUpperCase() + type.slice(1)} Quiz
                       </span>
                     </div>
-                    <button 
-                      onClick={handleEndQuiz}
-                      className="btn-end-quiz"
-                    >
-                      <i className="bi bi-x-circle me-2"></i>
-                      End Quiz
-                    </button>
+                    <div className="d-flex gap-2">
+                      <button 
+                        onClick={skipQuestion}
+                        className="btn btn-outline-light"
+                      >
+                        <i className="bi bi-skip-forward me-2"></i>
+                        Skip
+                      </button>
+                      <button 
+                        onClick={handleEndQuiz}
+                        className="btn-end-quiz"
+                      >
+                        <i className="bi bi-x-circle me-2"></i>
+                        End Quiz
+                      </button>
+                    </div>
                   </div>
                 </div>
 
