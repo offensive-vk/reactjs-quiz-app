@@ -3,19 +3,21 @@ import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import html2canvas from 'html2canvas';
+import '../styles/Result.css'
 
 const Result = () => {
   const navigate = useNavigate();
-  const { quizType, marks, resetQuiz, generateId } = useContext(DataContext);
+  const { quizQuestions, quizType, marks, resetQuiz, generateId } = useContext(DataContext);
   const { id } = useParams();
   
   // Calculate percentage for progress indicator
-  const percentage = (marks / (quizType.length * 5)) * 100;
-  const isPassing = marks > (quizType.length * 5 / 2);
+  const percentage = (marks / (quizQuestions.length * 5)) * 100;
+  const isPassing = marks > (quizQuestions.length * 5 / 2);
 
   const handleStartOver = () => {
     // Assuming the quiz type is stored in the quizType array and is the last string path in the URL
-    const lastQuizType = quizType[0]?.type;
+    // const lastQuizType = quizType[0]?.type;
+    const lastQuizType = quizType;
     navigate(`/quiz/${lastQuizType}`);
     resetQuiz();
   };

@@ -174,7 +174,7 @@
 }
 
 /* Type-specific colors on hover */
-.quiz-type-card[data-type="webdev"]:hover {
+.quiz-type-card[data-type="default"]:hover {
     border-color: #E44D26;
 }
 

@@ -17,16 +17,8 @@ export const DataProvider = ({ children }) => {
   const [showQuiz, setShowQuiz] = useState(false);
   const [showResult, setShowResult] = useState(false);
 
-  const [quizType, setQuizType] = useState('webdev');
+  const [quizType, setQuizType] = useState('default');
 
-  // Load JSON Data
-  // useEffect(() => {
-  //   fetch("quiz.json")
-  //     .then((res) => res.json())
-  //     .then((data) => setQuizs(data));
-  // }, []);
-
-  // Set a Single Question
   useEffect(() => {
     if (quizQuestions.length > questionIndex) {
       setQuestion(quizQuestions[questionIndex]);
@@ -34,7 +26,6 @@ export const DataProvider = ({ children }) => {
   }, [quizQuestions, questionIndex]);
 
   const isValidQuizFormat = (jsonData) => {
-    // Check if jsonData is an array
     if (!Array.isArray(jsonData)) {
       return false;
     }
@@ -51,26 +42,9 @@ export const DataProvider = ({ children }) => {
     });
   };
 
-  const loadCustomQuiz = (jsonData) => {
-    if (isValidQuizFormat(jsonData)) {
-      setQuizQuestions(jsonData);
-      startQuiz();
-    } else {
-      alert('Invalid quiz format. Please check the schema requirements.');
-    }
-  };
-
-  const startQuiz = (type = 'webdev') => {
-    setQuizType(type);
-    setShowStart(false);
-    setShowQuiz(true);
-    // Load questions based on quiz type
-    loadQuestions(type);
-  };
-
   const loadQuestions = async (type) => {
     try {
-      const response = await fetch(`/data/${type}-questions.json`);
+      const response = await fetch(`/quiz.json`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -82,8 +56,23 @@ export const DataProvider = ({ children }) => {
       setShowResult(false);
     } catch (error) {
       console.error('Error loading questions:', error);
-      alert('Failed to load questions. Please check the console for more details.');
     }
+  };
+
+  const loadCustomQuiz = (jsonData) => {
+    if (isValidQuizFormat(jsonData)) {
+      setQuizQuestions(jsonData);
+      startQuiz();
+    } else {
+      alert('Invalid quiz format. Please check the schema requirements.');
+    }
+  };
+
+  const startQuiz = (type = 'default') => {
+    setQuizType(type);
+    setShowStart(false);
+    setShowQuiz(true);
+    loadQuestions(type);
   };
 
   const resetQuizState = () => {
@@ -171,22 +160,22 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
-        startQuiz,
         showStart,
         showQuiz,
         question,
         quizQuestions,
-        checkAnswer,
         correctAnswer,
         selectedAnswer,
         questionIndex,
-        nextQuestion,
-        showTheResult,
         showResult,
         marks,
+        quizType,
+        startQuiz,
+        nextQuestion,
+        showTheResult,
+        checkAnswer,
         startOver,
         loadCustomQuiz,
-        quizType,
         loadQuestions,
         resetQuiz,
         setShowResult,

@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
+import '../styles/Start.css'
 
 const Start = () => {
   const { startQuiz, showStart, loadCustomQuiz, loadQuestions } = useContext(DataContext);
@@ -73,7 +74,7 @@ const Start = () => {
         <div className="container">
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
-              <h1 className="fw-bold mb-3 display-5">Smart Quiz Champion</h1>
+              <h1 className="fw-bold mb-3 display-5">Smart Quiz Championship</h1>
               <p className="lead mb-5">Choose your quiz type or upload a custom one!</p>
 
               <div className="quiz-options mb-5">
@@ -98,7 +99,7 @@ const Start = () => {
               </div>
 
               <div className="custom-quiz-section mt-5">
-                <p className="text-muted mb-3">Or upload your custom quiz</p>
+                <p className="text-white mb-3">Or upload your custom quiz</p>
                 <button
                   onClick={() => fileInputRef.current.click()}
                   className="btn btn-outline-light btn-lg upload-btn"
