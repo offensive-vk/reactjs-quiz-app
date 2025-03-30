@@ -44,7 +44,7 @@ export const DataProvider = ({ children }) => {
 
   const loadQuestions = async (type) => {
     try {
-      const response = await fetch(`/data/${type}-questions.json`);
+      const response = await fetch(`/quiz.json`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -56,7 +56,6 @@ export const DataProvider = ({ children }) => {
       setShowResult(false);
     } catch (error) {
       console.error('Error loading questions:', error);
-      // alert('Failed to load questions. Please check the console for more details.');
     }
   };
 
