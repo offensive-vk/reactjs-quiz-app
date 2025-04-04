@@ -1,0 +1,33 @@
+.faq-container {
+    padding: 20px;
+}
+
+.hero-text {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+}
+
+.faq-list {
+    margin-top: 1.2rem;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 14px;
+    transition: all 200ms ease-in;
+}
+
+.faq-item:hover {
+    border: 1px solid #ccc;
+}
+
+.faq-item h4 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.faq-item p {
+    margin: 5px 0 0;
+}
