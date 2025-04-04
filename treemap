@@ -2,39 +2,52 @@
 ├── README.md
 ├── Schema.md
 ├── deno.json
+├── deno.lock
 ├── eslint.config.js
 ├── index.html
 ├── license
-├── .github
-│   ├── CODEOWNERS
-│   ├── issues.yml
-│   ├── pr.yml
-│   ├── template.md
-│   └── workflows
-│       ├── ci.yml
-│       ├── dependency.yml
-│       ├── docker.yml
-│       ├── ghcr.yml
-│       └── label.yml
 ├── package.json
 ├── pnpm-lock.yaml
 ├── public
 │   ├── assets
-│   │   └── authors
+│   │   ├── authors
+│   │   ├── react.svg
+│   │   └── vite.svg
+│   ├── backup.json
+│   ├── data
+│   │   ├── default-questions.json
+│   │   ├── javascript-questions.json
+│   │   ├── python-questions.json
+│   │   ├── react-questions.json
+│   │   ├── typescript-questions.json
+│   │   └── webdev-questions.json
+│   ├── internet.svg
+│   ├── logo.svg
 │   ├── quiz.json
-│   ├── react.svg
 │   ├── robots.txt
-│   ├── this.json
-│   └── vite.svg
+│   └── schema.md
 ├── src
 │   ├── App.jsx
 │   ├── components
+│   │   ├── BaseLayout.jsx
+│   │   ├── Error.jsx
+│   │   ├── FAQ.jsx
+│   │   ├── Help.jsx
 │   │   ├── Quiz.jsx
 │   │   ├── Result.jsx
 │   │   └── Start.jsx
 │   ├── context
 │   │   └── dataContext.jsx
 │   ├── index.css
-│   └── main.jsx
+│   ├── main.jsx
+│   ├── schema
+│   │   └── quiz-schema.json
+│   └── styles
+│       ├── Faq.css
+│       ├── Help.css
+│       ├── Quiz.css
+│       ├── Result.css
+│       ├── Start.css
+│       └── global.css
 ├── treemap
 └── vite.config.js
