@@ -48,7 +48,6 @@ const Start = () => {
       try {
         const text = await file.text();
         const jsonData = JSON.parse(text);
-        // Validate against schema (implement this based on your Schema.md)
         loadCustomQuiz(jsonData);
       } catch (error) {
         alert('Invalid JSON file format. Please check the schema requirements.');

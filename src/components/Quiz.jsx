@@ -28,7 +28,7 @@ const Quiz = () => {
   useEffect(() => {
     const loadQuiz = async () => {
       try {
-        await loadQuestions(type);
+        await loadQuestions(type || 'default');
         setIsLoading(false);
       } catch (error) {
         console.error('Failed to load quiz:', error);
@@ -42,7 +42,7 @@ const Quiz = () => {
     if (showResult) {
       const resultId = generateId();
       const resultPath = `/result/${resultId}`;
-      localStorage.setItem('lastResultPath', resultPath);
+      // localStorage.setItem('lastResultPath', resultPath);
       navigate(resultPath);
     }
   }, [showResult, navigate]);
@@ -53,7 +53,6 @@ const Quiz = () => {
       setShowResult(true);
       setShowQuiz(false);
       const resultPath = `/result/${resultId}`;
-      localStorage.setItem('lastResultPath', resultPath);
       navigate(resultPath);
     }
   };
