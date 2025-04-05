@@ -50,8 +50,11 @@ export const DataProvider = ({ children }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log(`JSON Data: \n`);
+      console.dir(data);
+      console.log(`================`);
       setQuizQuestions(data.questions);
-      setQuestion(data.questions[0]);
+      setQuestion(data.questions[0].question);
       setShowStart(false);
       setShowQuiz(true);
       setShowResult(false);
@@ -105,7 +108,7 @@ export const DataProvider = ({ children }) => {
       return;
     }
 
-    if (correctAnswer === "") { // Only allow selection if no answer is selected yet
+    if (correctAnswer === "") {
       setSelectedAnswer(choice);
       if (index === question.correctAnswer) {
         setMarks(marks + 5);
@@ -126,7 +129,7 @@ export const DataProvider = ({ children }) => {
           setSelectedAnswer("");
           setCorrectAnswer("");
         }
-      }, 1500);
+      }, 1000);
     }
   };
 

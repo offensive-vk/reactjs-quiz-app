@@ -1,0 +1,52 @@
+.help-container {
+    padding: 20px;
+}
+
+.troubleshooting-list {
+    margin-top: 20px;
+}
+
+.troubleshooting-item {
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 200ms ease-in;
+}
+
+.troubleshooting-item:hover {
+    border: 1px solid #ccc;
+}
+.github-links {
+    margin-top: 30px;
+}
+
+.github-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.github-links a:hover {
+    text-decoration: underline;
+}
+
+.contribute {
+    padding-top: 1rem;
+    border-top: 2px solid #fff;
+}
+
+.contribute-btn {
+    margin: 8px;
+    border: 2px solid #fff;
+    padding: 0.9rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 12px;
+    transition: all 200ms ease-in;
+}
+
+.contribute-btn:hover {
+    color: #000;
+    background-color: #fff;
+}

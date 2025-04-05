@@ -112,7 +112,7 @@ Additionally, the app integrates these technologies:
 
 ## 📦 Version Information
 
-- **Current Version**: >=1.0.0
+- **Current Version**: >=2025.1.0
 - **Node Engine**: >=16.0.0
 - **Package Manager**: >=pnpm@10.0.0
 
@@ -129,7 +129,8 @@ Here are the files critical for the application's functionality:
 - **📋 package.json**: Lists all dependencies and scripts.
 - **⚙️ vite.config.js**: Configuration for Vite.
 - **📂 src/context/dataContext.jsx**: Manages the state and logic for the quiz.
-- **🗂 public/quiz.json**: Contains the quiz questions and answers.
+- **🗂 public/quiz.json**: Contains the default quiz questions and answers.
+- **🗂 public/data/*.json**: Contains all of the quiz questions and answers.
 
 ## Custom Questions / Answer
 
@@ -137,7 +138,7 @@ You can also use your own quiz questions and answers. Have a look at the [Schema
 
 ## 🧑‍💻 Authors
 
-This project was developed by **Mahak & Vedansh** as part of their BCA-V Semester (Full Stack) *major project* for Software Project Management. 🌟
+This project was developed by **Mahak & Vedansh** as part of our BCA-VI Semester (Full Stack) *major project* for Software Project Management. 🌟
 
 ## 🪪 License
 

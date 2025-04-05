@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Just a Simple Quiz App using React JSX.",
   "author": {
-    "name": "Mahak & Vedansh"
+    "name": "Mahak & Vedansh",
+    "url": "https://github.com/offensive-vk/reactjs-quiz-app"
   },
   "scripts": {
     "clean": "rm -rf dist",

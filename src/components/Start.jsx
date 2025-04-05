@@ -48,7 +48,6 @@ const Start = () => {
       try {
         const text = await file.text();
         const jsonData = JSON.parse(text);
-        // Validate against schema (implement this based on your Schema.md)
         loadCustomQuiz(jsonData);
       } catch (error) {
         alert('Invalid JSON file format. Please check the schema requirements.');
@@ -57,7 +56,7 @@ const Start = () => {
   };
 
   const handleDownloadSchemas = () => {
-    const schemas = ['quiz.json', 'Schema.md'];
+    const schemas = ['quiz.json'];
     schemas.forEach(schema => {
       const a = document.createElement('a');
       a.href = schema;
@@ -74,7 +73,7 @@ const Start = () => {
         <div className="container">
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
-              <h1 className="fw-bold mb-3 display-5">Smart Quiz Championship</h1>
+              <h1 className="fw-bold mb-3 display-5">Are You A Quiz Champion?</h1>
               <p className="lead mb-5">Choose your quiz type or upload a custom one!</p>
 
               <div className="quiz-options mb-5">
