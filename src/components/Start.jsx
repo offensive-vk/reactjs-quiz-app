@@ -56,7 +56,7 @@ const Start = () => {
   };
 
   const handleDownloadSchemas = () => {
-    const schemas = ['quiz.json', 'Schema.md'];
+    const schemas = ['quiz.json'];
     schemas.forEach(schema => {
       const a = document.createElement('a');
       a.href = schema;

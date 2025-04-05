@@ -34,10 +34,10 @@ function ErrorFallback() {
                     Go Home <i className="bi bi-house-door ms-2"></i>
                 </button><br />
                 <button
-                    onClick={() => navigate('/support')}
+                    onClick={() => navigate('/help')}
                     className="btn btn-info fw-semibold px-4 py-2 me-2"
                 >
-                    Contact Support
+                    Get Help
                 </button><br />
                 <button
                     onClick={() => navigate('/faq')}

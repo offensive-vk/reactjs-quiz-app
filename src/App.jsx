@@ -18,13 +18,13 @@ function App() {
           <BaseLayout>
             <Routes>
               <Route path="/" element={<Start />} />
+              <Route path="/faq" element={<FAQ /> } />
+              <Route path="/help" element={<Help /> } />
+              <Route path="/result" element={<Result />} />
+              <Route path="*" element={<ErrorFallback />} />
               <Route path="/quiz/:type" element={<Quiz />} />
               <Route path="/quiz/default" element={<Quiz />} />
               <Route path="/result/:id" element={<Result />} />
-              <Route path="/result" element={<Result />} />
-              <Route path="/faq" element={<FAQ /> } />
-              <Route path="/help" element={<Help /> } />
-              <Route path="*" element={<ErrorFallback />} />
             </Routes>
           </BaseLayout>
         </ErrorBoundary>

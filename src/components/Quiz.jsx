@@ -107,9 +107,9 @@ const Quiz = () => {
                   <div className="d-flex justify-content-start mb-2">
                     <span className="question-counter fw-medium">Question {questionIndex + 1} of {quizQuestions.length}</span>
                   </div>
-                  <div className="progress" style={{ height: "6px" }}>
+                  <div className="progress" style={{ height: "7px" }}>
                     <div
-                      className="progress-bar bg-primary"
+                      className="progress-bar bg-success"
                       style={{ width: `${((questionIndex + 1) / quizQuestions.length) * 100}%` }}
                     ></div>
                   </div>
