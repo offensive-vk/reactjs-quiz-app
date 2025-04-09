@@ -50,9 +50,9 @@ export const DataProvider = ({ children }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log(`JSON Data: \n`);
-      console.dir(data);
-      console.log(`================`);
+      // console.log(`JSON Data: \n`);
+      // console.dir(data);
+      // console.log(`================`);
       setQuizQuestions(data.questions);
       setQuestion(data.questions[0].question);
       setShowStart(false);

@@ -5,7 +5,7 @@ import BaseLayout from "./BaseLayout";
 import '../styles/Start.css'
 
 const Start = () => {
-  const { startQuiz, showStart, loadCustomQuiz, loadQuestions } = useContext(DataContext);
+  const { loadCustomQuiz, loadQuestions } = useContext(DataContext);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
