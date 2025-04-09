@@ -24,7 +24,8 @@ fragrance:
     - 'fragrance'
     - 'mehak'
     - 'mahak'
-    
+  description: 'Lead developer'
+  
 testing:
   match:
     - 'testing'
