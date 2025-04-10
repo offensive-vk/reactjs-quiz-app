@@ -160,3 +160,32 @@
         font-size: 1.15rem;
     }
 }
+
+/* Hover variations by type */
+.quiz-type-badge[data-type="default"] {
+    background-color: #000;
+}
+
+.quiz-type-badge[data-type="webdev"] {
+    background-color: #E44D26;
+}
+
+.quiz-type-badge[data-type="javascript"] {
+    background-color: #F7DF1E;
+}
+
+.quiz-type-badge[data-type="react"] {
+    background-color: #61DAFB;
+}
+
+.quiz-type-badge[data-type="python"] {
+    background-color: #4d90c6;
+}
+
+.quiz-type-badge[data-type="typescript"] {
+    background-color: #022347;
+}
+
+.quiz-type-badge[data-type="docker"] {
+    background-color: #0061c8;
+}

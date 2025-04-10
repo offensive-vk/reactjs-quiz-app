@@ -17,7 +17,6 @@ export const DataProvider = ({ children }) => {
   const [showStart, setShowStart] = useState(true);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showResult, setShowResult] = useState(false);
-
   const [quizType, setQuizType] = useState('default');
 
   useEffect(() => {
@@ -50,9 +49,6 @@ export const DataProvider = ({ children }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      // console.log(`JSON Data: \n`);
-      // console.dir(data);
-      // console.log(`================`);
       setQuizQuestions(data.questions);
       setQuestion(data.questions[0].question);
       setShowStart(false);
@@ -72,7 +68,7 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  const startQuiz = (type = 'default') => {
+  const startQuiz = (type) => {
     setQuizType(type);
     setShowStart(false);
     setShowQuiz(true);
@@ -204,6 +200,7 @@ export const DataProvider = ({ children }) => {
         resetQuiz,
         setShowResult,
         setShowQuiz,
+        setQuizType,
         generateId,
       }}
     >

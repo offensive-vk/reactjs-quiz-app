@@ -7,7 +7,7 @@ import '../styles/Result.css'
 
 const Result = () => {
   const navigate = useNavigate();
-  const { quizQuestions, quizType, marks, resetQuiz, generateId } = useContext(DataContext);
+  const { quizQuestions, quizType, marks, resetQuiz, setQuizType } = useContext(DataContext);
   const { id } = useParams();
   
   // Calculate percentage for progress indicator
@@ -23,6 +23,7 @@ const Result = () => {
   };
 
   const handleGoHome = () => {
+    resetQuiz();
     navigate('/');
   };
 
@@ -31,7 +32,7 @@ const Result = () => {
       const image = canvas.toDataURL('image/png', 1.0);
       const link = document.createElement('a');
       link.href = image;
-      link.download = `quiz-result-${generateId()}.png`;
+      link.download = `quiz-result-${id}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

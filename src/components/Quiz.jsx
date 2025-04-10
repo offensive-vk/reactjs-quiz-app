@@ -5,7 +5,7 @@ import BaseLayout from "./BaseLayout";
 import '../styles/Quiz.css'
 
 const Quiz = () => {
-  const { type = 'default' } = useParams();
+  const { type } = useParams();
   const navigate = useNavigate();
   const {
     question,
@@ -20,15 +20,19 @@ const Quiz = () => {
     setShowQuiz,
     generateId,
     quizType,
-    skipQuestion
+    skipQuestion,
+    setQuizType,
+    resetQuiz
   } = useContext(DataContext);
 
   const [isLoading, setIsLoading] = useState(true);
+  // const [_type, setQuizType] = useState(quizType);
 
   useEffect(() => {
     const loadQuiz = async () => {
       try {
-        await loadQuestions(type || quizType || 'default');
+        await loadQuestions(type || quizType);
+        setQuizType(type || quizType);
         setIsLoading(false);
       } catch (error) {
         console.error('Failed to load quiz:', error);
@@ -54,6 +58,7 @@ const Quiz = () => {
       setShowQuiz(false);
       const resultPath = `/result/${resultId}`;
       navigate(resultPath);
+      resetQuiz();
     }
   };
 
@@ -80,7 +85,7 @@ const Quiz = () => {
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="quiz-info d-flex align-items-center gap-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
-                      <span className="quiz-type-badge">
+                      <span className="quiz-type-badge" data-type={type || 'default'}>
                         {(type && type.charAt(0).toUpperCase() + type.slice(1)) || 'Default'} Quiz
                       </span>
                     </div>
