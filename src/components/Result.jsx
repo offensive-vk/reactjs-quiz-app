@@ -57,13 +57,13 @@ const Result = () => {
                 <div className="result-message mb-4">
                   {isPassing ? (
                     <>
-                      <h2 className="fs-3 fw-bold text-success mb-2">Excellent Work! 🎉</h2>
-                      <p className="text-muted fs-6">You've mastered this quiz!</p>
+                      <h2 className="fs-3 fw-bold text-success mb-2">🚀 Excellent Work! 🎉</h2>
+                      <p className="text-muted">You've mastered this quiz!</p>
                     </>
                   ) : (
                     <>
-                      <h2 className="fs-3 fw-bold text-danger mb-2">Keep Practicing! 💪</h2>
-                      <p className="text-muted fs-6">You're on the right track!</p>
+                      <h2 className="fs-3 fw-bold text-danger mb-2">⌛ Keep Practicing! 💪</h2>
+                      <p className="text-muted">You're on the right track!</p>
                     </>
                   )}
                 </div>

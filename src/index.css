@@ -70,7 +70,7 @@ h6 {
 .base-layout {
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .animated-bg {
