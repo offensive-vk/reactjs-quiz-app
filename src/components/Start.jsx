@@ -5,11 +5,15 @@ import BaseLayout from "./BaseLayout";
 import '../styles/Start.css'
 
 const Start = () => {
-  const { startQuiz, showStart, loadCustomQuiz, loadQuestions } = useContext(DataContext);
+  const { loadCustomQuiz, loadQuestions } = useContext(DataContext);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
-
   const quizTypes = [
+    {
+      id: 'default',
+      title: 'Default Quiz',
+      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/reactjs-quiz-app@master/public/internet.svg'
+    },
     {
       id: 'webdev',
       title: 'Web Development',
@@ -34,6 +38,11 @@ const Start = () => {
       id: 'typescript',
       title: 'Typescript',
       icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/typescript/typescript-plain.svg'
+    },
+    {
+      id: 'docker',
+      title: 'Docker',
+      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/docker/docker-original.svg'
     }
   ];
 
@@ -73,10 +82,46 @@ const Start = () => {
         <div className="container">
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
-              <h1 className="fw-bold mb-3 display-5">Are You A Quiz Champion?</h1>
+              <h1 className="fw-bold m-4 display-5">Are You A Quiz Champion?</h1>
               <p className="lead mb-5">Choose your quiz type or upload a custom one!</p>
 
-              <div className="quiz-options mb-5">
+              <div className="quiz-options mb-5 mx-5">
+                <div className="quiz-types-grid">
+                  {/* First item - full-width row */}
+                  {quizTypes.length > 0 && (
+                    <button
+                      key={quizTypes[0].id}
+                      onClick={() => handleQuizStart(quizTypes[0].id)}
+                      className="quiz-type-card big-card"
+                      data-type={quizTypes[0].id}
+                    >
+                      <div className="quiz-icon-wrapper" >
+                        <img src={quizTypes[0].icon} alt={quizTypes[0].title} className="quiz-icon-svg" />
+                      </div>
+                      <h3 className="quiz-type-title">{quizTypes[0].title}</h3>
+                    </button>
+                  )}
+
+                  <div className="quiz-type-grid-remaining">
+                    {quizTypes.slice(1).map((type) => (
+                      <button
+                        key={type.id}
+                        onClick={() => handleQuizStart(type.id)}
+                        className="quiz-type-card"
+                        data-type={type.id}
+                      >
+                        <div className="quiz-icon-wrapper">
+                          <img src={type.icon} alt={type.title} className="quiz-icon-svg" />
+                        </div>
+                        <h3 className="quiz-type-title">{type.title}</h3>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Previous Grid */}
+              {/* <div className="quiz-options mb-5">
                 <div className="quiz-types-row">
                   {quizTypes.map((type) => (
                     <button
@@ -95,7 +140,7 @@ const Start = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               <div className="custom-quiz-section mt-5">
                 <p className="text-white mb-3">Or upload your custom quiz</p>
@@ -118,7 +163,7 @@ const Start = () => {
                     className="btn template border rounded p-2 m-4"
                     onClick={handleDownloadSchemas}
                   >
-                    <small>Download Templates</small>
+                    <small>Download Template</small>
                   </button>
                 </div>
               </div>

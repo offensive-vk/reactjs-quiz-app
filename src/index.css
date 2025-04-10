@@ -1,8 +1,9 @@
+/* Import Fonts from Google. */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 #root {
-  background: rgb(10, 6, 47);
+  background: rgb(5, 1, 38);
 }
 
 body {
@@ -12,7 +13,7 @@ body {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   background-color: #1a1a1a;
   color: #ffffff;
 }
@@ -29,7 +30,6 @@ h5,
 h6 {
   font-weight: 600;
   letter-spacing: 0.5px;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .btn,
@@ -70,7 +70,7 @@ h6 {
 .base-layout {
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .animated-bg {
@@ -123,4 +123,26 @@ h6 {
   align-items: center;
   justify-content: center;
   height: 100vh;
+
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0.1;
+      letter-spacing: -4px;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1.0;
+      transform: translateY(0);
+  }
+}
+
+.hero-text {
+  animation: fadeIn 4.5s ease infinite;
+}
+
+.hero-subheading {
+  font-style: italic;
+  font-size: 0.99rem;
 }

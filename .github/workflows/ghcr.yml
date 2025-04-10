@@ -48,9 +48,11 @@ jobs:
           flavor: |
             latest=true
           labels: |
-            org.opencontainers.image.base=Node22
-            org.opencontainers.image.title=ReactQuizApp
-            org.opencontainers.image.vendor=Vedansh
+            org.opencontainers.image.base=node22
+            org.opencontainers.image.title=reactjs-quiz-app
+            org.opencontainers.image.vendor=vedansh
+            org.opencontainers.image.framework=reactjs
+            org.opencontainers.image.styler=bootstrap+css
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6

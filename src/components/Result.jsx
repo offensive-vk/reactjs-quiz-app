@@ -7,7 +7,7 @@ import '../styles/Result.css'
 
 const Result = () => {
   const navigate = useNavigate();
-  const { quizQuestions, quizType, marks, resetQuiz, generateId } = useContext(DataContext);
+  const { quizQuestions, quizType, marks, resetQuiz, setQuizType } = useContext(DataContext);
   const { id } = useParams();
   
   // Calculate percentage for progress indicator
@@ -23,6 +23,7 @@ const Result = () => {
   };
 
   const handleGoHome = () => {
+    resetQuiz();
     navigate('/');
   };
 
@@ -31,7 +32,7 @@ const Result = () => {
       const image = canvas.toDataURL('image/png', 1.0);
       const link = document.createElement('a');
       link.href = image;
-      link.download = `quiz-result-${generateId()}.png`;
+      link.download = `quiz-result-${id}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -57,13 +58,13 @@ const Result = () => {
                 <div className="result-message mb-4">
                   {isPassing ? (
                     <>
-                      <h2 className="fs-3 fw-bold text-success mb-2">Excellent Work! 🎉</h2>
-                      <p className="text-muted fs-6">You've mastered this quiz!</p>
+                      <h2 className="fs-3 fw-bold text-success mb-2">🚀 Excellent Work! 🎉</h2>
+                      <p className="text-muted">You've mastered this quiz!</p>
                     </>
                   ) : (
                     <>
-                      <h2 className="fs-3 fw-bold text-danger mb-2">Keep Practicing! 💪</h2>
-                      <p className="text-muted fs-6">You're on the right track!</p>
+                      <h2 className="fs-3 fw-bold text-danger mb-2">⌛ Keep Practicing! 💪</h2>
+                      <p className="text-muted">You're on the right track!</p>
                     </>
                   )}
                 </div>
