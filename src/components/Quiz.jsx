@@ -5,7 +5,7 @@ import BaseLayout from "./BaseLayout";
 import '../styles/Quiz.css'
 
 const Quiz = () => {
-  const { type } = useParams();
+  const { type = 'default' } = useParams();
   const navigate = useNavigate();
   const {
     question,
@@ -28,7 +28,7 @@ const Quiz = () => {
   useEffect(() => {
     const loadQuiz = async () => {
       try {
-        await loadQuestions(type || 'default');
+        await loadQuestions(type || quizType || 'default');
         setIsLoading(false);
       } catch (error) {
         console.error('Failed to load quiz:', error);
@@ -81,7 +81,7 @@ const Quiz = () => {
                     <div className="quiz-info d-flex align-items-center gap-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
                       <span className="quiz-type-badge">
-                        {type.charAt(0).toUpperCase() + type.slice(1)} Quiz
+                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) || 'Default'} Quiz
                       </span>
                     </div>
                     <div className="d-flex gap-2">

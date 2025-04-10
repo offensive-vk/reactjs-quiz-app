@@ -15,7 +15,7 @@ function App() {
   return (
     <DataProvider>
       <Router>
-        <ErrorBoundary>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
           <BaseLayout>
             <Routes>
               <Route path="/" element={<Start />} />
