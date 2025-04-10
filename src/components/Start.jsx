@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
+import NavLinks from "./NavLinks";
 import '../styles/Start.css'
 
 const Start = () => {
@@ -80,6 +81,7 @@ const Start = () => {
     <BaseLayout>
       <section className="text-white text-center quiz-start">
         <div className="container">
+          <NavLinks />
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
               <h1 className="fw-bold m-4 display-5">Are You A Quiz Champion?</h1>
