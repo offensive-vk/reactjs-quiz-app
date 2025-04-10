@@ -9,6 +9,7 @@ import Help from "./components/Help";
 import { DataProvider } from "./context/dataContext";
 import { ErrorBoundary } from "react-error-boundary";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import About from "./components/About";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" element={<Start />} />
               <Route path="/faq" element={<FAQ /> } />
               <Route path="/help" element={<Help /> } />
+              <Route path="/about" element={<About />} />
               <Route path="/result" element={<Result />} />
               <Route path="*" element={<ErrorFallback />} />
               <Route path="/quiz/:type" element={<Quiz />} />
