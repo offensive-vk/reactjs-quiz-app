@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import '../styles/Quiz.css'
@@ -7,6 +7,9 @@ import '../styles/Quiz.css'
 const Quiz = () => {
   const { type } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { questions, quizTitle } = location.state || {};
+
   const {
     question,
     quizQuestions,
@@ -26,27 +29,30 @@ const Quiz = () => {
   } = useContext(DataContext);
 
   const [isLoading, setIsLoading] = useState(true);
-  // const [_type, setQuizType] = useState(quizType);
 
   useEffect(() => {
-    const loadQuiz = async () => {
-      try {
-        await loadQuestions(type || quizType);
-        setQuizType(type || quizType);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Failed to load quiz:', error);
-        navigate('/');
-      }
-    };
-    loadQuiz();
-  }, [type]);
+    if (questions) {
+      setQuizType('custom');
+      setIsLoading(false);
+    } else {
+      const loadQuiz = async () => {
+        try {
+          await loadQuestions(type || quizType);
+          setQuizType(type || quizType);
+          setIsLoading(false);
+        } catch (error) {
+          console.error('Failed to load quiz:', error);
+          navigate('/');
+        }
+      };
+      loadQuiz();
+    }
+  }, [type, questions]);
 
   useEffect(() => {
     if (showResult) {
       const resultId = generateId();
       const resultPath = `/result/${resultId}`;
-      // localStorage.setItem('lastResultPath', resultPath);
       navigate(resultPath);
     }
   }, [showResult, navigate]);
@@ -121,7 +127,6 @@ const Quiz = () => {
                 </div>
 
                 <h4 className="mb-4 question-text">{question?.question}</h4>
-                
                 <div className="options-container">
                   {question?.choices?.map((choice, index) => (
                     <button

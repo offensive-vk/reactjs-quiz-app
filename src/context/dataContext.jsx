@@ -61,18 +61,22 @@ export const DataProvider = ({ children }) => {
 
   const loadCustomQuiz = (jsonData) => {
     if (isValidQuizFormat(jsonData)) {
-      setQuizQuestions(jsonData);
-      startQuiz();
+        setQuizQuestions(jsonData);
+        startQuiz('custom', jsonData);
     } else {
-      alert('Invalid quiz format. Please check the schema requirements.');
+        alert('Invalid quiz format. Please check the schema requirements.');
     }
   };
 
-  const startQuiz = (type) => {
+  const startQuiz = (type, jsonData) => {
     setQuizType(type);
-    setShowStart(false);
-    setShowQuiz(true);
-    loadQuestions(type);
+    if (jsonData) {
+        loadCustomQuiz(jsonData);
+    } else {
+        setShowStart(false);
+        setShowQuiz(true);
+        loadQuestions(type);
+    }
   };
 
   const resetQuizState = () => {
