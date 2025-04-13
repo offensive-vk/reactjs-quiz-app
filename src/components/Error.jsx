@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useErrorBoundary } from "react-error-boundary";
 import BaseLayout from './BaseLayout';
-import NavLinks from "./Navlinks";
 
 const ErrorMessage = () => (
     <div className="error-message">
@@ -21,7 +20,6 @@ function ErrorFallback() {
     return (
         <BaseLayout>
             <div role="alert" className="error-container text-center">
-                <NavLinks />    
                 <ErrorMessage /><br />
                 <div className="d-flex justify-content-around">
                     <button
