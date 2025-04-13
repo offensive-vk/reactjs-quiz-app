@@ -3,19 +3,43 @@ import { useNavigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import '../styles/CustomQuiz.css';
 
-const QuestionEditor = () => {
+const CustomQuiz = () => {
     const [questions, setQuestions] = useState([]);
     const [quizTitle, setQuizTitle] = useState('');
-    const [currentQuestion, setCurrentQuestion] = useState({ question: '', choices: ['', '', '', ''], correctIndex: 0 });
+    const [currentQuestion, setCurrentQuestion] = useState({
+        question: '',
+        choices: ['', '', '', ''],
+        correctIndex: 0
+    });
     const navigate = useNavigate();
 
+    const generateRandomRoute = () => {
+        return 'quiz-' + Math.random().toString(36).substring(2, 8);
+    };
+
+    const createUrlFriendlyTitle = (title) => {
+        return title
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim();
+    };
+
     const handleAddQuestion = () => {
-        if (currentQuestion.question.trim() === '' || currentQuestion.choices.some(choice => choice.trim() === '')) {
+        // Validate all fields
+        if (currentQuestion.question.trim() === '' || 
+            currentQuestion.choices.some(choice => choice.trim() === '')) {
             alert('Please fill in all fields before adding a question.');
             return;
         }
+
         setQuestions([...questions, currentQuestion]);
-        setCurrentQuestion({ question: '', choices: ['', '', '', ''], correctIndex: 0 });
+        setCurrentQuestion({
+            question: '',
+            choices: ['', '', '', ''],
+            correctIndex: 0
+        });
     };
 
     const handleEditQuestion = (index) => {
@@ -32,33 +56,45 @@ const QuestionEditor = () => {
             alert('Please add at least one question before starting the quiz.');
             return;
         }
-        navigate('/quiz', { state: { questions, quizTitle } });
+
+        // Generate the route path
+        const routePath = quizTitle.trim() 
+            ? createUrlFriendlyTitle(quizTitle)
+            : generateRandomRoute();
+
+        // Navigate to the custom route with questions and title as state
+        navigate(`/custom/${routePath}`, { 
+            state: { 
+                questions, 
+                quizTitle: quizTitle.trim() || `Custom Quiz #${routePath}` 
+            } 
+        });
     };
 
     const handleCancel = () => {
-        setQuestions([]);
-        setQuizTitle('');
+        if (window.confirm('Are you sure you want to cancel? All progress will be lost.')) {
+            navigate('/');
+        }
     };
 
     return (
         <BaseLayout>
             <div className="question-editor">
-                <h2 className='text-center quiz-title'>{quizTitle}</h2>
-                <h3>Build Your Own Quiz:</h3>
+                <h2 className="text-center mb-4">Create Your Custom Quiz</h2>
                 <input
                     type="text"
-                    placeholder="Quiz Title"
+                    placeholder="Quiz Title (optional)"
                     value={quizTitle}
                     onChange={(e) => setQuizTitle(e.target.value)}
-                    className="form-control mb-3"
+                    className="form-control mb-4"
                 />
                 <div className="question-form">
                     <input
                         type="text"
-                        placeholder="Question"
+                        placeholder="Enter your question"
                         value={currentQuestion.question}
                         onChange={(e) => setCurrentQuestion({ ...currentQuestion, question: e.target.value })}
-                        className="form-control mb-2"
+                        className="form-control mb-3"
                     />
                     {currentQuestion.choices.map((choice, index) => (
                         <input
@@ -83,22 +119,35 @@ const QuestionEditor = () => {
                             <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
                         ))}
                     </select>
-                    <button onClick={handleAddQuestion} className="btn btn-primary mb-3 me-2">Add Question</button>
+                    <button onClick={handleAddQuestion} className="btn btn-primary mb-4">Add Question</button>
                 </div>
-                <div className="questions-list">
+
+                <div className="questions-list mb-4">
                     {questions.map((q, index) => (
-                        <div key={index} className="question-item">
+                        <div key={index} className="question-item p-3 mb-2">
                             <h5>{q.question}</h5>
-                            <button onClick={() => handleEditQuestion(index)} className="btn btn-warning">Edit</button>
-                            <button onClick={() => handleDeleteQuestion(index)} className="btn btn-danger">Delete</button>
+                            <div className="choices-list mb-2">
+                                {q.choices.map((choice, choiceIndex) => (
+                                    <div key={choiceIndex} className={`choice-item ${choiceIndex === q.correctIndex ? 'correct-choice' : ''}`}>
+                                        {choice}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="button-group">
+                                <button onClick={() => handleEditQuestion(index)} className="btn btn-warning me-2">Edit</button>
+                                <button onClick={() => handleDeleteQuestion(index)} className="btn btn-danger">Delete</button>
+                            </div>
                         </div>
                     ))}
                 </div>
-                <button onClick={handleStartQuiz} className="btn btn-success">Start Quiz</button>
-                <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+
+                <div className="d-flex justify-content-center gap-3">
+                    <button onClick={handleStartQuiz} className="btn btn-success">Start Quiz</button>
+                    <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+                </div>
             </div>
         </BaseLayout>
     );
 };
 
-export default QuestionEditor;
+export default CustomQuiz;
