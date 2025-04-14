@@ -8,9 +8,9 @@ import Result from "./components/Result";
 import ErrorFallback from "./components/Error";
 import CustomQuiz from "./components/CustomQuiz";
 import BaseLayout from "./components/BaseLayout";
-import { DataProvider } from "./context/DataContext";
+import { DataProvider } from "./context/dataContext";
 import { ErrorBoundary } from "react-error-boundary";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (

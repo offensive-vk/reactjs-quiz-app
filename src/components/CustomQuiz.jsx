@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
-import '../styles/CustomQuiz.css';
 import DataContext from '../context/DataContext';
+import '../styles/CustomQuiz.css';
 
 const CustomQuiz = () => {
     const {
         questions, 
         setQuestions
     } = useContext(DataContext);
-    
+
     const [quizTitle, setQuizTitle] = useState('');
     const [currentQuestion, setCurrentQuestion] = useState({
         question: '',
