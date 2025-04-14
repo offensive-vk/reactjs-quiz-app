@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
-import DataContext from '../context/DataContext';
+import DataContext from '../context/dataContext';
 import '../styles/CustomQuiz.css';
 
 const CustomQuiz = () => {
