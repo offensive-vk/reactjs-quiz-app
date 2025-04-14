@@ -119,16 +119,19 @@ export const DataProvider = ({ children }) => {
       
       // Move to next question after a delay
       setTimeout(() => {
-        if (questionIndex === quizQuestions.length - 1) {
-          setShowResult(true);
-          setShowQuiz(false);
-          setShowStart(false);
-        } else {
-          setQuestionIndex(questionIndex + 1);
-          setQuestion(quizQuestions[questionIndex + 1]);
-          setSelectedAnswer("");
-          setCorrectAnswer("");
-        }
+        setCorrectAnswer((prevCorrectAnswer) => {
+          if (questionIndex === quizQuestions.length - 1) {
+            setShowResult(true);
+            setShowQuiz(false);
+            setShowStart(false);
+            return prevCorrectAnswer; // Keep the correct answer for result display
+          } else {
+            setQuestionIndex((prevIndex) => prevIndex + 1);
+            setQuestion(quizQuestions[questionIndex + 1]);
+            setSelectedAnswer("");
+            return ""; // Reset correct answer for the next question
+          }
+        });
       }, 1000);
     }
   };

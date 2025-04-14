@@ -101,7 +101,7 @@ const Start = () => {
                 </div>
               </div>
 
-              <div className="custom-quiz-section mt-5">
+              <div className="custom-quiz-section mt-5 mb-5">
                 <button
                   onClick={handleCustomQuiz}
                   className="btn btn-outline-light btn-lg custom-quiz-btn"
