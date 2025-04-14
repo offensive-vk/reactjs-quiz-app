@@ -45,7 +45,7 @@ const Result = () => {
       <section className="text-white">
         <div className="container">
           <div className="row vh-100 align-items-center justify-content-center">
-            <div className="col-lg-6">
+            <div className="col-lg-6 m-5">
               <div className="result-card">
                 <div className="score-circle">
                   <div className={`circle-progress ${isPassing ? 'success' : 'danger'}`}>

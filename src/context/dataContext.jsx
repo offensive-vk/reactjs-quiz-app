@@ -25,19 +25,16 @@ export const DataProvider = ({ children }) => {
         }
     }, [quizQuestions, questionIndex]);
 
-    const isValidQuizFormat = (jsonData) => {
-        if (!Array.isArray(jsonData)) {
+    const isValidQuizFormat = (questions) => {
+        if (!Array.isArray(questions)) {
             return false;
         }
-
-        // Check each question object in the array
-        return jsonData.every(question => {
+        return questions.every(question => {
             return (
-                typeof question.id === 'string' &&
                 typeof question.question === 'string' &&
-                Array.isArray(question.options) &&
-                question.options.every(option => typeof option === 'string') &&
-                typeof question.answer === 'string'
+                Array.isArray(question.choices) &&
+                question.choices.every(choice => typeof choice === 'string') &&
+                typeof question.correctIndex === 'number'
             );
         });
     };
@@ -209,6 +206,8 @@ export const DataProvider = ({ children }) => {
                 setShowQuiz,
                 setQuizType,
                 generateId,
+                questions: quizQuestions,
+                setQuestions: setQuizQuestions,
             }}
         >
             {children}

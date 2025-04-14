@@ -62,15 +62,20 @@ const CustomQuiz = () => {
             return;
         }
 
-        // Generate the route path
         const routePath = quizTitle.trim() 
             ? createUrlFriendlyTitle(quizTitle)
             : generateRandomRoute();
 
-        // Navigate to the custom route with questions and title as state
+        // Format questions to match expected schema
+        const formattedQuestions = questions.map(q => ({
+            question: q.question,
+            choices: q.choices,
+            correctAnswer: q.correctIndex // This matches what Quiz component expects
+        }));
+
         navigate(`/custom/${routePath}`, { 
             state: { 
-                questions, 
+                questions: formattedQuestions,
                 quizTitle: quizTitle.trim() || `Custom Quiz #${routePath}` 
             } 
         });
