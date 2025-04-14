@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
-import NavLinks from "./Navlinks";
+import NavLinks from "./NavLinks";
 import '../styles/Start.css'
 
 const Start = () => {

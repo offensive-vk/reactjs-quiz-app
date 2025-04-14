@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseLayout from './BaseLayout';
-import NavLinks from "./Navlinks";
+import NavLinks from "./NavLinks";
 import '../styles/Help.css'
 
 function Help () {
