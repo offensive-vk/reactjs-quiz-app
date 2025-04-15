@@ -1,13 +1,14 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
+import NavLinks from "./NavLinks";
 import '../styles/Start.css'
 
 const Start = () => {
-  const { loadCustomQuiz, loadQuestions } = useContext(DataContext);
+  const { loadQuestions } = useContext(DataContext);
   const navigate = useNavigate();
-  const fileInputRef = useRef(null);
+  
   const quizTypes = [
     {
       id: 'default',
@@ -51,39 +52,19 @@ const Start = () => {
     navigate(`/quiz/${type}`);
   };
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      try {
-        const text = await file.text();
-        const jsonData = JSON.parse(text);
-        loadCustomQuiz(jsonData);
-      } catch (error) {
-        alert('Invalid JSON file format. Please check the schema requirements.');
-      }
-    }
-  };
-
-  const handleDownloadSchemas = () => {
-    const schemas = ['quiz.json'];
-    schemas.forEach(schema => {
-      const a = document.createElement('a');
-      a.href = schema;
-      a.download = schema.split('/').pop();
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    });
+  const handleCustomQuiz = () => {
+    navigate('/custom-quiz');
   };
 
   return (
     <BaseLayout>
       <section className="text-white text-center quiz-start">
         <div className="container">
+          <NavLinks />
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
               <h1 className="fw-bold m-4 display-5">Are You A Quiz Champion?</h1>
-              <p className="lead mb-5">Choose your quiz type or upload a custom one!</p>
+              <p className="lead mb-5">Choose your quiz type or create your own!</p>
 
               <div className="quiz-options mb-5 mx-5">
                 <div className="quiz-types-grid">
@@ -120,52 +101,14 @@ const Start = () => {
                 </div>
               </div>
 
-              {/* Previous Grid */}
-              {/* <div className="quiz-options mb-5">
-                <div className="quiz-types-row">
-                  {quizTypes.map((type) => (
-                    <button
-                      key={type.id}
-                      onClick={() => handleQuizStart(type.id)}
-                      className="quiz-type-card"
-                    >
-                      <div className="quiz-icon-wrapper">
-                        <img 
-                          src={type.icon} 
-                          alt={type.title}
-                          className="quiz-icon-svg"
-                        />
-                      </div>
-                      <h3 className="quiz-type-title">{type.title}</h3>
-                    </button>
-                  ))}
-                </div>
-              </div> */}
-
-              <div className="custom-quiz-section mt-5">
-                <p className="text-white mb-3">Or upload your custom quiz</p>
+              <div className="custom-quiz-section mt-5 mb-5">
                 <button
-                  onClick={() => fileInputRef.current.click()}
-                  className="btn btn-outline-light btn-lg upload-btn"
+                  onClick={handleCustomQuiz}
+                  className="btn btn-outline-light btn-lg custom-quiz-btn"
                 >
-                  <i className="bi bi-upload me-2"></i>
-                  Upload Quiz JSON
+                  <i className="bi bi-plus-circle me-2"></i>
+                  Create Custom Quiz
                 </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".json"
-                  className="d-none"
-                  onChange={handleFileUpload}
-                />
-                <div className="mt-3">
-                  <button
-                    className="btn template border rounded p-2 m-4"
-                    onClick={handleDownloadSchemas}
-                  >
-                    <small>Download Template</small>
-                  </button>
-                </div>
               </div>
             </div>
           </div>

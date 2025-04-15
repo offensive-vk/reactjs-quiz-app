@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseLayout from './BaseLayout';
 import '../styles/Faq.css'
+import NavLinks from "./NavLinks";
 
 function FAQ () {
     const faqs = [
@@ -37,6 +38,7 @@ function FAQ () {
     return (
         <BaseLayout>
             <div className="faq-container">
+                <NavLinks />
                 <h1 className="text-center hero-text">Frequently Asked Questions</h1>
                 <div className="faq-list">
                     {faqs.map((faq, index) => (

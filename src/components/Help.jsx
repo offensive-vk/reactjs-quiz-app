@@ -1,5 +1,6 @@
 import React from 'react';
 import BaseLayout from './BaseLayout';
+import NavLinks from "./NavLinks";
 import '../styles/Help.css'
 
 function Help () {
@@ -29,6 +30,7 @@ function Help () {
     return (
         <BaseLayout>
             <div className="help-container">
+                <NavLinks />
                 <h1 className="text-center">Help & Troubleshooting</h1>
                 <div className="troubleshooting-list">
                     {troubleshootingGuidelines.map((item, index) => (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import BaseLayout from "./BaseLayout";
+import NavLinks from "./NavLinks";
 import '../styles/About.css';
 
 function About () {
@@ -15,6 +16,7 @@ function About () {
     return (
         <BaseLayout>
             <div className="about-container">
+                <NavLinks />
                 <ReactMarkdown>{markdown}</ReactMarkdown>
             </div>
         </BaseLayout>
