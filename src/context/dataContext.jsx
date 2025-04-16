@@ -107,11 +107,11 @@ export const DataProvider = ({ children }) => {
 
         if (correctAnswer === "") {
             setSelectedAnswer(choice);
-            if (index === question.correctAnswer) {
+            if (index === question.correctIndex || index === question.correctAnswer) {
                 setMarks(marks + 5);
                 setCorrectAnswer(choice);
             } else {
-                setCorrectAnswer(question.choices[question.correctAnswer]);
+                setCorrectAnswer(question.choices[question.correctIndex || index === question.correctAnswer]);
             }
 
             // Move to next question after a delay

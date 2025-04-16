@@ -90,7 +90,7 @@ const CustomQuiz = () => {
     return (
         <BaseLayout>
             <div className="question-editor">
-                <h2 className="text-center mb-4">Create Your Custom Quiz</h2>
+                <h2 className="text-center mb-2 mt-4">Create Your Custom Quiz</h2>
                 <input
                     type="text"
                     placeholder="Quiz Title (optional)"

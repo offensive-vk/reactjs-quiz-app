@@ -6,13 +6,18 @@
   padding: 2rem !important;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .score-circle {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   margin: 0 auto 2rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .circle-progress {
@@ -27,6 +32,8 @@
   transition: all 0.3s ease;
   position: relative;
   background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .circle-progress.success {
@@ -40,18 +47,24 @@
 }
 
 .percentage {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: white;
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .score-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #e0e0e0;
   font-weight: 600;
   margin: 0;
+  white-space: nowrap;
+}
+
+.result-message {
+  margin: 2rem 0;
+  text-align: center;
 }
 
 .result-details {
@@ -72,6 +85,7 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .stat-item {
@@ -79,6 +93,10 @@
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .stat-label {
@@ -91,23 +109,43 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: white;
+  word-break: break-word;
 }
 
 @media (max-width: 768px) {
   .score-circle {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
   }
-  
+
   .percentage {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
-  
+
   .score-text {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
-  
+
   .result-card {
     padding: 1.5rem !important;
+  }
+
+  .stat-item {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .score-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .percentage {
+    font-size: 1.75rem;
+  }
+
+  .score-text {
+    font-size: 0.75rem;
   }
 }
