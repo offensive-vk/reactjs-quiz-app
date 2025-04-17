@@ -21,13 +21,15 @@
 
 .faq-item:hover {
     border: 1px solid #ccc;
+    transform: translateX(20px);
 }
 
 .faq-item h4 {
     margin: 0;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .faq-item p {
     margin: 5px 0 0;
+    font-weight: 300;
 }

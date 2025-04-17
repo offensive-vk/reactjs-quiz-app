@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import { DataProvider } from "./context/dataContext";

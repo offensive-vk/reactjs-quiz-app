@@ -91,8 +91,8 @@ const Quiz = () => {
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="quiz-info d-flex align-items-center gap-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
-                      <span className="quiz-type-badge" data-type={type || 'default'}>
-                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) || 'Default'} Quiz
+                      <span className="quiz-type-badge" data-type={type || quizTitle || 'default'}>
+                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) ||  quizTitle || 'Default'} Quiz
                       </span>
                     </div>
                     <div className="d-flex gap-2">

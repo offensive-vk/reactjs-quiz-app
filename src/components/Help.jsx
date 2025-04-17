@@ -35,8 +35,8 @@ function Help () {
                 <div className="troubleshooting-list">
                     {troubleshootingGuidelines.map((item, index) => (
                         <div key={index} className="troubleshooting-item">
-                            <h4>Issue: {item.issue}</h4>
-                            <p>Solution: {item.solution}</p>
+                            <h4>{item.issue}</h4>
+                            <p>{item.solution}</p>
                         </div>
                     ))}
                 </div>

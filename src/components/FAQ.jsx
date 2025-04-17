@@ -49,13 +49,13 @@ function FAQ () {
 
     return (
         <BaseLayout>
-            <div className="faq-container">
+            <div className="faq-container m-4">
                 <NavLinks />
-                <h1 className="text-center hero-text">Frequently Asked Questions</h1>
-                <div className="faq-list">
+                <h1 className="text-center">Frequently Asked Questions</h1>
+                <div className="faq-list m-4">
                     {faqs.map((faq, index) => (
                         <div key={index} className="faq-item">
-                            <h4>{faq.question}</h4>
+                            <h4 className='mt-2'>{faq.question}</h4>
                             <p>{faq.answer}</p>
                         </div>
                     ))}
