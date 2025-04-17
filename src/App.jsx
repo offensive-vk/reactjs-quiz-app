@@ -1,16 +1,18 @@
-import React from "react";
-import Start from "./components/Start";
-import Quiz from "./components/Quiz";
-import FAQ from "./components/FAQ";
-import Help from "./components/Help";
-import About from "./components/About";
-import Result from "./components/Result";
-import ErrorFallback from "./components/Error";
-import CustomQuiz from "./components/CustomQuiz";
-import BaseLayout from "./components/BaseLayout";
-import { DataProvider } from "./context/dataContext";
-import { ErrorBoundary } from "react-error-boundary";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import { DataProvider } from "./context/dataContext";
+import ErrorFallback from "./components/Error";
+import BaseLayout from "./components/BaseLayout";
+
+const Start = lazy(() => import("./components/Start"));
+const Quiz = lazy(() => import("./components/Quiz"));
+const FAQ = lazy(() => import("./components/FAQ"));
+const Help = lazy(() => import("./components/Help"));
+const About = lazy(() => import("./components/About"));
+const Result = lazy(() => import("./components/Result"));
+const CustomQuiz = lazy(() => import("./components/CustomQuiz"));
+const Loading = lazy(() => import("./components/Loading"));
 
 function App() {
   return (
@@ -18,18 +20,20 @@ function App() {
       <Router>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <BaseLayout>
-            <Routes>
-              <Route path="/" element={<Start />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/result" element={<Result />} />
-              <Route path="/quiz/:type" element={<Quiz />} />
-              <Route path="/custom/:title" element={<Quiz />} />
-              <Route path="/custom-quiz" element={<CustomQuiz />} />
-              <Route path="/result/:id" element={<Result />} />
-              <Route path="*" element={<ErrorFallback />} />
-            </Routes>
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/" element={<Start />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/result" element={<Result />} />
+                <Route path="/quiz/:type" element={<Quiz />} />
+                <Route path="/custom/:title" element={<Quiz />} />
+                <Route path="/custom-quiz" element={<CustomQuiz />} />
+                <Route path="/result/:id" element={<Result />} />
+                <Route path="*" element={<ErrorFallback />} />
+              </Routes>
+            </Suspense>
           </BaseLayout>
         </ErrorBoundary>
       </Router>

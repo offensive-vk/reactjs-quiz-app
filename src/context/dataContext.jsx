@@ -20,6 +20,9 @@ export const DataProvider = ({ children }) => {
     const [showResult, setShowResult] = useState(false);
     const [quizType, setQuizType] = useState('default');
 
+    // Add cache for quiz data
+    const [questionCache, setQuestionCache] = useState({});
+
     useEffect(() => {
         if (quizQuestions.length > questionIndex) {
             setQuestion(quizQuestions[questionIndex]);
@@ -67,11 +70,29 @@ export const DataProvider = ({ children }) => {
     const loadQuestions = async (type) => {
         try {
             setQuizError(null);
+            
+            // Check cache first
+            if (questionCache[type]) {
+                setQuizQuestions(questionCache[type]);
+                setQuestion(questionCache[type][0]);
+                setShowStart(false);
+                setShowQuiz(true);
+                setShowResult(false);
+                return;
+            }
+
             const response = await fetch(`/data/${type}-questions.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
+            
+            // Cache the questions
+            setQuestionCache(prev => ({
+                ...prev,
+                [type]: data.questions
+            }));
+            
             setQuizQuestions(data.questions);
             setQuestion(data.questions[0]);
             setShowStart(false);
