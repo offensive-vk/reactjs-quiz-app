@@ -12,6 +12,7 @@ export const DataProvider = ({ children }) => {
     const [selectedAnswer, setSelectedAnswer] = useState("");
     const [marks, setMarks] = useState(0);
     const [skippedQuestions, setSkippedQuestions] = useState(0);
+    const [quizError, setQuizError] = useState(null);
 
     // Display Controlling States
     const [showStart, setShowStart] = useState(true);
@@ -27,41 +28,81 @@ export const DataProvider = ({ children }) => {
 
     const isValidQuizFormat = (questions) => {
         if (!Array.isArray(questions)) {
-            return false;
+            throw new Error('Questions must be an array');
         }
-        return questions.every(question => {
-            return (
-                typeof question.question === 'string' &&
-                Array.isArray(question.choices) &&
-                question.choices.every(choice => typeof choice === 'string') &&
-                typeof question.correctIndex === 'number'
-            );
+        
+        return questions.every((question, index) => {
+            if (typeof question.question !== 'string') {
+                throw new Error(`Question ${index + 1}: question must be a string`);
+            }
+            
+            if (!Array.isArray(question.choices)) {
+                throw new Error(`Question ${index + 1}: choices must be an array`);
+            }
+            
+            if (question.choices.length !== 4) {
+                throw new Error(`Question ${index + 1}: must have exactly 4 choices`);
+            }
+            
+            if (!question.choices.every(choice => typeof choice === 'string')) {
+                throw new Error(`Question ${index + 1}: all choices must be strings`);
+            }
+            
+            if (typeof question.correctAnswer !== 'number' && typeof question.correctIndex !== 'number') {
+                throw new Error(`Question ${index + 1}: must have either correctAnswer or correctIndex as a number`);
+            }
+            
+            if (question.correctAnswer !== undefined && (question.correctAnswer < 0 || question.correctAnswer > 3)) {
+                throw new Error(`Question ${index + 1}: correctAnswer must be between 0 and 3`);
+            }
+            
+            if (question.correctIndex !== undefined && (question.correctIndex < 0 || question.correctIndex > 3)) {
+                throw new Error(`Question ${index + 1}: correctIndex must be between 0 and 3`);
+            }
+            
+            return true;
         });
     };
 
     const loadQuestions = async (type) => {
         try {
+            setQuizError(null);
             const response = await fetch(`/data/${type}-questions.json`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
             setQuizQuestions(data.questions);
-            setQuestion(data.questions[0].question);
+            setQuestion(data.questions[0]);
             setShowStart(false);
             setShowQuiz(true);
             setShowResult(false);
         } catch (error) {
             console.error('Error loading questions:', error);
+            setQuizError(error.message);
+            setShowQuiz(false);
         }
     };
 
     const loadCustomQuiz = (jsonData) => {
-        if (isValidQuizFormat(jsonData)) {
-            setQuizQuestions(jsonData);
-            startQuiz('custom', jsonData);
-        } else {
-            alert('Invalid quiz format. Please check the schema requirements.');
+        try {
+            setQuizError(null);
+            isValidQuizFormat(jsonData);
+            
+            const normalizedQuestions = jsonData.map(q => ({
+                ...q,
+                correctAnswer: q.correctAnswer !== undefined ? q.correctAnswer : q.correctIndex
+            }));
+            
+            setQuizQuestions(normalizedQuestions);
+            setQuestion(normalizedQuestions[0]);
+            setShowStart(false);
+            setShowQuiz(true);
+            setShowResult(false);
+        } catch (error) {
+            console.error('Error loading custom quiz:', error);
+            setQuizError(error.message);
+            setShowQuiz(false);
         }
     };
 
@@ -107,11 +148,17 @@ export const DataProvider = ({ children }) => {
 
         if (correctAnswer === "") {
             setSelectedAnswer(choice);
-            if (index === question.correctIndex || index === question.correctAnswer) {
+            
+            // Get the correct answer index from either correctAnswer or correctIndex
+            const correctAnswerIndex = question.correctAnswer !== undefined ? 
+                question.correctAnswer : 
+                question.correctIndex;
+            
+            if (index === correctAnswerIndex) {
                 setMarks(marks + 5);
                 setCorrectAnswer(choice);
             } else {
-                setCorrectAnswer(question.choices[question.correctIndex || index === question.correctAnswer]);
+                setCorrectAnswer(question.choices[correctAnswerIndex]);
             }
 
             // Move to next question after a delay
@@ -193,6 +240,7 @@ export const DataProvider = ({ children }) => {
                 marks,
                 quizType,
                 skippedQuestions,
+                quizError,
                 startQuiz,
                 nextQuestion,
                 showTheResult,

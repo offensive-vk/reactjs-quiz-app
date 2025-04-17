@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { useErrorBoundary } from "react-error-boundary";
 import BaseLayout from './BaseLayout';
+import '../styles/Error.css';
 
-const ErrorMessage = () => (
+const ErrorMessage = ({ error }) => (
     <div className="error-message">
-        <h2 className="hero-text">Sorry, Something went wrong.</h2>
-        <h3 className="hero-subheading">What would you like to do next?</h3>
+        <h2 className="hero-text">Oops! Something went wrong</h2>
+        <h3 className="hero-subheading">Error Details:</h3>
+        <div className="error-details">
+            {error}
+        </div>
     </div>
 );
 
-function ErrorFallback() {
+function ErrorFallback({ error }) {
     const navigate = useNavigate();
     const { resetErrorBoundary } = useErrorBoundary();
 
@@ -17,14 +21,22 @@ function ErrorFallback() {
         navigate('/');
     };
 
+    const handleTryAgain = () => {
+        if (resetErrorBoundary) {
+            resetErrorBoundary();
+        } else {
+            navigate('/custom-quiz');
+        }
+    };
+
     return (
         <BaseLayout>
             <div role="alert" className="error-container text-center">
-                <ErrorMessage /><br />
+                <ErrorMessage error={error} /><br />
                 <div className="d-flex justify-content-around">
                     <button
                         className="btn btn-primary fw-semibold px-4 py-2 me-2"
-                        onClick={resetErrorBoundary}
+                        onClick={handleTryAgain}
                     >
                         Try again
                     </button>

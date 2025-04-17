@@ -2,12 +2,15 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import DataContext from '../context/dataContext';
+import ErrorFallback from './Error';
 import '../styles/CustomQuiz.css';
 
 const CustomQuiz = () => {
     const {
         questions, 
-        setQuestions
+        setQuestions,
+        loadCustomQuiz,
+        quizError
     } = useContext(DataContext);
 
     const [quizTitle, setQuizTitle] = useState('');
@@ -16,6 +19,9 @@ const CustomQuiz = () => {
         choices: ['', '', '', ''],
         correctIndex: 0
     });
+    const [jsonInput, setJsonInput] = useState('');
+    const [showJsonInput, setShowJsonInput] = useState(false);
+    const [localError, setLocalError] = useState(null);
     const navigate = useNavigate();
 
     const generateRandomRoute = () => {
@@ -56,6 +62,36 @@ const CustomQuiz = () => {
         setQuestions(questions.filter((_, i) => i !== index));
     };
 
+    const handleJsonSubmit = () => {
+        try {
+            setLocalError(null);
+            const jsonData = JSON.parse(jsonInput);
+            
+            if (!jsonData.questions || !Array.isArray(jsonData.questions)) {
+                throw new Error('Invalid JSON format: missing or invalid questions array');
+            }
+            
+            // Store in localStorage
+            localStorage.setItem('customQuizData', jsonInput);
+            
+            // Load the custom quiz
+            loadCustomQuiz(jsonData.questions);
+            
+            const routePath = jsonData.quizTitle 
+                ? createUrlFriendlyTitle(jsonData.quizTitle)
+                : generateRandomRoute();
+
+            navigate(`/custom/${routePath}`, { 
+                state: { 
+                    questions: jsonData.questions,
+                    quizTitle: jsonData.quizTitle || `Custom Quiz #${routePath}` 
+                } 
+            });
+        } catch (error) {
+            setLocalError(error.message);
+        }
+    };
+
     const handleStartQuiz = () => {
         if (questions.length === 0) {
             alert('Please add at least one question before starting the quiz.');
@@ -87,74 +123,117 @@ const CustomQuiz = () => {
         }
     };
 
+    // If there's an error, show the error component
+    if (quizError || localError) {
+        return <ErrorFallback error={quizError || localError} />;
+    }
+
     return (
         <BaseLayout>
             <div className="question-editor">
                 <h2 className="text-center mb-2 mt-4">Create Your Custom Quiz</h2>
-                <input
-                    type="text"
-                    placeholder="Quiz Title (optional)"
-                    value={quizTitle}
-                    onChange={(e) => setQuizTitle(e.target.value)}
-                    className="form-control mb-4"
-                />
-                <div className="question-form">
-                    <input
-                        type="text"
-                        placeholder="Enter your question"
-                        value={currentQuestion.question}
-                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, question: e.target.value })}
-                        className="form-control mb-3"
-                    />
-                    {currentQuestion.choices.map((choice, index) => (
-                        <input
-                            key={index}
-                            type="text"
-                            placeholder={`Choice ${index + 1}`}
-                            value={choice}
-                            onChange={(e) => {
-                                const newChoices = [...currentQuestion.choices];
-                                newChoices[index] = e.target.value;
-                                setCurrentQuestion({ ...currentQuestion, choices: newChoices });
-                            }}
-                            className="form-control mb-2"
-                        />
-                    ))}
-                    <select
-                        value={currentQuestion.correctIndex}
-                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctIndex: parseInt(e.target.value) })}
-                        className="form-control mb-3"
+                
+                <div className="d-flex justify-content-center mb-4">
+                    <button 
+                        className={`btn ${showJsonInput ? 'btn-secondary' : 'btn-primary'} me-2`}
+                        onClick={() => setShowJsonInput(!showJsonInput)}
                     >
-                        {currentQuestion.choices.map((_, index) => (
-                            <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
-                        ))}
-                    </select>
-                    <button onClick={handleAddQuestion} className="btn btn-primary mb-4">Add Question</button>
+                        {showJsonInput ? 'Use Form Editor' : 'Use JSON Input'}
+                    </button>
                 </div>
 
-                <div className="questions-list mb-4">
-                    {questions.map((q, index) => (
-                        <div key={index} className="question-item p-3 mb-2">
-                            <h5>{q.question}</h5>
-                            <div className="choices-list mb-2">
-                                {q.choices.map((choice, choiceIndex) => (
-                                    <div key={choiceIndex} className={`choice-item ${choiceIndex === q.correctIndex ? 'correct-choice' : ''}`}>
-                                        {choice}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="button-group">
-                                <button onClick={() => handleEditQuestion(index)} className="btn btn-warning me-2">Edit</button>
-                                <button onClick={() => handleDeleteQuestion(index)} className="btn btn-danger">Delete</button>
-                            </div>
+                {showJsonInput ? (
+                    <div className="json-input-section mb-4">
+                        <h4 className="mb-3">Paste Your Quiz JSON</h4>
+                        <textarea
+                            className="form-control mb-3"
+                            rows="10"
+                            value={jsonInput}
+                            onChange={(e) => setJsonInput(e.target.value)}
+                            placeholder={`{
+  "quizTitle": "Your Quiz Title",
+  "questions": [
+    {
+      "question": "Your question here",
+      "choices": ["Choice 1", "Choice 2", "Choice 3", "Choice 4"],
+      "correctAnswer": 0
+    }
+  ]
+}`}
+                        />
+                        <div className="d-flex justify-content-center gap-3">
+                            <button onClick={handleJsonSubmit} className="btn btn-success">Load Quiz</button>
+                            <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ) : (
+                    <>
+                        <input
+                            type="text"
+                            placeholder="Quiz Title (optional)"
+                            value={quizTitle}
+                            onChange={(e) => setQuizTitle(e.target.value)}
+                            className="form-control mb-4"
+                        />
+                        <div className="question-form">
+                            <input
+                                type="text"
+                                placeholder="Enter your question"
+                                value={currentQuestion.question}
+                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, question: e.target.value })}
+                                className="form-control mb-3"
+                            />
+                            {currentQuestion.choices.map((choice, index) => (
+                                <input
+                                    key={index}
+                                    type="text"
+                                    placeholder={`Choice ${index + 1}`}
+                                    value={choice}
+                                    onChange={(e) => {
+                                        const newChoices = [...currentQuestion.choices];
+                                        newChoices[index] = e.target.value;
+                                        setCurrentQuestion({ ...currentQuestion, choices: newChoices });
+                                    }}
+                                    className="form-control mb-2"
+                                />
+                            ))}
+                            <select
+                                value={currentQuestion.correctIndex}
+                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctIndex: parseInt(e.target.value) })}
+                                className="form-control mb-3"
+                            >
+                                {currentQuestion.choices.map((_, index) => (
+                                    <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
+                                ))}
+                            </select>
+                            <button onClick={handleAddQuestion} className="btn btn-primary mb-4">Add Question</button>
+                        </div>
 
-                <div className="d-flex justify-content-center gap-3">
-                    <button onClick={handleStartQuiz} className="btn btn-success">Start Quiz</button>
-                    <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
-                </div>
+                        <div className="questions-list mb-4">
+                            {questions.map((q, index) => (
+                                <div key={index} className="question-item p-3 mb-2">
+                                    <h5>{q.question}</h5>
+                                    <div className="choices-list mb-2">
+                                        {q.choices.map((choice, choiceIndex) => (
+                                            <div key={choiceIndex} className={`choice-item ${choiceIndex === q.correctIndex ? 'correct-choice' : ''}`}>
+                                                {choice}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="button-group">
+                                        <button onClick={() => handleEditQuestion(index)} className="btn btn-warning me-2">Edit</button>
+                                        <button onClick={() => handleDeleteQuestion(index)} className="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="d-flex justify-content-center gap-3">
+                            <button onClick={handleStartQuiz} className="btn btn-success">Start Quiz</button>
+                            <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+                        </div>
+                    </>
+                )}
             </div>
         </BaseLayout>
     );

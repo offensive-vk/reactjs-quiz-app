@@ -1,0 +1,70 @@
+.error-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.error-message {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.hero-text {
+    color: #dc3545;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subheading {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.error-details {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 4px;
+    color: #fff;
+    font-family: monospace;
+    white-space: pre-wrap;
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.error-container .btn {
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.error-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .error-container {
+        padding: 1rem;
+    }
+
+    .hero-text {
+        font-size: 2rem;
+    }
+
+    .hero-subheading {
+        font-size: 1.2rem;
+    }
+
+    .error-container .d-flex {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .error-container .btn {
+        width: 100%;
+        margin: 0 !important;
+    }
+} 
