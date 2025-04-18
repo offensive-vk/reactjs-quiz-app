@@ -169,6 +169,7 @@ h6 {
   gap: 1rem;
   position: relative;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .nav-item {
@@ -188,6 +189,8 @@ h6 {
   flex: 1;
   text-align: center;
   transition: all 0.3s ease-in;
+  display: block;
+  white-space: nowrap;
 }
 
 .nav-link::before {
@@ -211,4 +214,29 @@ h6 {
   transform: scale(0.9);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive styles for navbar */
+@media (max-width: 500px) {
+  .nav-links {
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-link {
+    padding: 8px;
+    font-size: 1rem;
+    width: 100%;
+  }
 }
