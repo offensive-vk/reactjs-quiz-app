@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseLayout from './BaseLayout';
-import '../styles/Faq.css'
 import NavLinks from "./NavLinks";
+import '../styles/Faq.css'
 
 function FAQ () {
     const faqs = [
