@@ -6,7 +6,7 @@
     max-width: 800px;
     margin: 40px auto;
     padding: 2rem;
-    background-color: #1a1a1a;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -91,4 +91,81 @@
 .custom-quiz-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.questions-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.question-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.choices-list {
+    margin-left: 20px;
+}
+
+.choice-item {
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.correct-choice {
+    background: rgba(40, 167, 69, 0.2);
+    border-left: 3px solid #28a745;
+}
+
+.button-group {
+    margin-top: 10px;
+}
+
+.json-input-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.json-input-section textarea {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+.json-input-section textarea:focus {
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+}
+
+.json-input-section textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Custom scrollbar for the questions list */
+.questions-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.questions-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.questions-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.questions-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }

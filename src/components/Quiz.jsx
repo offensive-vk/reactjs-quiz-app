@@ -84,18 +84,18 @@ const Quiz = () => {
     <BaseLayout>
       <section className="text-white">
         <div className="container">
-          <div className="row vh-100 align-items-center justify-content-center">
-            <div className="col-lg-8">
+          <div className="row min-vh-100 align-items-center justify-content-center py-4">
+            <div className="col-12 col-lg-8">
               <div className="question-card p-4">
                 <div className="quiz-header mb-4">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="quiz-info d-flex align-items-center gap-3">
+                  <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+                    <div className="quiz-info d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2 gap-md-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
-                      <span className="quiz-type-badge" data-type={type || 'default'}>
-                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) || 'Default'} Quiz
+                      <span className="quiz-type-badge" data-type={type || quizTitle || 'default'}>
+                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) ||  quizTitle || 'Default'} Quiz
                       </span>
                     </div>
-                    <div className="d-flex gap-2">
+                    <div className="d-flex gap-2 w-100 w-md-auto justify-content-start justify-content-md-end">
                       <button 
                         onClick={skipQuestion}
                         className="btn btn-outline-light"

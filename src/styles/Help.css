@@ -16,7 +16,9 @@
 
 .troubleshooting-item:hover {
     border: 1px solid #ccc;
+    transform: translateX(20px);
 }
+
 .github-links {
     margin-top: 30px;
 }
@@ -24,10 +26,6 @@
 .github-links a {
     color: #fff;
     text-decoration: none;
-}
-
-.github-links a:hover {
-    text-decoration: underline;
 }
 
 .contribute {
