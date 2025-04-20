@@ -1,8 +1,8 @@
-.about-container {
+.contributing-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    line-height: 1.6; 
+    line-height: 1.6;
 }
 
 h1, h2, h3 {
@@ -11,5 +11,5 @@ h1, h2, h3 {
 }
 
 p {
-    margin-bottom: 1em; 
-}
+    margin-bottom: 1em;
+} 
