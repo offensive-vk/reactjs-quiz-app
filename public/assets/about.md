@@ -31,25 +31,25 @@ Additionally, the app integrates these technologies:
 
 ### Production Dependencies
 
-- ⚛️ **react**: ^18.2.0 - Core React library
-- 🏗 **react-dom**: ^18.2.0 - React DOM manipulation
-- 🛣 **react-router-dom**: ^6.22.0 - Routing and navigation
-- 🎨 **bootstrap**: ^5.3.2 - CSS framework for styling
-- 🔗 **react-bootstrap**: ^2.10.0 - Bootstrap components for React
-- 🖼 **html2canvas**: ^1.4.1 - Screenshot and image generation
-- 🛡 **react-error-boundary**: ^4.0.12 - Error handling for React components
-- 📊 **react-icons**: ^5.0.1 - Icon components library
+- ⚛️ **react**: ^18.3.1 - Core React library
+- 🏗 **react-dom**: ^18.3.1 - React DOM manipulation
+- 🛣 **react-router-dom**: ^7.5.0 - Routing and navigation
+- 🎨 **bootstrap**: ^5.3.5 - CSS framework for styling
+- 🔗 **react-bootstrap**: ^2.10.9 - Bootstrap components for React
 
 ### Development Dependencies
 
-- ⚡ **vite**: ^5.0.12 - Build tool and development server
-- 🔌 **@vitejs/plugin-react**: ^4.2.1 - React plugin for Vite
-- 📘 **@types/react**: ^18.2.43 - TypeScript definitions for React
-- 📗 **@types/react-dom**: ^18.2.17 - TypeScript definitions for React DOM
-- 🛡 **eslint**: ^8.55.0 - Code linting
-- 🔍 **eslint-plugin-react**: ^7.33.2 - React specific linting rules
-- 🔎 **eslint-plugin-react-hooks**: ^4.6.0 - Linting for React hooks
-- 🎯 **eslint-plugin-react-refresh**: ^0.4.5 - React Refresh support for ESLint
+- ⚡ **vite**: ^6.2.5 - Build tool and development server
+- 🔌 **@vitejs/plugin-react**: ^4.3.4 - React plugin for Vite
+- 📘 **@types/react**: ^18.3.20 - TypeScript definitions for React
+- 📗 **@types/react-dom**: ^18.3.6 - TypeScript definitions for React DOM
+- 🛡 **eslint**: ^9.24.0 - Code linting
+- 🔍 **eslint-plugin-react**: ^7.37.5 - React specific linting rules
+- 🔎 **eslint-plugin-react-hooks**: ^5.2.0 - Linting for React hooks
+- 🎯 **eslint-plugin-react-refresh**: ^0.4.19 - React Refresh support for ESLint
+- 📝 **react-markdown**: ^10.1.0 - Markdown rendering
+- 🖼 **html2canvas**: ^1.4.1 - Screenshot and image generation
+- 🛡 **react-error-boundary**: ^5.0.0 - Error handling for React components
 
 ## ⚙️ Installation & Setup
 
@@ -91,16 +91,18 @@ Additionally, the app integrates these technologies:
 
 ## 🔧 Scripts
 
-- `dev`: Runs the development server
-- `build`: Creates a production build
-- `preview`: Previews the production build
+- `dev`: Runs the development server on port 17027
+- `build`: Creates a production build with sourcemaps
+- `preview`: Previews the production build in debug mode
+- `optimize`: Runs Vite optimization
 - `lint`: Runs ESLint for code quality checks
-- `clean`: Cleans the dist directory.
+- `clean`: Cleans the dist directory
+- `all`: Runs preview, build, and optimize commands sequentially
 
 ## 💻 System Requirements
 
-- Node.js 16.x or higher
-- pnpm 8.x or higher
+- Node.js 22.x or higher (based on Dockerfile)
+- pnpm 10.x or higher
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 
 ## 🌐 Browser Support
@@ -112,9 +114,26 @@ Additionally, the app integrates these technologies:
 
 ## 📦 Version Information
 
-- **Current Version**: >=2025.1.0
-- **Node Engine**: >=16.0.0
-- **Package Manager**: >=pnpm@10.0.0
+- **Current Version**: 2025.3.0
+- **Node Engine**: >=22.0.0 (based on Dockerfile)
+- **Package Manager**: pnpm@10.0.0
+
+## 🎮 Development Configuration
+
+The project includes additional configuration files:
+
+- **deno.json**: Contains formatting rules and task definitions
+  - Uses 4-space indentation
+  - Line width: 80 characters
+  - Single quotes preferred
+  - Tab-based indentation
+  - Excludes node_modules and dist directories
+
+- **Dockerfile**:
+  - Based on Node 22 Alpine
+  - Exposes port 17027
+  - Uses pnpm for package management
+  - Includes optimization and build steps
 
 ## 🎮 Usage
 

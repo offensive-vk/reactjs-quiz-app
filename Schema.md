@@ -2,7 +2,6 @@
 
 We can upload custom questions for the quiz by following an strict json schema pattern. The questions schema will be inside an array of objects that each is a question with four properties namely `quizTitle`, `question`, `correctAnswer` and `choices` which is an array of string to choose from the quiz.
 
-
 ```json
 {
     "quizTitle": "Title of Your Quiz",
@@ -141,4 +140,3 @@ Before submitting:
 5. ✅ Test thoroughly before submitting
 
 For more information on contributing new quizzes, please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
-

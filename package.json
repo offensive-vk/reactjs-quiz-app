@@ -3,7 +3,7 @@
   "private": true,
   "version": "2025.4.0",
   "type": "module",
-  "description": "Just a Simple Quiz App using React JSX.",
+  "description": "Just a Lightweight Quiz App using React JS.",
   "author": {
     "name": "Mahak & Vedansh",
     "url": "https://github.com/offensive-vk/reactjs-quiz-app"
