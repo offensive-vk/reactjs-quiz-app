@@ -7,13 +7,13 @@ import '../styles/Result.css'
 
 const Result = () => {
   const navigate = useNavigate();
-  const { quizQuestions, quizType, marks, resetQuiz, setQuizType } = useContext(DataContext);
+  const { quizQuestions = [], quizType, marks = 0, resetQuiz, setQuizType } = useContext(DataContext);
   const { id } = useParams();
   
-  const percentage = (marks / (quizQuestions.length * 5)) * 100;
-  const isPassing = marks > (quizQuestions.length * 5 / 2);
-  const totalQuestions = quizQuestions.length;
-  const maxPossibleScore = quizQuestions.length * 5;
+  const totalQuestions = quizQuestions?.length || 0;
+  const maxPossibleScore = totalQuestions * 5;
+  const percentage = maxPossibleScore === 0 ? 0 : (marks / maxPossibleScore) * 100;
+  const isPassing = marks > (maxPossibleScore / 2);
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
 

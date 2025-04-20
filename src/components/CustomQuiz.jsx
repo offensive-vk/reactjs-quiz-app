@@ -131,8 +131,7 @@ const CustomQuiz = () => {
     return (
         <BaseLayout>
             <div className="question-editor">
-                <h2 className="text-center mb-2 mt-4">Create Your Custom Quiz</h2>
-                
+                <h2 className="text-center mb-2 mt-2">{quizTitle || "Create Your Custom Quiz"}</h2>
                 <div className="d-flex justify-content-center mb-4 mt-4">
                     <button 
                         className={`btn ${showJsonInput ? 'btn-secondary' : 'btn-primary'} me-2`}
