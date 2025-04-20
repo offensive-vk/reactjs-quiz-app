@@ -2,7 +2,7 @@ kind/questions:
   match:
     - 'public/data/*.json'
     - '**/*-questions.json'
-  description: 'Relating to quiz content q/a'.
+  description: 'Relating to quiz content q/a.'
 
 kind/docker:
   match:
