@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
-import '../styles/Quiz.css'
 import { getQuizTypeById } from "../data/quizTypes";
+import '../styles/Quiz.css'
 
 const Quiz = () => {
   const { type } = useParams();
@@ -81,7 +81,6 @@ const Quiz = () => {
     );
   }
 
-  // Get quiz type info from the centralized data
   const quizTypeInfo = getQuizTypeById(type || quizType || 'default');
   const displayTitle = quizTitle || quizTypeInfo.title;
 

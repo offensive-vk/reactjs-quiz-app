@@ -51,7 +51,7 @@ const CustomQuiz = () => {
             question: '',
             choices: ['', '', '', ''],
             correctIndex: 0,
-            marks: 10 // Reset to default marks
+            marks: 10
         });
     };
 
@@ -76,7 +76,7 @@ const CustomQuiz = () => {
             // Ensure each question has a marks field
             const questionsWithMarks = jsonData.questions.map(q => ({
                 ...q,
-                marks: q.marks || 10 // Default to 10 marks if not specified
+                marks: q.marks || 10
             }));
             
             // Store in localStorage
@@ -85,7 +85,6 @@ const CustomQuiz = () => {
                 questions: questionsWithMarks
             }));
             
-            // Load the custom quiz
             loadCustomQuiz(questionsWithMarks);
             
             const routePath = jsonData.quizTitle 
@@ -117,8 +116,8 @@ const CustomQuiz = () => {
         const formattedQuestions = questions.map(q => ({
             question: q.question,
             choices: q.choices,
-            correctAnswer: q.correctIndex, // This matches what Quiz component expects
-            marks: q.marks || 10 // Ensure marks are included
+            correctAnswer: q.correctIndex,
+            marks: q.marks || 10
         }));
 
         navigate(`/custom/${routePath}`, { 

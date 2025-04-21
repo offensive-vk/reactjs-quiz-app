@@ -6,6 +6,7 @@ import '../styles/Error.css';
 const ErrorMessage = ({ error }) => (
     <div className="error-message">
         <h2 className="hero-text">Oops! Something went wrong</h2>
+        <pre>{error}</pre>
     </div>
 );
 
