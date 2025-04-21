@@ -1,6 +1,7 @@
 ├── Dockerfile
 ├── README.md
 ├── Schema.md
+├── contributing.md
 ├── deno.json
 ├── deno.lock
 ├── eslint.config.js
@@ -10,44 +11,63 @@
 ├── pnpm-lock.yaml
 ├── public
 │   ├── assets
+│   │   ├── about.md
 │   │   ├── authors
+│   │   ├── contributing.md
 │   │   ├── react.svg
 │   │   └── vite.svg
-│   ├── backup.json
 │   ├── data
+│   │   ├── angular-questions.json
+│   │   ├── astro-questions.json
 │   │   ├── default-questions.json
+│   │   ├── docker-questions.json
 │   │   ├── javascript-questions.json
+│   │   ├── nextjs-questions.json
 │   │   ├── python-questions.json
 │   │   ├── react-questions.json
+│   │   ├── svelte-questions.json
+│   │   ├── tailwindcss-questions.json
 │   │   ├── typescript-questions.json
+│   │   ├── vuejs-questions.json
 │   │   └── webdev-questions.json
 │   ├── internet.svg
 │   ├── logo.svg
 │   ├── quiz.json
-│   ├── robots.txt
-│   └── schema.md
+│   └── robots.txt
 ├── src
 │   ├── App.jsx
 │   ├── components
+│   │   ├── About.jsx
 │   │   ├── BaseLayout.jsx
+│   │   ├── Contributing.jsx
+│   │   ├── CustomQuiz.jsx
 │   │   ├── Error.jsx
 │   │   ├── FAQ.jsx
 │   │   ├── Help.jsx
+│   │   ├── Loading.jsx
+│   │   ├── NavLinks.jsx
 │   │   ├── Quiz.jsx
 │   │   ├── Result.jsx
 │   │   └── Start.jsx
 │   ├── context
 │   │   └── dataContext.jsx
+│   ├── data
+│   │   └── quizTypes.js
 │   ├── index.css
 │   ├── main.jsx
 │   ├── schema
 │   │   └── quiz-schema.json
 │   └── styles
+│       ├── About.css
+│       ├── Contributing.css
+│       ├── CustomQuiz.css
+│       ├── Error.css
 │       ├── Faq.css
 │       ├── Help.css
+│       ├── NavLinks.css
 │       ├── Quiz.css
 │       ├── Result.css
-│       ├── Start.css
-│       └── global.css
+│       └── Start.css
 ├── treemap
+├── replace-sha.mjs
 └── vite.config.js

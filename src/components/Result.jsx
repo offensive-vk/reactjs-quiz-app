@@ -4,6 +4,7 @@ import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import html2canvas from 'html2canvas';
 import '../styles/Result.css'
+import { getQuizTypeById } from "../data/quizTypes";
 
 const Result = () => {
   const navigate = useNavigate();
@@ -27,29 +28,8 @@ const Result = () => {
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
 
-  // Get quiz type display name
-  const getQuizTypeDisplay = () => {
-    if (quizType === 'custom') return 'Custom';
-    
-    // List of quiz types with their display names
-    const quizTypes = {
-      'default': 'Default',
-      'webdev': 'Web Development',
-      'javascript': 'JavaScript',
-      'react': 'React',
-      'python': 'Python',
-      'typescript': 'TypeScript',
-      'docker': 'Docker',
-      'tailwindcss': 'Tailwind CSS',
-      'astro': 'Astro',
-      'vuejs': 'Vue.js',
-      'nextjs': 'Next.js',
-      'svelte': 'Svelte'
-    };
-
-    // Return the display name if it exists, otherwise capitalize the first letter
-    return quizTypes[quizType] || quizType.charAt(0).toUpperCase() + quizType.slice(1);
-  };
+  // Get quiz type info from the centralized data
+  const quizTypeInfo = getQuizTypeById(quizType || 'default');
 
   const handleStartOver = () => {
     const lastQuizType = quizType;
@@ -80,7 +60,10 @@ const Result = () => {
         <div className="container">
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-lg-6 m-5">
-              <div className="result-card">
+              <div className="result-card" data-type={quizType || 'default'}>
+                <div className="quiz-icon-wrapper result-icon">
+                  <img src={quizTypeInfo.icon} alt={quizTypeInfo.title} className="quiz-icon-svg" />
+                </div>
                 <div className="score-circle">
                   <div className={`circle-progress ${isPassing ? 'success' : 'danger'}`}>
                     <h1 className="percentage">{percentage.toFixed(0)}%</h1>
@@ -114,7 +97,7 @@ const Result = () => {
                   <div className="col-md-6">
                     <div className="stat-item">
                       <div className="stat-label">Quiz Type</div>
-                      <div className="stat-value">{getQuizTypeDisplay()}</div>
+                      <div className="stat-value">{quizTypeInfo.display}</div>
                     </div>
                   </div>
                   <div className="col-md-6">

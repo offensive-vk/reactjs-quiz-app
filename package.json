@@ -6,16 +6,18 @@
   "description": "Just a Lightweight Quiz App using React JS.",
   "author": {
     "name": "Mahak & Vedansh",
-    "url": "https://github.com/offensive-vk/reactjs-quiz-app"
+    "url": "https://github.com/offensive-vk/reactjs-quiz-app",
+    "bugs": "https://github.com/offensive-vk/reactjs-quiz-app/issues/new"
   },
   "scripts": {
     "clean": "rm -rf dist",
     "dev": "vite --host --port 17027 --force --clearScreen -d",
-    "build": "vite build -d --sourcemap",
+    "build": "vite build -d --sourcemap && node replace-sha.mjs",
     "preview": "vite preview -d",
     "optimize": "vite optimize -d",
     "lint": "eslint .",
-    "all": "pnpm run build; pnpm run optimize"
+    "all": "pnpm run build; pnpm run optimize",
+    "format": "deno fmt"
   },
   "pnpm.onlyBuiltDependencies": "esbuild",
   "dependencies": {

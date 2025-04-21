@@ -26,7 +26,7 @@
 /* Grid layout for remaining cards */
 .quiz-type-grid-remaining {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -335,6 +335,24 @@
 }
 
 /* Responsive Styles */
+@media (max-width: 1200px) {
+    .quiz-type-grid-remaining {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-type-grid-remaining {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .quiz-type-grid-remaining {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 @media (max-width: 992px) {
     .quiz-types-row {
         gap: 1rem;

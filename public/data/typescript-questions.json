@@ -12,44 +12,44 @@
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is a correct way to declare a type in TypeScript?",
+      "question": "Which of the following is the correct way to declare a union type in TypeScript?",
       "choices": [
-        "type Person = { name: string, age: number }",
-        "typedef Person { name: string, age: number }",
-        "interface Person { name = string, age = number }",
-        "class Person { name: string; age: number }"
+        "let value: string | number",
+        "let value = string | number",
+        "let value: (string, number)",
+        "let value: [string | number]"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "What is the 'any' type in TypeScript?",
+      "question": "What does the 'readonly' modifier do in TypeScript?",
       "choices": [
-        "A type that can only hold numbers",
-        "A type that can hold any value",
-        "A type that can only hold vector",
-        "A type that can only hold arrays"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What is the purpose of an interface in TypeScript?",
-      "choices": [
-        "To create new JavaScript objects",
-        "To define a contract for object structure",
-        "To improve code performance",
-        "To create complex class instances"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which operator is used for optional properties or parameters?",
-      "choices": [
-        "?",
-        "*",
-        "!",
-        "&"
+        "Prevents a property from being modified after initialization",
+        "Marks a variable as a constant",
+        "Allows only numbers to be assigned",
+        "Enables runtime type checking"
       ],
       "correctAnswer": 0
+    },
+    {
+      "question": "How can you define a tuple type in TypeScript?",
+      "choices": [
+        "let person: [string, number]",
+        "let person = (string, number)",
+        "let person: string | number",
+        "let person = [string number]"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What does the 'typeof' operator do in TypeScript?",
+      "choices": [
+        "Checks if a variable is null or undefined",
+        "Returns the type of a variable or expression",
+        "Creates a new type alias",
+        "Casts a variable to another type"
+      ],
+      "correctAnswer": 1
     },
     {
       "question": "What is a Union Type in TypeScript?",
@@ -102,4 +102,4 @@
       "correctAnswer": 1
     }
   ]
-} 
+}
