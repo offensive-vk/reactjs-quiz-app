@@ -15,7 +15,7 @@ function FAQ () {
         },
         {
             question: "Can I create my own quizzes?",
-            answer: "Yes! You can create custom quizzes by uploading a JSON file containing your quiz questions. The app validates the format to ensure compatibility. Each question should have 4 choices and a correct answer index."
+            answer: "Yes! You can create custom quizzes by uploading a JSON file containing your quiz questions. The app validates the format to ensure compatibility. Each question should have 4 choices, a correct answer index, and you can assign custom marks to each question (default is 10 marks per question)."
         },
         {
             question: "What happens if I encounter an error?",
@@ -23,7 +23,7 @@ function FAQ () {
         },
         {
             question: "How are scores calculated?",
-            answer: "Scores are calculated based on the number of correct answers. Each correct answer is worth 5 points. Skipped questions don't affect your score, but they are tracked separately."
+            answer: "For standard quizzes, each correct answer is worth 5 points. For custom quizzes, you can assign different marks to each question (default is 10 marks). Skipped questions don't affect your score, but they are tracked separately."
         },
         {
             question: "Where can I find the results of my quizzes?",

@@ -1,3 +1,9 @@
+kind/questions:
+  match:
+    - 'public/data/*.json'
+    - '**/*-questions.json'
+  description: 'Relating to quiz content q/a.'
+
 kind/docker:
   match:
     - 'Dockerfile'
@@ -36,10 +42,12 @@ kind/assets:
   match:
     - 'public/**/*'
     - '**/assets/**/*'
+    - '**/*.svg'
   description: 'Changes Static Assets'
 
 kind/configuration:
   match:
+    - 'CODEOWNERS'
     - '.gitignore'
     - '**/*.json'
     - 'treemap'
@@ -53,5 +61,8 @@ kind/deno:
 
 kind/docs:
   match:
+    - 'contributing.md'
+    - 'readme.md'
+    - 'license'
     - '*/**.md'
   description: 'Documentation'

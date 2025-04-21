@@ -1,23 +1,21 @@
 # Custom Schema for Quiz
 
-We can upload custom questions for the quiz by following an strict json schema pattern. The questions schema will be inside an array of objects that each is a question with four properties namely `quizTitle`, `question`, `correctAnswer` and `choices` which is an array of string to choose from the quiz.
-
+We can upload custom questions for the quiz by following a strict JSON schema pattern. The questions schema will be inside an array of objects that each is a question with three properties namely `question`, `choices` (array of options), and `correctAnswer` (index of the correct option).
 
 ```json
 {
     "quizTitle": "Title of Your Quiz",
     "questions": [
         {
-            "question" : "Question?",
+            "question": "Question?",
             "choices": [
                 "Option 0",
                 "Option 1",
                 "Option 2",
                 "Option 3"
             ],
-            "correctAnswer": "correct option"
-        },
-        { ... }
+            "correctAnswer": 0
+        }
     ]
 }
 ```
@@ -30,14 +28,13 @@ We can upload custom questions for the quiz by following an strict json schema p
   "questions": [
     {
       "question": "Your question text here?",
-      "options": [
+      "choices": [
         "Option 1",
         "Option 2",
         "Option 3",
         "Option 4"
       ],
-      "correct": 0,
-      "explanation": "Optional explanation for the correct answer"
+      "correctAnswer": 0
     }
   ]
 }
@@ -61,18 +58,14 @@ We can upload custom questions for the quiz by following an strict json schema p
      - Must end with a question mark
      - Should be clear and unambiguous
 
-   - **options** (array)
+   - **choices** (array)
      - Array of 4 possible answers
      - Must contain exactly 4 options
      - Each option should be unique
 
-   - **correct** (number)
+   - **correctAnswer** (number)
      - Index of the correct answer (0-3)
-     - Corresponds to the index in the options array
-
-   - **explanation** (string, optional)
-     - Explanation of why the answer is correct
-     - Helpful for learning purposes
+     - Corresponds to the index in the choices array
 
 ## Example Question
 
@@ -88,8 +81,7 @@ We can upload custom questions for the quiz by following an strict json schema p
         "undefined",
         "null"
       ],
-      "correctAnswer": 0,
-      "explanation": "In JavaScript, arrays are actually objects, so typeof [] returns 'object'"
+      "correctAnswer": 0
     }
   ]
 }
@@ -104,7 +96,7 @@ We can upload custom questions for the quiz by following an strict json schema p
 
 2. **Content Rules**
    - Questions must be unique within the quiz
-   - All options must be unique within each question
+   - All choices must be unique within each question
    - Questions should be technically accurate
    - Content must be appropriate and professional
 
@@ -126,19 +118,17 @@ Before submitting:
 ## Common Issues to Avoid
 
 1. ❌ Missing required fields
-2. ❌ Incorrect number of options
-3. ❌ Invalid correct answer index
-4. ❌ Duplicate questions or options
+2. ❌ Incorrect number of choices
+3. ❌ Invalid correctAnswer index
+4. ❌ Duplicate questions or choices
 5. ❌ Malformed JSON
 6. ❌ Improper file encoding
 
 ## Best Practices
 
 1. ✅ Keep questions clear and concise
-2. ✅ Provide helpful explanations
-3. ✅ Use consistent formatting
-4. ✅ Include a mix of difficulty levels
-5. ✅ Test thoroughly before submitting
+2. ✅ Use consistent formatting
+3. ✅ Include a mix of difficulty levels
+4. ✅ Test thoroughly before submitting
 
-For more information on contributing new quizzes, please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md) file.
-
+For more information on contributing new quizzes, please refer to the [CONTRIBUTING.md](./contributing.md) file.

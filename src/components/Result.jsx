@@ -7,15 +7,49 @@ import '../styles/Result.css'
 
 const Result = () => {
   const navigate = useNavigate();
-  const { quizQuestions, quizType, marks, resetQuiz, setQuizType } = useContext(DataContext);
+  const { quizQuestions = [], quizType, marks = 0, resetQuiz, setQuizType } = useContext(DataContext);
   const { id } = useParams();
   
-  const percentage = (marks / (quizQuestions.length * 5)) * 100;
-  const isPassing = marks > (quizQuestions.length * 5 / 2);
-  const totalQuestions = quizQuestions.length;
-  const maxPossibleScore = quizQuestions.length * 5;
+  const totalQuestions = quizQuestions?.length || 0;
+  
+  // Calculate max possible score based on quiz type
+  let maxPossibleScore;
+  if (quizType === 'custom') {
+    // For custom quizzes, sum up the marks for each question
+    maxPossibleScore = quizQuestions.reduce((total, q) => total + (q.marks || 5), 0);
+  } else {
+    // For standard quizzes, each question is worth 5 marks
+    maxPossibleScore = totalQuestions * 5;
+  }
+  
+  const percentage = maxPossibleScore === 0 ? 0 : (marks / maxPossibleScore) * 100;
+  const isPassing = marks > (maxPossibleScore / 2);
   const currentDate = new Date().toLocaleDateString();
   const currentTime = new Date().toLocaleTimeString();
+
+  // Get quiz type display name
+  const getQuizTypeDisplay = () => {
+    if (quizType === 'custom') return 'Custom';
+    
+    // List of quiz types with their display names
+    const quizTypes = {
+      'default': 'Default',
+      'webdev': 'Web Development',
+      'javascript': 'JavaScript',
+      'react': 'React',
+      'python': 'Python',
+      'typescript': 'TypeScript',
+      'docker': 'Docker',
+      'tailwindcss': 'Tailwind CSS',
+      'astro': 'Astro',
+      'vuejs': 'Vue.js',
+      'nextjs': 'Next.js',
+      'svelte': 'Svelte'
+    };
+
+    // Return the display name if it exists, otherwise capitalize the first letter
+    return quizTypes[quizType] || quizType.charAt(0).toUpperCase() + quizType.slice(1);
+  };
 
   const handleStartOver = () => {
     const lastQuizType = quizType;
@@ -80,7 +114,7 @@ const Result = () => {
                   <div className="col-md-6">
                     <div className="stat-item">
                       <div className="stat-label">Quiz Type</div>
-                      <div className="stat-value">{quizType?.type || quizType || 'Custom'}</div>
+                      <div className="stat-value">{getQuizTypeDisplay()}</div>
                     </div>
                   </div>
                   <div className="col-md-6">

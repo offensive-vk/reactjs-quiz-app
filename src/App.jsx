@@ -13,6 +13,7 @@ const About = lazy(() => import("./components/About"));
 const Result = lazy(() => import("./components/Result"));
 const CustomQuiz = lazy(() => import("./components/CustomQuiz"));
 const Loading = lazy(() => import("./components/Loading"));
+const Contributing = lazy(() => import("./components/Contributing"));
 
 function App() {
   return (
@@ -27,11 +28,12 @@ function App() {
                 <Route path="/help" element={<Help />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/result" element={<Result />} />
+                <Route path="*" element={<ErrorFallback />} />
                 <Route path="/quiz/:type" element={<Quiz />} />
+                <Route path="/result/:id" element={<Result />} />
                 <Route path="/custom/:title" element={<Quiz />} />
                 <Route path="/custom-quiz" element={<CustomQuiz />} />
-                <Route path="/result/:id" element={<Result />} />
-                <Route path="*" element={<ErrorFallback />} />
+                <Route path="/contribute" element={<Contributing />} />
               </Routes>
             </Suspense>
           </BaseLayout>

@@ -30,21 +30,22 @@ To add a new quiz topic, you'll need to prepare:
      "questions": [
        {
          "question": "Your question text here?",
-         "choices": [
+         "options": [
            "Option 1",
            "Option 2",
            "Option 3",
            "Option 4"
          ],
-         "correctAnswer": 0
+         "correct": 0,
+         "explanation": "Optional explanation for the correct answer"
        }
      ]
    }
    ```
 
    - Minimum 10 questions required
-   - Each question must have 4 choices
-   - `correctAnswer` index should be 0-3 (corresponding to the correct choice)
+   - Each question must have 4 options
+   - `correct` index should be 0-3 (corresponding to the correct option)
 
 2. **Icon Requirements**
    - SVG format preferred
@@ -101,7 +102,7 @@ Before submitting your PR, ensure:
 
 - [ ] Quiz JSON file follows the correct format
 - [ ] Minimum 10 questions included
-- [ ] All questions have 4 choices
+- [ ] All questions have 4 options
 - [ ] Correct answers are properly indexed
 - [ ] Icon is properly hosted and accessible
 - [ ] Quiz type added to `Start.jsx`
@@ -116,7 +117,7 @@ If you want to test your changes locally:
 1. Install dependencies:
 
    ```bash
-   pnpm install
+   pnpm i
    ```
 
 2. Start development server:
@@ -162,7 +163,3 @@ If you have any questions or need help:
 Thank you for contributing to making our this project better! 🎉
 
 ---
-
-<p align="center">
-  <i>Happy Contributing! 🚀</i>
-</p>

@@ -1,9 +1,9 @@
 {
   "name": "react-js-quiz",
   "private": true,
-  "version": "2025.3.0",
+  "version": "2025.4.0",
   "type": "module",
-  "description": "Just a Simple Quiz App using React JSX.",
+  "description": "Just a Lightweight Quiz App using React JS.",
   "author": {
     "name": "Mahak & Vedansh",
     "url": "https://github.com/offensive-vk/reactjs-quiz-app"
@@ -15,7 +15,7 @@
     "preview": "vite preview -d",
     "optimize": "vite optimize -d",
     "lint": "eslint .",
-    "all": "pnpm run preview; pnpm run build; pnpm run optimize"
+    "all": "pnpm run build; pnpm run optimize"
   },
   "pnpm.onlyBuiltDependencies": "esbuild",
   "dependencies": {

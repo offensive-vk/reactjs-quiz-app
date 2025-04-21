@@ -1,103 +1,103 @@
 {
-    "quizTitle": "Default Quiz",
+    "quizTitle": "Computer Science Fundamentals",
     "questions": [
         {
-            "question": "What is the primary purpose of Docker?",
+            "question": "Which data structure is best suited for implementing a priority queue?",
             "choices": [
-                "To manage databases",
-                "To containerize applications",
-                "To build user interfaces",
-                "To write server-side scripts"
+                "Binary Heap",
+                "Linked List",
+                "Array",
+                "Stack"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "What is the time complexity of binary search algorithm?",
+            "choices": [
+                "O(n)",
+                "O(log n)",
+                "O(n²)",
+                "O(1)"
             ],
             "correctAnswer": 1
         },
         {
-            "question": "Which command is used to start a Vite development server?",
+            "question": "Which of the following is not a type of computer network topology?",
             "choices": [
-                "vite serve",
-                "vite start",
-                "vite",
-                "vite preview"
+                "Star",
+                "Ring",
+                "Cube",
+                "Mesh"
             ],
             "correctAnswer": 2
         },
         {
-            "question": "What is pnpm primarily used for?",
+            "question": "What is the main purpose of an operating system?",
             "choices": [
-                "Package management",
-                "Database management",
-                "Container orchestration",
-                "CSS styling"
+                "To run applications",
+                "To manage hardware and software resources",
+                "To browse the internet",
+                "To store data"
             ],
-            "correctAnswer": 0 
+            "correctAnswer": 1
         },
         {
-            "question": "Which of the following is used to style React components?",
+            "question": "Which programming paradigm is based on the concept of objects containing data and code?",
             "choices": [
-                "CSS Modules",
-                "Styled Components",
-                "Tailwind CSS",
-                "All of the above"
+                "Functional Programming",
+                "Object-Oriented Programming",
+                "Procedural Programming",
+                "Logic Programming"
             ],
-            "correctAnswer": 3
+            "correctAnswer": 1
         },
         {
-            "question": "Which of the following is a feature of JavaScript ES6?",
+            "question": "What is the smallest unit of data in a computer?",
             "choices": [
-                "Arrow functions",
-                "CSS Grid",
-                "SQL Queries",
-                "REST APIs"
+                "Byte",
+                "Bit",
+                "Nibble",
+                "Word"
             ],
-            "correctAnswer": 0
+            "correctAnswer": 1
         },
         {
-            "question": "What is the command to build a Docker image?",
+            "question": "Which of the following is a type of computer memory that is volatile?",
             "choices": [
-                "docker build",
-                "docker run",
-                "docker create",
-                "docker start"
+                "ROM",
+                "RAM",
+                "Hard Disk",
+                "Flash Drive"
             ],
-            "correctAnswer": 0
+            "correctAnswer": 1
         },
         {
-            "question": "Which of the following is a key feature of Vite?",
+            "question": "What does CPU stand for?",
             "choices": [
-                "Hot Module Replacement",
-                "Server-side rendering",
-                "Smart Module Caching",
-                "All of the above"
-            ],
-            "correctAnswer": 3
-        },
-        {
-            "question": "What are the benefit of using pnpm over npm?",
-            "choices": [
-                "Faster installs",
-                "Similar Commands",
-                "Better management commands",
-                "All of the above"
-            ],
-            "correctAnswer": 3 
-        },
-        {
-            "question": "What is the purpose of React hooks?",
-            "choices": [
-                "To manage state and side effects in functional components",
-                "To style components",
-                "To fetch data from APIs",
-                "To handle routing"
+                "Central Processing Unit",
+                "Computer Personal Unit",
+                "Central Program Utility",
+                "Computer Processing Unit"
             ],
             "correctAnswer": 0
         },
         {
-            "question": "Which of the following is NOT a JavaScript data type?",
+            "question": "Which of the following is not a type of computer virus?",
             "choices": [
-                "String",
-                "Vector",
-                "Number",
-                "Array"
+                "Trojan Horse",
+                "Worm",
+                "Firewall",
+                "Spyware"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "What is the purpose of a compiler in programming?",
+            "choices": [
+                "To debug code",
+                "To translate high-level code to machine code",
+                "To write code",
+                "To test code"
             ],
             "correctAnswer": 1
         }

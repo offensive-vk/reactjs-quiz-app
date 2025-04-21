@@ -92,8 +92,11 @@ const Quiz = () => {
                     <div className="quiz-info d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2 gap-md-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
                       <span className="quiz-type-badge" data-type={type || quizTitle || 'default'}>
-                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) ||  quizTitle || 'Default'} Quiz
+                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) || quizTitle || 'Default'} Quiz
                       </span>
+                      {quizType === 'custom' && question?.marks && (
+                        <span className="marks-badge">{question.marks} marks</span>
+                      )}
                     </div>
                     <div className="d-flex gap-2 w-100 w-md-auto justify-content-start justify-content-md-end">
                       <button 
