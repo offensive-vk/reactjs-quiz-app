@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import '../styles/Quiz.css'
+import { getQuizTypeById } from "../data/quizTypes";
 
 const Quiz = () => {
   const { type } = useParams();
@@ -80,6 +81,10 @@ const Quiz = () => {
     );
   }
 
+  // Get quiz type info from the centralized data
+  const quizTypeInfo = getQuizTypeById(type || quizType || 'default');
+  const displayTitle = quizTitle || quizTypeInfo.title;
+
   return (
     <BaseLayout>
       <section className="text-white">
@@ -91,8 +96,8 @@ const Quiz = () => {
                   <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
                     <div className="quiz-info d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2 gap-md-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
-                      <span className="quiz-type-badge" data-type={type || quizTitle || 'default'}>
-                        {(type && type.charAt(0).toUpperCase() + type.slice(1)) || quizTitle || 'Default'} Quiz
+                      <span className="quiz-type-badge" data-type={type || quizType || 'default'}>
+                        {displayTitle} Quiz
                       </span>
                       {quizType === 'custom' && question?.marks && (
                         <span className="marks-badge">{question.marks} marks</span>

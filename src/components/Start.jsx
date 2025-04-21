@@ -4,78 +4,13 @@ import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import NavLinks from "./NavLinks";
 import '../styles/Start.css'
+import { getAllQuizTypes } from "../data/quizTypes";
 
 const Start = () => {
   const { loadQuestions } = useContext(DataContext);
   const navigate = useNavigate();
   
-  const quizTypes = [
-    {
-      id: 'default',
-      title: 'Default Quiz',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/reactjs-quiz-app@master/public/internet.svg'
-    },
-    {
-      id: 'webdev',
-      title: 'Web Development',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/html5/html5-original.svg'
-    },
-    {
-      id: 'javascript',
-      title: 'JavaScript',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/javascript/javascript-original.svg'
-    },
-    {
-      id: 'tailwindcss',
-      title: 'Tailwind CSS',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/tailwindcss/tailwindcss-original.svg'
-    },
-    {
-      id: 'python',
-      title: 'Python',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/python/python-original.svg'
-    },
-    {
-      id: 'typescript',
-      title: 'Typescript',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/typescript/typescript-plain.svg'
-    },
-    {
-      id: 'docker',
-      title: 'Docker',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/docker/docker-original.svg'
-    },
-    {
-      id: 'react',
-      title: 'React',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/react/react-original.svg'
-    },
-    {
-      id: 'angular',
-      title: 'Angular',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/angular/angular-original.svg'
-    },
-    {
-      id: 'svelte',
-      title: 'Svelte',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/svelte/svelte-original.svg'
-    },
-    {
-      id: 'vuejs',
-      title: 'Vue.js',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/vuejs/vuejs-original.svg'
-    },
-    {
-      id: 'astro',
-      title: 'Astro',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/astro/astro-original.svg'
-    },
-    {
-      id: 'nextjs',
-      title: 'Next.js',
-      icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/Icons@master/nextjs/nextjs-original.svg'
-    },
-  ];
+  const quizTypes = getAllQuizTypes();
 
   const handleQuizStart = (type) => {
     loadQuestions(type);
