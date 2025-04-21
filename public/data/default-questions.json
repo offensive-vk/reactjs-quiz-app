@@ -100,6 +100,106 @@
                 "To test code"
             ],
             "correctAnswer": 1
+        },
+        {
+            "question": "Which sorting algorithm is generally considered the fastest for large datasets?",
+            "choices": [
+                "Bubble Sort",
+                "Selection Sort",
+                "Quick Sort",
+                "Insertion Sort"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "Which logic gate returns true only if both inputs are true?",
+            "choices": [
+                "OR",
+                "NAND",
+                "AND",
+                "XOR"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "What is the main function of the ALU (Arithmetic Logic Unit)?",
+            "choices": [
+                "Store data",
+                "Perform arithmetic and logic operations",
+                "Manage memory",
+                "Display output"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "What is the key feature of a stack data structure?",
+            "choices": [
+                "First-In First-Out",
+                "Last-In First-Out",
+                "Random Access",
+                "Circular Access"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "Which protocol is used to transfer files over the internet?",
+            "choices": [
+                "HTTP",
+                "FTP",
+                "TCP",
+                "IP"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "Which type of algorithm is used for shortest path problems?",
+            "choices": [
+                "Dijkstra's Algorithm",
+                "Merge Sort",
+                "Prim's Algorithm",
+                "Kruskal's Algorithm"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Which of the following is a non-volatile memory type?",
+            "choices": [
+                "Cache",
+                "RAM",
+                "ROM",
+                "Registers"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "Which of the following is *not* a high-level programming language?",
+            "choices": [
+                "Python",
+                "Java",
+                "C++",
+                "Assembly"
+            ],
+            "correctAnswer": 3
+        },
+        {
+            "question": "What does the acronym 'URL' stand for?",
+            "choices": [
+                "Uniform Reference Locator",
+                "Universal Record Link",
+                "Uniform Resource Locator",
+                "Unique Route Locator"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "Which part of the computer is responsible for executing instructions?",
+            "choices": [
+                "Hard Disk",
+                "CPU",
+                "RAM",
+                "Motherboard"
+            ],
+            "correctAnswer": 1
         }
     ]
 }
