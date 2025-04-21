@@ -17,7 +17,8 @@ const CustomQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState({
         question: '',
         choices: ['', '', '', ''],
-        correctIndex: 0
+        correctIndex: 0,
+        marks: Infinity
     });
     const [jsonInput, setJsonInput] = useState('');
     const [showJsonInput, setShowJsonInput] = useState(false);
@@ -49,7 +50,8 @@ const CustomQuiz = () => {
         setCurrentQuestion({
             question: '',
             choices: ['', '', '', ''],
-            correctIndex: 0
+            correctIndex: 0,
+            marks: 10 // Reset to default marks
         });
     };
 
@@ -71,11 +73,20 @@ const CustomQuiz = () => {
                 throw new Error('Invalid JSON format: missing or invalid questions array');
             }
             
+            // Ensure each question has a marks field
+            const questionsWithMarks = jsonData.questions.map(q => ({
+                ...q,
+                marks: q.marks || 10 // Default to 10 marks if not specified
+            }));
+            
             // Store in localStorage
-            localStorage.setItem('customQuizData', jsonInput);
+            localStorage.setItem('customQuizData', JSON.stringify({
+                ...jsonData,
+                questions: questionsWithMarks
+            }));
             
             // Load the custom quiz
-            loadCustomQuiz(jsonData.questions);
+            loadCustomQuiz(questionsWithMarks);
             
             const routePath = jsonData.quizTitle 
                 ? createUrlFriendlyTitle(jsonData.quizTitle)
@@ -83,7 +94,7 @@ const CustomQuiz = () => {
 
             navigate(`/custom/${routePath}`, { 
                 state: { 
-                    questions: jsonData.questions,
+                    questions: questionsWithMarks,
                     quizTitle: jsonData.quizTitle || `Custom Quiz #${routePath}` 
                 } 
             });
@@ -106,7 +117,8 @@ const CustomQuiz = () => {
         const formattedQuestions = questions.map(q => ({
             question: q.question,
             choices: q.choices,
-            correctAnswer: q.correctIndex // This matches what Quiz component expects
+            correctAnswer: q.correctIndex, // This matches what Quiz component expects
+            marks: q.marks || 10 // Ensure marks are included
         }));
 
         navigate(`/custom/${routePath}`, { 
@@ -155,7 +167,8 @@ const CustomQuiz = () => {
     {
       "question": "Your question here",
       "choices": ["Choice 1", "Choice 2", "Choice 3", "Choice 4"],
-      "correctAnswer": 0
+      "correctAnswer": 0,
+      "marks": 10
     }
   ]
 }`}
@@ -196,22 +209,35 @@ const CustomQuiz = () => {
                                     className="form-control mb-2"
                                 />
                             ))}
-                            <select
-                                value={currentQuestion.correctIndex}
-                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctIndex: parseInt(e.target.value) })}
-                                className="form-control mb-3"
-                            >
-                                {currentQuestion.choices.map((_, index) => (
-                                    <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
-                                ))}
-                            </select>
+                            <div className="d-flex gap-3 mb-3">
+                                <select
+                                    value={currentQuestion.correctIndex}
+                                    onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctIndex: parseInt(e.target.value) })}
+                                    className="form-control"
+                                >
+                                    {currentQuestion.choices.map((_, index) => (
+                                        <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
+                                    ))}
+                                </select>
+                                <input
+                                    type="number"
+                                    placeholder="marks"
+                                    value={currentQuestion.marks}
+                                    onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: parseInt(e.target.value) })}
+                                    className="form-control"
+                                    min="1"
+                                />
+                            </div>
                             <button onClick={handleAddQuestion} className="btn btn-primary mb-4">Add Question</button>
                         </div>
 
                         <div className="questions-list mb-4">
                             {questions.map((q, index) => (
                                 <div key={index} className="question-item p-3 mb-2">
-                                    <h5>{q.question}</h5>
+                                    <div className="d-flex justify-content-between align-items-center">
+                                        <h5>{q.question}</h5>
+                                        <span className="badge bg-primary">{q.marks} marks</span>
+                                    </div>
                                     <div className="choices-list mb-2">
                                         {q.choices.map((choice, choiceIndex) => (
                                             <div key={choiceIndex} className={`choice-item ${choiceIndex === q.correctIndex ? 'correct-choice' : ''}`}>

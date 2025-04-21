@@ -176,7 +176,9 @@ export const DataProvider = ({ children }) => {
                 question.correctIndex;
             
             if (index === correctAnswerIndex) {
-                setMarks(marks + 5);
+                // Use question's marks if available (for custom quiz), otherwise use default 5 marks
+                const questionMarks = question.marks || 5;
+                setMarks(marks + questionMarks);
                 setCorrectAnswer(choice);
             } else {
                 setCorrectAnswer(question.choices[correctAnswerIndex]);

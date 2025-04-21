@@ -11,7 +11,17 @@ const Result = () => {
   const { id } = useParams();
   
   const totalQuestions = quizQuestions?.length || 0;
-  const maxPossibleScore = totalQuestions * 5;
+  
+  // Calculate max possible score based on quiz type
+  let maxPossibleScore;
+  if (quizType === 'custom') {
+    // For custom quizzes, sum up the marks for each question
+    maxPossibleScore = quizQuestions.reduce((total, q) => total + (q.marks || 5), 0);
+  } else {
+    // For standard quizzes, each question is worth 5 marks
+    maxPossibleScore = totalQuestions * 5;
+  }
+  
   const percentage = maxPossibleScore === 0 ? 0 : (marks / maxPossibleScore) * 100;
   const isPassing = marks > (maxPossibleScore / 2);
   const currentDate = new Date().toLocaleDateString();

@@ -190,6 +190,15 @@
     background-color: #0061c8;
 }
 
+.marks-badge {
+    background-color: #28a745;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 /* Responsive styles for Quiz component */
 @media (max-width: 768px) {
   .question-card {
