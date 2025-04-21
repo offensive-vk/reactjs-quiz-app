@@ -8,11 +8,11 @@ Thank you for your interest in contributing to the React JS Quiz App! This docum
 
 Each quiz topic in our application requires the following components:
 
-  ```
+  ```json
   {
-      id: 'your-quiz-id',
-      title: 'Your Quiz Title',
-      icon: 'URL to your quiz icon'
+      "id": "your-quiz-id",
+      "title": "Your Quiz Title",
+      "icon": "URL to your quiz icon"
   }
   ```
 
@@ -26,25 +26,25 @@ To add a new quiz topic, you'll need to prepare:
 
    ```json
    {
+     "quizTitle": "Your Quiz Title",
      "questions": [
        {
          "question": "Your question text here?",
-         "options": [
+         "choices": [
            "Option 1",
            "Option 2",
            "Option 3",
            "Option 4"
          ],
-         "correct": 0,
-         "explanation": "Optional explanation for the correct answer"
+         "correctAnswer": 0
        }
      ]
    }
    ```
 
    - Minimum 10 questions required
-   - Each question must have 4 options
-   - `correct` index should be 0-3 (corresponding to the correct option)
+   - Each question must have 4 choices
+   - `correctAnswer` index should be 0-3 (corresponding to the correct choice)
 
 2. **Icon Requirements**
    - SVG format preferred
@@ -71,8 +71,7 @@ To add a new quiz topic, you'll need to prepare:
    - Place your quiz JSON file in `public/data/`
    - Update `src/components/Start.jsx` by adding your quiz type to the `quizTypes` array:
 
-
-   ```
+   ```jsx
    {
      id: 'your-quiz-id',
      title: 'Your Quiz Title',
@@ -102,7 +101,7 @@ Before submitting your PR, ensure:
 
 - [ ] Quiz JSON file follows the correct format
 - [ ] Minimum 10 questions included
-- [ ] All questions have 4 options
+- [ ] All questions have 4 choices
 - [ ] Correct answers are properly indexed
 - [ ] Icon is properly hosted and accessible
 - [ ] Quiz type added to `Start.jsx`
@@ -157,7 +156,7 @@ If you want to test your changes locally:
 If you have any questions or need help:
 
 1. Open an [issue](https://github.com/offensive-vk/reactjs-quiz-app/issues/new) for any queries.
-2. Comment on your PR for specific questions about your contribution.
+2. Comment on your [PR](https://github.com/offensive-vk/reactjs-quiz-app/pulls) for specific questions about your contribution.
 3. Contact the maintainers through the project's GitHub issues or mention them in PR.
 
 Thank you for contributing to making our this project better! 🎉

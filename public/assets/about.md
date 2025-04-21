@@ -33,17 +33,17 @@ Additionally, the app integrates these technologies:
 
 - ⚛️ **react**: ^18.3.1 - Core React library
 - 🏗 **react-dom**: ^18.3.1 - React DOM manipulation
-- 🛣 **react-router-dom**: ^7.5.0 - Routing and navigation
+- 🛣 **react-router-dom**: ^7.5.1 - Routing and navigation
 - 🎨 **bootstrap**: ^5.3.5 - CSS framework for styling
 - 🔗 **react-bootstrap**: ^2.10.9 - Bootstrap components for React
 
 ### Development Dependencies
 
-- ⚡ **vite**: ^6.2.5 - Build tool and development server
-- 🔌 **@vitejs/plugin-react**: ^4.3.4 - React plugin for Vite
+- ⚡ **vite**: ^6.3.2 - Build tool and development server
+- 🔌 **@vitejs/plugin-react**: ^4.4.1 - React plugin for Vite
 - 📘 **@types/react**: ^18.3.20 - TypeScript definitions for React
 - 📗 **@types/react-dom**: ^18.3.6 - TypeScript definitions for React DOM
-- 🛡 **eslint**: ^9.24.0 - Code linting
+- 🛡 **eslint**: ^9.25.0 - Code linting
 - 🔍 **eslint-plugin-react**: ^7.37.5 - React specific linting rules
 - 🔎 **eslint-plugin-react-hooks**: ^5.2.0 - Linting for React hooks
 - 🎯 **eslint-plugin-react-refresh**: ^0.4.19 - React Refresh support for ESLint
@@ -97,7 +97,7 @@ Additionally, the app integrates these technologies:
 - `optimize`: Runs Vite optimization
 - `lint`: Runs ESLint for code quality checks
 - `clean`: Cleans the dist directory
-- `all`: Runs preview, build, and optimize commands sequentially
+- `all`: Runs build and optimize commands sequentially
 
 ## 💻 System Requirements
 
@@ -114,7 +114,7 @@ Additionally, the app integrates these technologies:
 
 ## 📦 Version Information
 
-- **Current Version**: 2025.3.0
+- **Current Version**: 2025.4.0
 - **Node Engine**: >=22.0.0 (based on Dockerfile)
 - **Package Manager**: pnpm@10.0.0
 
@@ -157,7 +157,7 @@ You can also use your own quiz questions and answers. Have a look at the [Schema
 
 ## 🧑‍💻 Authors
 
-This project was developed by **Mahak & Vedansh** as part of our BCA-VI Semester (Full Stack) *major project* for Software Project Management. 🌟
+This project was developed by **[Mahak](https://github.com/the-mehak) & [Vedansh](https://github.com/offensive-vk)** as part of our BCA-VI Semester (Full Stack) *major project* for Software Project Management. 🌟
 
 ## 🪪 License
 

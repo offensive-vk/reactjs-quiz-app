@@ -8,11 +8,11 @@ Thank you for your interest in contributing to the React JS Quiz App! This docum
 
 Each quiz topic in our application requires the following components:
 
-  ```
+  ```json
   {
-      id: 'your-quiz-id',
-      title: 'Your Quiz Title',
-      icon: 'URL to your quiz icon'
+      "id": "your-quiz-id",
+      "title": "Your Quiz Title",
+      "icon": "URL to your quiz icon"
   }
   ```
 
@@ -26,6 +26,7 @@ To add a new quiz topic, you'll need to prepare:
 
    ```json
    {
+     "quizTitle": "Your Quiz Title",
      "questions": [
        {
          "question": "Your question text here?",
@@ -71,8 +72,7 @@ To add a new quiz topic, you'll need to prepare:
    - Place your quiz JSON file in `public/data/`
    - Update `src/components/Start.jsx` by adding your quiz type to the `quizTypes` array:
 
-
-   ```
+   ```jsx
    {
      id: 'your-quiz-id',
      title: 'Your Quiz Title',
@@ -117,7 +117,7 @@ If you want to test your changes locally:
 1. Install dependencies:
 
    ```bash
-   pnpm install
+   pnpm i
    ```
 
 2. Start development server:
@@ -157,13 +157,9 @@ If you want to test your changes locally:
 If you have any questions or need help:
 
 1. Open an [issue](https://github.com/offensive-vk/reactjs-quiz-app/issues/new) for any queries.
-2. Comment on your PR for specific questions about your contribution.
+2. Comment on your [PR](https://github.com/offensive-vk/reactjs-quiz-app/pulls) for specific questions about your contribution.
 3. Contact the maintainers through the project's GitHub issues or mention them in PR.
 
 Thank you for contributing to making our this project better! 🎉
 
 ---
-
-<p align="center">
-  <i>Happy Contributing! 🚀</i>
-</p>
