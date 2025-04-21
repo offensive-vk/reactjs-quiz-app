@@ -103,11 +103,15 @@
 
 .quiz-type-badge {
     background: rgba(255, 255, 255, 0.1);
-    padding: 0.35rem 0.8rem;
+    padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.9rem;
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 .btn-end-quiz {
@@ -190,8 +194,32 @@
     background-color: #0061c8;
 }
 
+.quiz-type-badge[data-type="tailwindcss"] {
+    background-color: #38B2AC;
+}
+
+.quiz-type-badge[data-type="astro"] {
+    background-color: #BC52EE;
+}
+
+.quiz-type-badge[data-type="vuejs"] {
+    background-color: #4FC08D;
+}
+
+.quiz-type-badge[data-type="nextjs"] {
+    background-color: #000000;
+}
+
+.quiz-type-badge[data-type="svelte"] {
+    background-color: #FF3E00;
+}
+
+.quiz-type-badge[data-type="angular"] {
+  background-color: #ff0000;
+}
+
 .marks-badge {
-    background-color: #28a745;
+    background-color: #4a995d;
     color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 4px;

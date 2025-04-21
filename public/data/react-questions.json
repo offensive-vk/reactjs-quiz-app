@@ -1,105 +1,105 @@
 {
-  "quizTitle": "React Quiz",
-  "questions": [
-    {
-      "question": "What is a React Hook?",
-      "choices": [
-        "External plugin",
-        "Function that lets you use state in functional components",
-        "Class method",
-        "Database connection"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which hook is used for side effects in React?",
-      "choices": [
-        "useState",
-        "useEffect",
-        "useContext",
-        "useReducer"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What is JSX?",
-      "choices": [
-        "JavaScript XML",
-        "Java Syntax Extension",
-        "JavaScript Extension",
-        "JSON XML"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "How do you pass data from parent to child component?",
-      "choices": [
-        "State",
-        "Props",
-        "Context",
-        "Refs"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What is the virtual DOM?",
-      "choices": [
-        "Actual DOM",
-        "Light copy of the real DOM",
-        "Browser feature",
-        "HTML element"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which method is used to update state in React class components?",
-      "choices": [
-        "this.state()",
-        "this.setState()",
-        "this.updateState()",
-        "this.changeState()"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What is the correct way to render a list in React?",
-      "choices": [
-        "Using for loop",
-        "Using while loop",
-        "Using map()",
-        "Using forEach()"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the purpose of keys in React lists?",
-      "choices": [
-        "Styling elements",
-        "Data binding",
-        "Unique identification of elements",
-        "Event handling"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which lifecycle method is called after a component renders?",
-      "choices": [
-        "componentDidMount",
-        "componentWillMount",
-        "componentDidUpdate",
-        "componentWillUpdate"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "What is React Context used for?",
-      "choices": [
-        "Local state management",
-        "Global state management",
-        "Event handling",
-        "Form validation"
-      ],
-      "correctAnswer": 1
-    }
-  ]
-} 
+    "quizTitle": "React Fundamentals",
+    "questions": [
+        {
+            "question": "What is the purpose of React hooks?",
+            "choices": [
+                "To manage state and side effects in functional components",
+                "To style components",
+                "To fetch data from APIs",
+                "To handle routing"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Which of the following is a React hook?",
+            "choices": [
+                "useState",
+                "useEffect",
+                "useContext",
+                "All of the above"
+            ],
+            "correctAnswer": 3
+        },
+        {
+            "question": "What is the virtual DOM in React?",
+            "choices": [
+                "A browser extension",
+                "A lightweight copy of the actual DOM",
+                "A database system",
+                "A testing framework"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "What is JSX in React?",
+            "choices": [
+                "A JavaScript framework",
+                "A syntax extension for JavaScript",
+                "A build tool",
+                "A state management library"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "Which method is used to update state in a class component?",
+            "choices": [
+                "setState",
+                "updateState",
+                "changeState",
+                "modifyState"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "What is the purpose of React Router?",
+            "choices": [
+                "To style components",
+                "To manage state",
+                "To handle navigation",
+                "To fetch data"
+            ],
+            "correctAnswer": 2
+        },
+        {
+            "question": "Which of the following is a controlled component?",
+            "choices": [
+                "A component with its own state",
+                "A component whose value is controlled by React state",
+                "A component with no state",
+                "A component with only props"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "What is the purpose of React Context?",
+            "choices": [
+                "To style components",
+                "To share state between components without prop drilling",
+                "To handle routing",
+                "To manage side effects"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "Which lifecycle method is called after a component is mounted?",
+            "choices": [
+                "componentWillMount",
+                "componentDidMount",
+                "componentWillUnmount",
+                "componentDidUpdate"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "What is the purpose of React.memo?",
+            "choices": [
+                "To create memoized components",
+                "To prevent unnecessary re-renders",
+                "To handle memory management",
+                "To create memoized values"
+            ],
+            "correctAnswer": 1
+        }
+    ]
+}

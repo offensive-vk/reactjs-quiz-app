@@ -1,105 +1,105 @@
 {
-    "quizTitle": "Framework Quiz",
+    "quizTitle": "Quiz",
     "questions": [
         {
-            "question": "Which of the following is a popular JavaScript library for building user interfaces?",
+            "question": "What is the primary purpose of Docker?",
             "choices": [
-                "Angular",
-                "Vue.js",
-                "React",
-                "Svelte"
-            ],
-            "correctAnswer": 2
-        },
-        {
-            "question": "Which CSS framework is known for its utility-first approach?",
-            "choices": [
-                "Bootstrap",
-                "Tailwind CSS",
-                "Foundation",
-                "Bulma"
+                "To manage databases",
+                "To containerize applications",
+                "To build user interfaces",
+                "To write server-side scripts"
             ],
             "correctAnswer": 1
         },
         {
-            "question": "Which tool is commonly used for bundling JavaScript modules?",
+            "question": "Which command is used to start a Vite development server?",
             "choices": [
-                "Webpack",
-                "Gulp",
-                "Grunt",
-                "Parcel"
+                "vite serve",
+                "vite start",
+                "vite",
+                "vite preview"
             ],
-            "correctAnswer": 0
+            "correctAnswer": 2
         },
         {
-            "question": "Which of the following is a state management library for React?",
+            "question": "What is pnpm primarily used for?",
             "choices": [
-                "Redux",
-                "Vuex",
-                "MobX",
-                "NgRx"
+                "Package management",
+                "Database management",
+                "Container orchestration",
+                "CSS styling"
             ],
-            "correctAnswer": 0
-        },
-        {
-            "question": "Which HTML element is used to define a client-side script?",
-            "choices": [
-                "<script>",
-                "<style>",
-                "<link>",
-                "<meta>"
-            ],
-            "correctAnswer": 0
-        },
-        {
-            "question": "Which of the following is a CSS preprocessor?",
-            "choices": [
-                "Sass",
-                "PostCSS",
-                "Less",
-                "All of the above"
-            ],
-            "correctAnswer": 3
-        },
-        {
-            "question": "Which of the following is a JavaScript package manager?",
-            "choices": [
-                "npm",
-                "Yarn",
-                "Bower",
-                "All of the above"
-            ],
-            "correctAnswer": 3
+            "correctAnswer": 0 
         },
         {
             "question": "Which of the following is used to style React components?",
             "choices": [
                 "CSS Modules",
                 "Styled Components",
-                "Emotion",
+                "Tailwind CSS",
                 "All of the above"
             ],
             "correctAnswer": 3
         },
         {
-            "question": "Which of the following is a tool for testing React components?",
+            "question": "Which of the following is a feature of JavaScript ES6?",
             "choices": [
-                "Jest",
-                "Mocha",
-                "Chai",
-                "All of the above"
+                "Arrow functions",
+                "CSS Grid",
+                "SQL Queries",
+                "REST APIs"
             ],
             "correctAnswer": 0
         },
         {
-            "question": "Which of the following is a method to fetch data in React?",
+            "question": "What is the command to build a Docker image?",
             "choices": [
-                "fetch API",
-                "Axios",
-                "GraphQL",
+                "docker build",
+                "docker run",
+                "docker create",
+                "docker start"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Which of the following is a key feature of Vite?",
+            "choices": [
+                "Hot Module Replacement",
+                "Server-side rendering",
+                "Smart Module Caching",
                 "All of the above"
             ],
             "correctAnswer": 3
+        },
+        {
+            "question": "What are the benefit of using pnpm over npm?",
+            "choices": [
+                "Faster installs",
+                "Similar Commands",
+                "Better management commands",
+                "All of the above"
+            ],
+            "correctAnswer": 3 
+        },
+        {
+            "question": "What is the purpose of React hooks?",
+            "choices": [
+                "To manage state and side effects in functional components",
+                "To style components",
+                "To fetch data from APIs",
+                "To handle routing"
+            ],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Which of the following is NOT a JavaScript data type?",
+            "choices": [
+                "String",
+                "Vector",
+                "Number",
+                "Array"
+            ],
+            "correctAnswer": 1
         }
     ]
 }
