@@ -3,7 +3,7 @@
   "private": true,
   "version": "2025.4.0",
   "type": "module",
-  "description": "Challenge your knowledge with Quizzly! Test yourself across web development, JavaScript, TypeScript, and modern frameworks like React, Vue, Angular, and Svelte. Features real-time scoring, instant feedback, and shareable results. Perfect for developers and tech enthusiasts.",
+  "description": "Challenge your knowledge with Quizzly.dev! Test yourself across web development, JavaScript, TypeScript, and modern frameworks like React, Vue, Angular, and Svelte. Features real-time scoring, instant feedback, and shareable results. Perfect for developers and tech enthusiasts.",
   "author": {
     "name": "Mahak & Vedansh",
     "url": "https://github.com/offensive-vk/reactjs-quiz-app",
@@ -19,6 +19,7 @@
     "all": "pnpm run build; pnpm run optimize",
     "format": "deno fmt"
   },
+  "packageManager": "pnpm@10.0.0",
   "pnpm.onlyBuiltDependencies": "esbuild",
   "dependencies": {
     "bootstrap": "^5.3.5",

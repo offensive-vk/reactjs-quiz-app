@@ -1,4 +1,4 @@
-# 🌟 Quizzly
+# 🌟 Quizzly.dev
 
 ## 🚀 Overview
 

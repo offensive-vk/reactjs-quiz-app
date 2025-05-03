@@ -3,7 +3,7 @@
     "tasks": {
       "clean": "rm -rf dist",
       "dev": "vite --host --port 17027 --force --clearScreen -d",
-      "build": "vite build -d --sourcemap",
+      "build": "vite build -d --sourcemap && node replace-sha.mjs",
       "preview": "vite preview -d",
       "optimize": "vite optimize -d",
       "lint": "eslint .",
