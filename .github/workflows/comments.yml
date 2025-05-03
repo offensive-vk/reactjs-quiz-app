@@ -1,14 +1,13 @@
-name: CI / PR Verification
+name: CI / Content Verification
 
 on:
   pull_request:
-    branches: 
-        - '**'
+    branches:
+      - "**"
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-    name: Begin Verification
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,22 +34,11 @@ jobs:
       - name: Run Build
         id: build
         run: |
-          pnpm run build
-          echo "## 📦 Build Output" > build-info.txt
-          du -sh dist >> build-info.txt
-          echo "" >> build-info.txt
-          echo "### Files in dist/" >> build-info.txt
-          find dist -type f -exec ls -lh {} \; >> build-info.txt
-          cat build-info.txt
-
-      - name: Determine Test Status
-        id: status
-        run: |
-          if [ "${{ env.exit_code }}" = "0" ]; then
-            echo "badge=🟢 **All Tests Passed**" >> $GITHUB_ENV
-          else
-            echo "badge=🔴 **Some Tests Failed**" >> $GITHUB_ENV
-          fi
+          FORCE_COLOR=1 pnpm run build 2>&1 | tee build-full.txt
+          tail -n 30 build-full.txt > build-info.txt
+          echo "BUILD_LOG_RAW<<EOF" >> $GITHUB_ENV
+          cat build-info.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Create or Update PR Comment
         uses: peter-evans/create-or-update-comment@v4
@@ -58,23 +46,13 @@ jobs:
           token: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ## 🚀 PR Verification
+            ## 📦 Bundle Log
 
-            ### Test Status
-            ${{ env.badge }}
-
-            ### 🧪 Test Output
-            \`\`\`
-            $(head -n 50 test-results.txt)
-            \`\`\`
-            👉 (showing first 30 lines for brevity)
-
-            ### 📦 Bundle Size Info
-            \`\`\`
-            $(cat build-info.txt)
+            \`\`\`ansi
+            ${{ env.BUILD_LOG_RAW }}
             \`\`\`
 
             ---
-            ✅ Built with **pnpm@10.0.0**, **Node.js 22**, and **Vite**.
+            ✅ Built succeeded with **pnpm@10.0.0**, **Node.js 22**, and **Vite**.
 
             _Posted automatically by CI Bot._
