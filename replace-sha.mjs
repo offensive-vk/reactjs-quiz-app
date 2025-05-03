@@ -29,5 +29,3 @@ const updatedHtml = html.replace(/%GIT_COMMIT_SHA%/g, commitSHA);
 
 // Write back to the file
 writeFileSync(indexPath, updatedHtml);
-
-console.log(`Successfully injected commit SHA: ${commitSHA}`); 
