@@ -18,7 +18,7 @@ jobs:
           node-version: "22"
 
       - name: Install pnpm
-        run: npm install -g pnpm@10.0.0
+        run: npm install -g pnpm@10.0.0 && pnpm setup && pnpm -v
 
       - name: Install dependencies
         run: pnpm i
