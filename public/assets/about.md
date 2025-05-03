@@ -1,8 +1,8 @@
-# 🌟 React JS Quiz Application
+# 🌟 Quizzly
 
 ## 🚀 Overview
 
-The **React JS Quiz App** is a web application designed to test the knowledge of Frontend, Backend, and Web Developers. Built using **ReactJS** and **Vite**, this application provides a seamless and interactive quiz experience. The app features a **start page**, a **quiz interface**, and a **results page**, all styled with **Bootstrap** for a modern look.
+**Quizzly** is a web application designed to test the knowledge of Frontend, Backend, and Web Developers. Built using **ReactJS** and **Vite**, this application provides a seamless and interactive quiz experience. The app features a **start page**, a **quiz interface**, and a **results page**, all styled with **Bootstrap** for a modern look.
 
 ## ✨ Features
 
