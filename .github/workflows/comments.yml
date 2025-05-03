@@ -38,6 +38,7 @@ jobs:
 
       - name: Run Build
         id: build
+        continue-on-error: true
         run: |
             FORCE_COLOR=1 pnpm run build 2>&1 | tee build-full.txt
             tail -n 30 build-full.txt > build-info-ansi.txt
@@ -45,7 +46,6 @@ jobs:
             echo "BUILD_LOG<<EOF" >> $GITHUB_ENV
             cat build-info.txt >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
-        
 
       - name: Create or Update PR Comment
         uses: peter-evans/create-or-update-comment@v4
