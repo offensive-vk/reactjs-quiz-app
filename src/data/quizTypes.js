@@ -7,8 +7,8 @@
 const quizTypes = [
 	{
 		id: 'default',
-		title: 'Default',
-		display: 'Default',
+		title: 'Computer Science (20 Questions)',
+		display: 'Computer Science',
 		icon:
 			'https://cdn.jsdelivr.net/gh/offensive-vk/reactjs-quiz-app@master/public/internet.svg',
 	},

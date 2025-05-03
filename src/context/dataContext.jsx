@@ -77,7 +77,6 @@ export const DataProvider = ({ children }) => {
                 setQuestion(questionCache[type][0]);
                 setShowStart(false);
                 setShowQuiz(true);
-                setShowResult(false);
                 return;
             }
 
@@ -87,17 +86,19 @@ export const DataProvider = ({ children }) => {
             }
             const data = await response.json();
             
+            // Shuffle questions
+            const shuffledQuestions = data.questions.sort(() => Math.random() - 0.5);
+            
             // Cache the questions
             setQuestionCache(prev => ({
                 ...prev,
-                [type]: data.questions
+                [type]: shuffledQuestions
             }));
             
-            setQuizQuestions(data.questions);
-            setQuestion(data.questions[0]);
+            setQuizQuestions(shuffledQuestions);
+            setQuestion(shuffledQuestions[0]);
             setShowStart(false);
             setShowQuiz(true);
-            setShowResult(false);
         } catch (error) {
             console.error('Error loading questions:', error);
             setQuizError(error.message);
@@ -170,13 +171,11 @@ export const DataProvider = ({ children }) => {
         if (correctAnswer === "") {
             setSelectedAnswer(choice);
             
-            // Get the correct answer index from either correctAnswer or correctIndex
             const correctAnswerIndex = question.correctAnswer !== undefined ? 
                 question.correctAnswer : 
                 question.correctIndex;
             
             if (index === correctAnswerIndex) {
-                // Use question's marks if available (for custom quiz), otherwise use default 5 marks
                 const questionMarks = question.marks || 5;
                 setMarks(marks + questionMarks);
                 setCorrectAnswer(choice);

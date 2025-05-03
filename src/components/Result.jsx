@@ -43,15 +43,22 @@ const Result = () => {
   };
 
   const handleShareResults = () => {
-    html2canvas(document.body).then((canvas) => {
-      const image = canvas.toDataURL('image/png', 1.0);
-      const link = document.createElement('a');
-      link.href = image;
-      link.download = `quiz-result-${id}-${currentDate}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
+    const resultCard = document.querySelector('.result-card'); // Select the result card
+    if (resultCard) {
+        html2canvas(resultCard, { 
+            useCORS: true,
+            scale: 2,
+            backgroundColor: null
+        }).then((canvas) => {
+            const image = canvas.toDataURL('image/png', 1.0);
+            const link = document.createElement('a');
+            link.href = image;
+            link.download = `quizzly-${id}-${currentDate}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
   };
 
   return (
@@ -62,7 +69,12 @@ const Result = () => {
             <div className="col-lg-6 m-5">
               <div className="result-card" data-type={quizType || 'default'}>
                 <div className="quiz-icon-wrapper result-icon">
-                  <img src={quizTypeInfo.icon} alt={quizTypeInfo.title} className="quiz-icon-svg" />
+                  <img 
+                    src={quizTypeInfo.icon} 
+                    alt={quizTypeInfo.title} 
+                    className="quiz-icon-svg" 
+                    crossOrigin="anonymous"
+                  />
                 </div>
                 <div className="score-circle">
                   <div className={`circle-progress ${isPassing ? 'success' : 'danger'}`}>
