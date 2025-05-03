@@ -32,6 +32,7 @@ jobs:
           pnpm test > test-results.txt 2>&1
           echo "exit_code=$?" >> $GITHUB_ENV
           cat test-results.txt
+          echo " " >> .env
 
       - name: Install strip-ansi-cli
         run: pnpm add -g strip-ansi-cli
