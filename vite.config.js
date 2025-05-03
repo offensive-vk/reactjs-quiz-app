@@ -15,16 +15,15 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
-    https: true,
     port: 17027,
     strictPort: true,
-    open: true,
     headers: {
-      'x-source': 'github',
-      'x-author': '@offensive-vk',
-      'x-server': '@offensive-vk',
+      'warning': 'authorized',
+      'x-source': 'cloudflare',
+      'x-author': 'offensive-vk',
+      'x-server': 'restricted',
       'x-xss-protection': true,
-      'server': '@offensive-vk',
+      'x-commit': JSON.stringify(getGitCommitSHA())
     }
   },
   define: {

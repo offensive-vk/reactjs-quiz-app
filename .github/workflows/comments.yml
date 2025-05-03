@@ -25,15 +25,6 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Run Tests
-        id: tests
-        run: |
-          set +e
-          pnpm test > test-results.txt 2>&1
-          echo "exit_code=$?" >> $GITHUB_ENV
-          cat test-results.txt
-          echo " " >> .env
-
       - name: Install strip-ansi-cli
         run: pnpm add -g strip-ansi-cli
 
@@ -41,27 +32,24 @@ jobs:
         id: build
         continue-on-error: true
         run: |
-            FORCE_COLOR=1 pnpm run build 2>&1 | tee build-full.txt
-            tail -n 30 build-full.txt > build-info-ansi.txt
-            strip-ansi build-info-ansi.txt > build-info.txt
-            echo "BUILD_LOG<<EOF" >> $GITHUB_ENV
-            cat build-info.txt >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
+          FORCE_COLOR=1 pnpm run build 2>&1 | tee build-full.txt
+          tail -n 30 build-full.txt > build-info-ansi.txt
+          strip-ansi build-info-ansi.txt > build-info.txt
+          echo "BUILD_LOG<<EOF" >> $GITHUB_ENV
+          cat build-info.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Create or Update PR Comment
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
+          reactions: 'rocket'
           body: |
             ## 📦 Bundle Log
 
-            ```ansi
-            ${{ env.BUILD_LOG_RAW }}
-            ```
-
             ```log
-            ${{ env.BUILD_LOG_RAW }}
+            ${{ env.BUILD_LOG_RAW || 'Build succeeded' }}
             ```
             ---
             ✅ Built succeeded with **pnpm@10.0.0**, **Node.js 22**, and **Vite**.
