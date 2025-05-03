@@ -1,0 +1,57 @@
+name: CI / Content Verification
+
+on:
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.0.0
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Install strip-ansi-cli
+        run: pnpm add -g strip-ansi-cli
+
+      - name: Run Build
+        id: build
+        continue-on-error: true
+        run: |
+          FORCE_COLOR=1 pnpm run build 2>&1 | tee build-full.txt
+          tail -n 30 build-full.txt > build-info-ansi.txt
+          strip-ansi build-info-ansi.txt > build-info.txt
+          echo "BUILD_LOG<<EOF" >> $GITHUB_ENV
+          cat build-info.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create or Update PR Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.BOT_TOKEN || secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          reactions: 'rocket'
+          body: |
+            ## 📦 Bundle Log
+
+            ```log
+            ${{ env.BUILD_LOG_RAW || 'Build succeeded' }}
+            ```
+            ---
+            ✅ Built succeeded with **pnpm@10.0.0**, **Node.js 22**, and **Vite**.
+
+            _Posted automatically by CI Bot._

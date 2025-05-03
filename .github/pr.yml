@@ -13,6 +13,8 @@ kind/javascript:
   match:
     - '**/*.jsx' 
     - '**/*.js' 
+    - '**/*.mjs'
+    - '**/*.cjs' 
   description: 'Changes Javascript files'
 
 kind/ci:
@@ -53,6 +55,12 @@ kind/configuration:
     - 'treemap'
     - 'eslint.config.js'
   description: 'Changes dotfiles'
+
+kind/vite:
+  match:
+    - 'vite.config.js'
+    - 'vite.config.ts'
+  description: 'Change in vite configuration.' 
 
 kind/deno:
   match:

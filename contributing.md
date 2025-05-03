@@ -1,6 +1,6 @@
 # ✨ Contributing ✨
 
-Thank you for your interest in contributing to the React JS Quiz App! This document will guide you through the process of adding new quiz topics to our application.
+Thank you for your interest in contributing to Quizzly! This document will guide you through the process of adding new quiz topics to our application.
 
 ## 📝 How to Contribute a New Quiz Topic
 

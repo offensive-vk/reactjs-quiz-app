@@ -14,6 +14,18 @@ const getGitCommitSHA = () => {
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  server: {
+    port: 17027,
+    strictPort: true,
+    headers: {
+      'warning': 'authorized',
+      'x-source': 'cloudflare',
+      'x-author': 'offensive-vk',
+      'x-server': 'restricted',
+      'x-xss-protection': true,
+      'x-commit': JSON.stringify(getGitCommitSHA())
+    }
+  },
   define: {
     'process.env.GIT_COMMIT_SHA': JSON.stringify(getGitCommitSHA())
   }
