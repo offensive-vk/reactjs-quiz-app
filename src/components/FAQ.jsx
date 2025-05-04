@@ -49,7 +49,7 @@ function FAQ () {
 
     return (
         <BaseLayout>
-            <div className="faq-container m-4">
+            <div className="faq-container m-2">
                 <NavLinks />
                 <h1 className="text-center">Frequently Asked Questions</h1>
                 <div className="faq-list m-4">

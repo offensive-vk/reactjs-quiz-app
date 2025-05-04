@@ -1,15 +1,18 @@
 name: CI / Content Verification
 
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - "**"
+    types:
+      - "opened"
 
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js 22
