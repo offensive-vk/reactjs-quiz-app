@@ -12,7 +12,7 @@ const Popup = ({ message, timeout, onClose }) => {
             }
         }, timeout);
 
-        return () => clearTimeout(timer); // Cleanup timer on unmount
+        return () => clearTimeout(timer);
     }, [timeout, onClose]);
 
     if (!visible) return null; // Don't render if not visible

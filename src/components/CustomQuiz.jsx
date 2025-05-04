@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import DataContext from '../context/dataContext';
 import ErrorFallback from './Error';
+import Loading from './Loading';
 import '../styles/CustomQuiz.css';
 
 const CustomQuiz = () => {
@@ -18,11 +19,12 @@ const CustomQuiz = () => {
         question: '',
         choices: ['', '', '', ''],
         correctIndex: 0,
-        marks: Infinity
+        marks: 10
     });
     const [jsonInput, setJsonInput] = useState('');
     const [showJsonInput, setShowJsonInput] = useState(false);
     const [localError, setLocalError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const generateRandomRoute = () => {
@@ -108,6 +110,8 @@ const CustomQuiz = () => {
             return;
         }
 
+        setLoading(true);
+
         const routePath = quizTitle.trim() 
             ? createUrlFriendlyTitle(quizTitle)
             : generateRandomRoute();
@@ -120,12 +124,16 @@ const CustomQuiz = () => {
             marks: q.marks || 10
         }));
 
-        navigate(`/custom/${routePath}`, { 
-            state: { 
-                questions: formattedQuestions,
-                quizTitle: quizTitle.trim() || `Custom Quiz #${routePath}` 
-            } 
-        });
+        setTimeout(() => {
+            navigate(`/custom/${routePath}`, { 
+                state: { 
+                    quizType: 'Custom',
+                    questions: formattedQuestions,
+                    quizTitle: quizTitle.trim() || `Custom Quiz #${routePath}` 
+                } 
+            });
+            setLoading(false);
+        }, 2000);
     };
 
     const handleCancel = () => {
@@ -137,6 +145,10 @@ const CustomQuiz = () => {
     // If there's an error, show the error component
     if (quizError || localError) {
         return <ErrorFallback error={quizError || localError} />;
+    }
+
+    if (loading) {
+        return <Loading />;
     }
 
     return (

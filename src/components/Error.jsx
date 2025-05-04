@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useErrorBoundary } from "react-error-boundary";
 import BaseLayout from './BaseLayout';
+import { Link } from "react-router-dom";
 import '../styles/Error.css';
 
 const ErrorMessage = ({ error }) => (
@@ -22,7 +23,6 @@ function ErrorFallback({ error }) {
         if (resetErrorBoundary) {
             resetErrorBoundary();
         } else {
-            navigate('/custom-quiz');
         }
     };
 
@@ -33,9 +33,8 @@ function ErrorFallback({ error }) {
                 <div className="d-flex justify-content-around">
                     <button
                         className="btn btn-primary fw-semibold px-4 py-2 me-2"
-                        onClick={handleTryAgain}
                     >
-                        Try again
+                    <Link to="https://github.com/offensive-vk/reactjs-quiz-app/issues/new" className="nav-link">Open Issue</Link>
                     </button>
                     <button
                         onClick={handleGoHome}

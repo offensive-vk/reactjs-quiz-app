@@ -29,12 +29,12 @@ const Result = () => {
   const currentTime = new Date().toLocaleTimeString();
 
   // Get quiz type info from the centralized data
-  const quizTypeInfo = getQuizTypeById(quizType || 'default');
+  const quizTypeInfo = getQuizTypeById(quizType || 'Custom' ||'default');
 
   const handleStartOver = () => {
     const lastQuizType = quizType;
-    navigate(`/quiz/${lastQuizType}`);
     resetQuiz();
+    navigate(`/quiz/${lastQuizType}`);
   };
 
   const handleGoHome = () => {
@@ -43,7 +43,7 @@ const Result = () => {
   };
 
   const handleShareResults = () => {
-    const resultCard = document.querySelector('.result-card'); // Select the result card
+    const resultCard = document.querySelector('.result-card');
     if (resultCard) {
         html2canvas(resultCard, { 
             useCORS: true,
@@ -53,7 +53,7 @@ const Result = () => {
             const image = canvas.toDataURL('image/png', 1.0);
             const link = document.createElement('a');
             link.href = image;
-            link.download = `quizzly-${id}-${currentDate}.png`;
+            link.download = `quizzly-${id}.png`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -65,7 +65,7 @@ const Result = () => {
     <BaseLayout>
       <section className="text-white">
         <div className="container">
-          <div className="row vh-100 align-items-center justify-content-center">
+          <div className="row vh-80 align-items-center justify-content-center">
             <div className="col-lg-6 m-5">
               <div className="result-card" data-type={quizType || 'default'}>
                 <div className="quiz-icon-wrapper result-icon">

@@ -96,7 +96,7 @@ const Quiz = () => {
                     <div className="quiz-info d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2 gap-md-3">
                       <span className="question-number">Q{questionIndex + 1}</span>
                       <span className="quiz-type-badge" data-type={type || quizType || 'default'}>
-                        {displayTitle} Quiz
+                        {displayTitle}
                       </span>
                       {quizType === 'custom' && question?.marks && (
                         <span className="marks-badge">{question.marks} marks</span>
