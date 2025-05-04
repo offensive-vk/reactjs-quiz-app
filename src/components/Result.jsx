@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
@@ -10,6 +10,7 @@ const Result = () => {
   const navigate = useNavigate();
   const { quizQuestions = [], quizType, marks = 0, resetQuiz, setQuizType } = useContext(DataContext);
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   
   const totalQuestions = quizQuestions?.length || 0;
   
@@ -32,14 +33,20 @@ const Result = () => {
   const quizTypeInfo = getQuizTypeById(quizType || 'Custom' || 'default');
 
   const handleStartOver = () => {
-    const lastQuizType = quizType;
-    resetQuiz();
-    navigate(`/quiz/${lastQuizType}`);
+    setLoading(true);
+    setTimeout(() => {
+      const lastQuizType = quizType;
+      resetQuiz();
+      navigate(`/quiz/${lastQuizType}`);
+    }, 2000);
   };
 
   const handleGoHome = () => {
-    resetQuiz();
-    navigate('/');
+    setLoading(true);
+    setTimeout(() => {
+      resetQuiz();
+      navigate('/');
+    }, 2000);
   };
 
   const handleShareResults = () => {
@@ -130,14 +137,16 @@ const Result = () => {
                   <button
                     onClick={handleStartOver}
                     className="btn btn-primary fw-bold px-4 py-2"
+                    disabled={loading}
                   >
-                    Try Again <i className="bi bi-arrow-repeat ms-2"></i>
+                    {loading ? 'Loading...' : 'Try Again'} <i className="bi bi-arrow-repeat ms-2"></i>
                   </button>
                   <button
                     onClick={handleGoHome}
                     className="btn btn-secondary fw-bold px-4 py-2"
+                    disabled={loading}
                   >
-                    Go Home <i className="bi bi-house-door ms-2"></i>
+                    {loading ? 'Loading...' : 'Go Home'} <i className="bi bi-house-door ms-2"></i>
                   </button>
                   <button
                     onClick={handleShareResults}

@@ -1,0 +1,52 @@
+.loading-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.funny-loader {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.funny-loader span {
+    width: 15px;
+    height: 15px;
+    background-color: #00c853;
+    border-radius: 50%;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.funny-loader span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.funny-loader span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-20px) scale(1.1);
+    }
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #01b6a1;
+    font-weight: 600;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
