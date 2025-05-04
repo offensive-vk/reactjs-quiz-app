@@ -25,4 +25,4 @@ jobs:
 
       - name: Download S3 Bucket
         run: |
-          aws s3 sync s3://quizzly/ ./s3-download/ --exact-timestamps
+          aws s3 sync s3://quizzly/ ./public/ --exact-timestamps
