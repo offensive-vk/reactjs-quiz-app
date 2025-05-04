@@ -1,8 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import DataContext from '../context/dataContext';
 import ErrorFallback from './Error';
+import Loading from './Loading';
+import Popup from './Popup';
 import '../styles/CustomQuiz.css';
 
 const CustomQuiz = () => {
@@ -18,12 +20,22 @@ const CustomQuiz = () => {
         question: '',
         choices: ['', '', '', ''],
         correctIndex: 0,
-        marks: Infinity
+        marks: 10
     });
     const [jsonInput, setJsonInput] = useState('');
     const [showJsonInput, setShowJsonInput] = useState(false);
     const [localError, setLocalError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [popupVisible, setPopupVisible] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setPopupVisible(true);
+    }, []);
+
+    const handlePopupClose = () => {
+        setPopupVisible(false);
+    };
 
     const generateRandomRoute = () => {
         return 'quiz-' + Math.random().toString(36).substring(2, 8);
@@ -108,6 +120,8 @@ const CustomQuiz = () => {
             return;
         }
 
+        setLoading(true);
+
         const routePath = quizTitle.trim() 
             ? createUrlFriendlyTitle(quizTitle)
             : generateRandomRoute();
@@ -120,12 +134,16 @@ const CustomQuiz = () => {
             marks: q.marks || 10
         }));
 
-        navigate(`/custom/${routePath}`, { 
-            state: { 
-                questions: formattedQuestions,
-                quizTitle: quizTitle.trim() || `Custom Quiz #${routePath}` 
-            } 
-        });
+        setTimeout(() => {
+            navigate(`/custom/${routePath}`, { 
+                state: { 
+                    quizType: 'Custom',
+                    questions: formattedQuestions,
+                    quizTitle: quizTitle.trim() || `Custom Quiz #${routePath}` 
+                } 
+            });
+            setLoading(false);
+        }, 2000);
     };
 
     const handleCancel = () => {
@@ -139,28 +157,34 @@ const CustomQuiz = () => {
         return <ErrorFallback error={quizError || localError} />;
     }
 
+    if (loading) {
+        return <Loading />;
+    }
+
     return (
         <BaseLayout>
-            <div className="question-editor">
-                <h2 className="text-center mb-2 mt-2">{quizTitle || "Create Your Custom Quiz"}</h2>
-                <div className="d-flex justify-content-center mb-4 mt-4">
-                    <button 
-                        className={`btn ${showJsonInput ? 'btn-secondary' : 'btn-primary'} me-2`}
-                        onClick={() => setShowJsonInput(!showJsonInput)}
-                    >
-                        {showJsonInput ? 'Use Form Editor' : 'Use JSON Input'}
-                    </button>
-                </div>
+            <Popup message={'Get ready for Custom Quiz!'} timeout={5000} onClose={handlePopupClose} />
+            {!popupVisible && (
+                <div className="question-editor">
+                    <h2 className="text-center mb-2 mt-2">{quizTitle || "Create Your Custom Quiz"}</h2>
+                    <div className="d-flex justify-content-center mb-4 mt-4">
+                        <button 
+                            className={`btn ${showJsonInput ? 'btn-secondary' : 'btn-primary'} me-2`}
+                            onClick={() => setShowJsonInput(!showJsonInput)}
+                        >
+                            {showJsonInput ? 'Use Form Editor' : 'Use JSON Input'}
+                        </button>
+                    </div>
 
-                {showJsonInput ? (
-                    <div className="json-input-section mb-4">
-                        <h4 className="mb-3">Paste Your Quiz JSON</h4>
-                        <textarea
-                            className="form-control mb-3"
-                            rows="10"
-                            value={jsonInput}
-                            onChange={(e) => setJsonInput(e.target.value)}
-                            placeholder={`{
+                    {showJsonInput ? (
+                        <div className="json-input-section mb-4">
+                            <h4 className="mb-3">Paste Your Quiz JSON</h4>
+                            <textarea
+                                className="form-control mb-3"
+                                rows="10"
+                                value={jsonInput}
+                                onChange={(e) => setJsonInput(e.target.value)}
+                                placeholder={`{
   "quizTitle": "Your Quiz Title",
   "questions": [
     {
@@ -171,94 +195,95 @@ const CustomQuiz = () => {
     }
   ]
 }`}
-                        />
-                        <div className="d-flex justify-content-center gap-3">
-                            <button onClick={handleJsonSubmit} className="btn btn-success">Load Quiz</button>
-                            <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+                            />
+                            <div className="d-flex justify-content-center gap-3">
+                                <button onClick={handleJsonSubmit} className="btn btn-success">Load Quiz</button>
+                                <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+                            </div>
                         </div>
-                    </div>
-                ) : (
-                    <>
-                        <input
-                            type="text"
-                            placeholder="Quiz Title (optional)"
-                            value={quizTitle}
-                            onChange={(e) => setQuizTitle(e.target.value)}
-                            className="form-control mb-4"
-                        />
-                        <div className="question-form">
+                    ) : (
+                        <>
                             <input
                                 type="text"
-                                placeholder="Enter your question"
-                                value={currentQuestion.question}
-                                onChange={(e) => setCurrentQuestion({ ...currentQuestion, question: e.target.value })}
-                                className="form-control mb-3"
+                                placeholder="Quiz Title (optional)"
+                                value={quizTitle}
+                                onChange={(e) => setQuizTitle(e.target.value)}
+                                className="form-control mb-4"
                             />
-                            {currentQuestion.choices.map((choice, index) => (
+                            <div className="question-form">
                                 <input
-                                    key={index}
                                     type="text"
-                                    placeholder={`Choice ${index + 1}`}
-                                    value={choice}
-                                    onChange={(e) => {
-                                        const newChoices = [...currentQuestion.choices];
-                                        newChoices[index] = e.target.value;
-                                        setCurrentQuestion({ ...currentQuestion, choices: newChoices });
-                                    }}
-                                    className="form-control mb-2"
+                                    placeholder="Enter your question"
+                                    value={currentQuestion.question}
+                                    onChange={(e) => setCurrentQuestion({ ...currentQuestion, question: e.target.value })}
+                                    className="form-control mb-3"
                                 />
-                            ))}
-                            <div className="d-flex gap-3 mb-3">
-                                <select
-                                    value={currentQuestion.correctIndex}
-                                    onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctIndex: parseInt(e.target.value) })}
-                                    className="form-control"
-                                >
-                                    {currentQuestion.choices.map((_, index) => (
-                                        <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
-                                    ))}
-                                </select>
-                                <input
-                                    type="number"
-                                    placeholder="marks"
-                                    value={currentQuestion.marks}
-                                    onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: parseInt(e.target.value) })}
-                                    className="form-control"
-                                    min="1"
-                                />
-                            </div>
-                            <button onClick={handleAddQuestion} className="btn btn-primary mb-4">Add Question</button>
-                        </div>
-
-                        <div className="questions-list mb-4">
-                            {questions.map((q, index) => (
-                                <div key={index} className="question-item p-3 mb-2">
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <h5>{q.question}</h5>
-                                        <span className="badge bg-primary">{q.marks} marks</span>
-                                    </div>
-                                    <div className="choices-list mb-2">
-                                        {q.choices.map((choice, choiceIndex) => (
-                                            <div key={choiceIndex} className={`choice-item ${choiceIndex === q.correctIndex ? 'correct-choice' : ''}`}>
-                                                {choice}
-                                            </div>
+                                {currentQuestion.choices.map((choice, index) => (
+                                    <input
+                                        key={index}
+                                        type="text"
+                                        placeholder={`Choice ${index + 1}`}
+                                        value={choice}
+                                        onChange={(e) => {
+                                            const newChoices = [...currentQuestion.choices];
+                                            newChoices[index] = e.target.value;
+                                            setCurrentQuestion({ ...currentQuestion, choices: newChoices });
+                                        }}
+                                        className="form-control mb-2"
+                                    />
+                                ))}
+                                <div className="d-flex gap-3 mb-3">
+                                    <select
+                                        value={currentQuestion.correctIndex}
+                                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, correctIndex: parseInt(e.target.value) })}
+                                        className="form-control"
+                                    >
+                                        {currentQuestion.choices.map((_, index) => (
+                                            <option key={index} value={index}>Correct Answer: Choice {index + 1}</option>
                                         ))}
-                                    </div>
-                                    <div className="button-group">
-                                        <button onClick={() => handleEditQuestion(index)} className="btn btn-warning me-2">Edit</button>
-                                        <button onClick={() => handleDeleteQuestion(index)} className="btn btn-danger">Delete</button>
-                                    </div>
+                                    </select>
+                                    <input
+                                        type="number"
+                                        placeholder="marks"
+                                        value={currentQuestion.marks}
+                                        onChange={(e) => setCurrentQuestion({ ...currentQuestion, marks: parseInt(e.target.value) })}
+                                        className="form-control"
+                                        min="1"
+                                    />
                                 </div>
-                            ))}
-                        </div>
+                                <button onClick={handleAddQuestion} className="btn btn-primary mb-4">Add Question</button>
+                            </div>
 
-                        <div className="d-flex justify-content-center gap-3">
-                            <button onClick={handleStartQuiz} className="btn btn-success">Start Quiz</button>
-                            <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
-                        </div>
-                    </>
-                )}
-            </div>
+                            <div className="questions-list mb-4">
+                                {questions.map((q, index) => (
+                                    <div key={index} className="question-item p-3 mb-2">
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            <h5>{q.question}</h5>
+                                            <span className="badge bg-primary">{q.marks} marks</span>
+                                        </div>
+                                        <div className="choices-list mb-2">
+                                            {q.choices.map((choice, choiceIndex) => (
+                                                <div key={choiceIndex} className={`choice-item ${choiceIndex === q.correctIndex ? 'correct-choice' : ''}`}>
+                                                    {choice}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="button-group">
+                                            <button onClick={() => handleEditQuestion(index)} className="btn btn-warning me-2">Edit</button>
+                                            <button onClick={() => handleDeleteQuestion(index)} className="btn btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="d-flex justify-content-center gap-3">
+                                <button onClick={handleStartQuiz} className="btn btn-success">Start Quiz</button>
+                                <button onClick={handleCancel} className="btn btn-secondary">Cancel</button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            )}
         </BaseLayout>
     );
 };

@@ -1,5 +1,9 @@
 .help-container {
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.6;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
 .troubleshooting-list {
@@ -30,7 +34,6 @@
 
 .contribute {
     padding-top: 1rem;
-    border-top: 2px solid #fff;
 }
 
 .contribute-btn {

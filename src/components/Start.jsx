@@ -1,34 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
 import NavLinks from "./NavLinks";
 import '../styles/Start.css'
 import { getAllQuizTypes } from "../data/quizTypes";
+import Loading from './Loading';
 
 const Start = () => {
   const { loadQuestions } = useContext(DataContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   
   const quizTypes = getAllQuizTypes();
 
   const handleQuizStart = (type) => {
+    setLoading(true);
     loadQuestions(type);
-    navigate(`/quiz/${type}`);
+    setTimeout(() => {
+      navigate(`/quiz/${type}`);
+      setLoading(false);
+    }, 2000);
   };
 
   const handleCustomQuiz = () => {
-    navigate('/custom-quiz');
+    setLoading(true);
+    setTimeout(() => {
+      navigate('/custom-quiz');
+      setLoading(false);
+    }, 2000);
   };
+
+  if (loading) return <Loading />;
 
   return (
     <BaseLayout>
       <section className="text-white text-center quiz-start">
         <div className="container">
-          <NavLinks />
+          <NavLinks handleCustomQuiz={handleCustomQuiz} />
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
-              <h1 className="fw-bold m-4 display-5">Are You A Quiz Champion?</h1>
+              <h1 className="fw-bold m-4 display-5">Are you a Tech Quiz Champion?</h1>
               <p className="lead mb-5">Choose your quiz type or create your own!</p>
 
               <div className="quiz-options mb-5 mx-5">

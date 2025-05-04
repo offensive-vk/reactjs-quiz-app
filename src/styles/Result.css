@@ -1,12 +1,14 @@
 .result-card {
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   text-align: center;
   padding: 2rem !important;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   max-width: 100%;
+  max-height: 100%;
+  height: max-content;
   margin: 0 auto;
   transition: all 0.3s ease;
   position: relative;

@@ -1,4 +1,4 @@
-# 🌟 Quizzly
+# 🌟 Quizzly.dev
 
 ## 🚀 Overview
 
@@ -155,7 +155,7 @@ Here are the files critical for the application's functionality:
 
 ## Custom Questions / Answer
 
-You can also use your own quiz questions and answers. Have a look at the [Schema](./Schema.md).
+You can also use your own quiz questions and answers. Have a look at the [Schema](https://github.com/offensive-vk/reactjs-quiz-app/blob/master/Schema.md).
 
 ## 🧑‍💻 Authors
 
@@ -163,7 +163,7 @@ This project was developed by **[Mahak](https://github.com/the-mehak) & [Vedansh
 
 ## 🪪 License
 
-This project is licensed under the MIT License. See the [LICENSE](./license) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/offensive-vk/reactjs-quiz-app/blob/master/license) file for details.
 
 ## 🔄 Updates and Versioning
 

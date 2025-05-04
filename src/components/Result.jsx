@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/dataContext";
 import BaseLayout from "./BaseLayout";
@@ -10,6 +10,7 @@ const Result = () => {
   const navigate = useNavigate();
   const { quizQuestions = [], quizType, marks = 0, resetQuiz, setQuizType } = useContext(DataContext);
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   
   const totalQuestions = quizQuestions?.length || 0;
   
@@ -29,40 +30,58 @@ const Result = () => {
   const currentTime = new Date().toLocaleTimeString();
 
   // Get quiz type info from the centralized data
-  const quizTypeInfo = getQuizTypeById(quizType || 'default');
+  const quizTypeInfo = getQuizTypeById(quizType || 'Custom' || 'default');
 
   const handleStartOver = () => {
-    const lastQuizType = quizType;
-    navigate(`/quiz/${lastQuizType}`);
-    resetQuiz();
+    setLoading(true);
+    setTimeout(() => {
+      const lastQuizType = quizType;
+      resetQuiz();
+      navigate(`/quiz/${lastQuizType}`);
+    }, 2000);
   };
 
   const handleGoHome = () => {
-    resetQuiz();
-    navigate('/');
+    setLoading(true);
+    setTimeout(() => {
+      resetQuiz();
+      navigate('/');
+    }, 2000);
   };
 
   const handleShareResults = () => {
-    html2canvas(document.body).then((canvas) => {
-      const image = canvas.toDataURL('image/png', 1.0);
-      const link = document.createElement('a');
-      link.href = image;
-      link.download = `quiz-result-${id}-${currentDate}.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
+    const resultCard = document.querySelector('.result-card');
+    if (resultCard) {
+        html2canvas(resultCard, { 
+            useCORS: true,
+            scale: 2,
+            backgroundColor: null
+        }).then((canvas) => {
+            const image = canvas.toDataURL('image/png', 1.0);
+            const link = document.createElement('a');
+            link.href = image;
+            link.download = `quizzly-${id}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
   };
 
   return (
     <BaseLayout>
       <section className="text-white">
         <div className="container">
-          <div className="row vh-100 align-items-center justify-content-center">
+          <div className="row vh-80 align-items-center justify-content-center">
             <div className="col-lg-6 m-5">
               <div className="result-card" data-type={quizType || 'default'}>
                 <div className="quiz-icon-wrapper result-icon">
-                  <img src={quizTypeInfo.icon} alt={quizTypeInfo.title} className="quiz-icon-svg" />
+                  <img 
+                    src={quizTypeInfo.icon} 
+                    alt={quizTypeInfo.title} 
+                    className="quiz-icon-svg" 
+                    crossOrigin="anonymous"
+                  />
                 </div>
                 <div className="score-circle">
                   <div className={`circle-progress ${isPassing ? 'success' : 'danger'}`}>
@@ -118,14 +137,16 @@ const Result = () => {
                   <button
                     onClick={handleStartOver}
                     className="btn btn-primary fw-bold px-4 py-2"
+                    disabled={loading}
                   >
-                    Try Again <i className="bi bi-arrow-repeat ms-2"></i>
+                    {loading ? 'Loading...' : 'Try Again'} <i className="bi bi-arrow-repeat ms-2"></i>
                   </button>
                   <button
                     onClick={handleGoHome}
                     className="btn btn-secondary fw-bold px-4 py-2"
+                    disabled={loading}
                   >
-                    Go Home <i className="bi bi-house-door ms-2"></i>
+                    {loading ? 'Loading...' : 'Go Home'} <i className="bi bi-house-door ms-2"></i>
                   </button>
                   <button
                     onClick={handleShareResults}

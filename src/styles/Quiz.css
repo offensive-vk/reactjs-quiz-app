@@ -112,6 +112,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+    max-height: 50px;
 }
 
 .btn-end-quiz {
@@ -221,10 +222,12 @@
 .marks-badge {
     background-color: #4a995d;
     color: white;
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem;
     border-radius: 4px;
     font-size: 0.9rem;
     font-weight: 500;
+    height: 40px;
+    width: 99px;
 }
 
 /* Responsive styles for Quiz component */

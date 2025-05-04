@@ -21,6 +21,9 @@ const NavLinks = () => {
                 <li className="nav-item">
                     <Link to="/help" className="nav-link">Help</Link>
                 </li>
+                <li className="nav-item">
+                    <Link to="/custom-quiz" className="nav-link">Create Quiz</Link>
+                </li>
             </ul>
         </nav>
     );

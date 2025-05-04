@@ -29,6 +29,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/result" element={<Result />} />
                 <Route path="*" element={<ErrorFallback />} />
+                <Route path="/loader" element={<Loading />} />
                 <Route path="/quiz/:type" element={<Quiz />} />
                 <Route path="/result/:id" element={<Result />} />
                 <Route path="/custom/:title" element={<Quiz />} />

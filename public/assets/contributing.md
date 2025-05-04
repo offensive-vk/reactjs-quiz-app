@@ -160,6 +160,7 @@ If you have any questions or need help:
 2. Comment on your [PR](https://github.com/offensive-vk/reactjs-quiz-app/pulls) for specific questions about your contribution.
 3. Contact the maintainers through the project's GitHub issues or mention them in PR.
 
-Thank you for contributing to making our this project better! 🎉
 
 ---
+
+Thank you for contributing to making our this project better! 🎉
