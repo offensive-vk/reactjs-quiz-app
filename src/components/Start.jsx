@@ -28,7 +28,7 @@ const Start = () => {
           <NavLinks />
           <div className="row vh-100 align-items-center justify-content-center">
             <div className="col-12">
-              <h1 className="fw-bold m-4 display-5">Are You A Quiz Champion?</h1>
+              <h1 className="fw-bold m-4 display-5">Are you a Tech Quiz Champion?</h1>
               <p className="lead mb-5">Choose your quiz type or create your own!</p>
 
               <div className="quiz-options mb-5 mx-5">

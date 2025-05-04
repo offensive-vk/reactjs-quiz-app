@@ -82,7 +82,7 @@ const Quiz = () => {
   }
 
   const quizTypeInfo = getQuizTypeById(type || quizType || 'default');
-  const displayTitle = quizTitle || quizTypeInfo.title;
+  const displayTitle = quizTitle || quizTypeInfo?.title;
 
   return (
     <BaseLayout>

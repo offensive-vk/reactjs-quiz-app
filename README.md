@@ -1,10 +1,12 @@
 # 🌟 Quizzly.dev
 
+<p align="center">
+   <img src="./public/assets/app-banner.png" height=360 width=720 alt="app-banner" />
+</p>
+
 ## 🚀 Overview
 
-<!-- **Quizzly** is a web application designed to test the knowledge of Frontend, Backend, and Web Developers. Built using **ReactJS** and **Vite**, this application provides a seamless and interactive quiz experience. The app features a **start page**, a **quiz interface**, and a **results page**, all styled with **Bootstrap** for a modern look. -->
-
-**Quizzly.dev** is an interactive quiz application designed to challenge and enhance your knowledge across various subjects, including web development, programming languages, and modern frameworks. With real-time feedback, instant scoring, and a user-friendly interface, *Quizzly.dev* just makes learning **more** engaging and fun.
+**Quizzly.dev** is an interactive quiz application designed to challenge and enhance your knowledge across various subjects, including web development, programming languages, and modern frameworks. With real-time feedback, instant scoring, and a user-friendly interface, *Quizzly.dev* just makes learning **more** engaging and fun. Built using **ReactJS** and **Vite**, this application provides a seamless and interactive quiz experience. The app features a **start page**, a **quiz interface**, and a **results page**, all styled with **Bootstrap** for a modern look.
 
 ## ✨ Features
 

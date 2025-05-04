@@ -29,7 +29,7 @@ const Result = () => {
   const currentTime = new Date().toLocaleTimeString();
 
   // Get quiz type info from the centralized data
-  const quizTypeInfo = getQuizTypeById(quizType || 'Custom' ||'default');
+  const quizTypeInfo = getQuizTypeById(quizType || 'Custom' || 'default');
 
   const handleStartOver = () => {
     const lastQuizType = quizType;

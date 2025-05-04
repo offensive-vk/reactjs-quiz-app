@@ -109,8 +109,7 @@ export const getQuizTypeById = (id) => {
 		id: 'default',
 		title: 'Default Quiz',
 		display: 'Default',
-		icon:
-			'https://cdn.jsdelivr.net/gh/offensive-vk/reactjs-quiz-app@master/public/internet.svg',
+		icon: 'https://cdn.jsdelivr.net/gh/offensive-vk/reactjs-quiz-app@master/public/internet.svg',
 	}
 }
 
@@ -122,4 +121,4 @@ export const getAllQuizTypes = () => {
 	return quizTypes
 }
 
-export default quizTypes
+export default quizTypes;

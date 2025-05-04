@@ -7,7 +7,7 @@ function FAQ () {
     const faqs = [
         {
             question: "What is this Quiz App?",
-            answer: "This Quiz App (v2025.3.0) is a modern React-based application that allows users to take quizzes on various topics, track their scores, and review their performance. It features a responsive design and smooth user experience."
+            answer: "Quizzly.dev (v2025.5.0) is a modern React-based application that allows users to take quizzes on various topics, track their scores, and review their performance. It features a responsive design and smooth user experience."
         },
         {
             question: "How do I start a quiz?",
