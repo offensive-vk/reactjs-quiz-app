@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../styles/NavLinks.css';
 
-const NavLinks = ({ handleCustomQuiz }) => {
+const NavLinks = () => {
     return (
         <nav className="nav-links">
             <ul className="nav-list" style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -22,7 +22,7 @@ const NavLinks = ({ handleCustomQuiz }) => {
                     <Link to="/help" className="nav-link">Help</Link>
                 </li>
                 <li className="nav-item">
-                    <button onClick={handleCustomQuiz} className="nav-link">Create Quiz</button>
+                    <Link to="/custom-quiz" className="nav-link">Create Quiz</Link>
                 </li>
             </ul>
         </nav>
