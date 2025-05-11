@@ -22,15 +22,15 @@
   "packageManager": "pnpm@10.0.0",
   "pnpm.onlyBuiltDependencies": "esbuild",
   "dependencies": {
-    "bootstrap": "^5.3.5",
+    "bootstrap": "^5.3.6",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.5.3"
+    "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
-    "@types/react": "^18.3.20",
+    "@types/react": "^18.3.21",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.26.0",
@@ -41,6 +41,6 @@
     "html2canvas": "^1.4.1",
     "react-error-boundary": "^5.0.0",
     "react-markdown": "^10.1.0",
-    "vite": "^6.3.4"
+    "vite": "^6.3.5"
   }
 }
