@@ -159,10 +159,6 @@ Here are the files critical for the application's functionality:
 
 You can also use your own quiz questions and answers. Have a look at the [Schema](./Schema.md).
 
-## 🧑‍💻 Authors
-
-This project was developed by **Mahak & Vedansh** as part of our BCA-VI Semester (Full Stack) *major project* for Software Project Management. 🌟
-
 ## 🪪 License
 
 This project is licensed under the MIT License. See the [LICENSE](./license) file for details.
