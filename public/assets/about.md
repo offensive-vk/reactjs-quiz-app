@@ -157,10 +157,6 @@ Here are the files critical for the application's functionality:
 
 You can also use your own quiz questions and answers. Have a look at the [Schema](https://github.com/offensive-vk/reactjs-quiz-app/blob/master/Schema.md).
 
-## 🧑‍💻 Authors
-
-This project was developed by **[Mahak](https://github.com/the-mehak) & [Vedansh](https://github.com/offensive-vk)** as part of our BCA-VI Semester (Full Stack) *major project* for Software Project Management. 🌟
-
 ## 🪪 License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/offensive-vk/reactjs-quiz-app/blob/master/license) file for details.
